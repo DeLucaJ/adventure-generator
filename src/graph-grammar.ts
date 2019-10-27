@@ -2,13 +2,19 @@ import * as Graph from './graph'
 
 export interface GraphGrammar {
     alphabet: Letter[];
-    rules:  Rule[];
+    rules: Rule[];
 }
 
 export interface Rule {
-    input: Graph.Graph;
+    input: InputEdge;
     output: Graph.Graph;
     terminator: boolean; // rule is used to clean up a graph after the grammar has run
+}
+
+export interface InputEdge {
+    source?: number;
+    label?: number;
+    target?: number;
 }
 
 export interface Letter {
@@ -37,7 +43,7 @@ export const narrativeGrammar: GraphGrammar = {
     ],
     rules: []
 }
- 
+
 export const questGrammar: GraphGrammar = {
     alphabet: [
         { name: 'S', terminal: false }, // 0
@@ -68,8 +74,7 @@ export const questGrammar: GraphGrammar = {
     rules: [
         { // (S) => (e -> C -> G -> bm -> iq -> ei -> CF -> g)
             input: {
-                vertices: [{ label: 0 }],
-                edges: [],
+                label: 0
             },
             output: {
                 // each index directly corresponds, and will be replaced
@@ -111,8 +116,8 @@ export const structureGrammar: GraphGrammar = {
  * 
  * This function runs a number of rules of grammar on the graph
  */
-export function interpret(graph: Graph.Graph, grammar: GraphGrammar, steps: number) { 
-    for(let i: number = 0; i < steps; i++) {
+export function interpret(graph: Graph.Graph, grammar: GraphGrammar, steps: number) {
+    for (let i: number = 0; i < steps; i++) {
         step(graph, grammar);
     }
     terminate(graph, grammar);
@@ -124,14 +129,20 @@ export function interpret(graph: Graph.Graph, grammar: GraphGrammar, steps: numb
  * 
  * Runs a single, random, and valid rule from the grammar
  */
-function step(graph: Graph.Graph, grammar: GraphGrammar) { 
-    const validRules: [Rule, Graph.Converter][] = [];
+function step(graph: Graph.Graph, grammar: GraphGrammar) {
+    const validRules: [Rule, number[]][] = [];
     for (let rule of grammar.rules) {
-        let converter: Graph.Converter = matchSubGraph(graph, rule.input);
-        if (converter.valid) validRules.push([rule, converter]);
+        const validEdges = matchEdges(graph, rule.input);
+        if (validEdges.length > 0) validRules.push([rule, validEdges]);
     }
-    const index = Math.floor(Math.random() * (validRules.length - 1));
-    replaceSubGraph(graph, validRules[index][0].output, validRules[index][1]);
+    if (validRules.length > 0) {
+        const ri = Math.floor(Math.random() * validRules.length);
+        const ei = Math.floor(Math.random() * validRules[ri][1].length);
+        replaceEdgeWithOutput(graph, validRules[ri][1][ei], validRules[ri][0].output);
+    }
+    else {
+        console.log("No Valid Rules in Grammar")
+    }
 }
 
 /*
@@ -141,13 +152,32 @@ function step(graph: Graph.Graph, grammar: GraphGrammar) {
  * 
  * This function finds a valid subgraph in the starting graph in order to replace
  */
-function matchSubGraph(graph: Graph.Graph, subgraph: Graph.Graph): Graph.Converter { 
-    const vertexMap: Map<number, number> = new Map();
-    const edgeMap: Map<number, number> = new Map();
-
-    // Subgraph Isomorphism Problem
-
-    return new Graph.Converter(vertexMap, edgeMap, false);
+function matchEdges(graph: Graph.Graph, input: InputEdge): number[] {
+    const valid: number[] = [];
+    for (let i = 0; i < graph.edges.length; i++) {
+        const edge = graph.edges[i];
+        let l = false, s = false, t = false;
+        if (input.label) {
+            if (edge.label && edge.label == input.label) l = true;
+        }
+        else {
+            l = true;
+        }
+        if (input.source) {
+            if (graph.vertices[edge.source].label == input.source) s = true;
+        }
+        else {
+            s = true;
+        }
+        if (input.target) {
+            if (graph.vertices[edge.target].label == input.target) t = true;
+        }
+        else {
+            t = true;
+        }
+        if (l && s && t) valid.push(i);
+    }
+    return valid;
 }
 
 /*
@@ -157,31 +187,41 @@ function matchSubGraph(graph: Graph.Graph, subgraph: Graph.Graph): Graph.Convert
  * 
  * This function swaps a subgraph of graph matching the input of the rule with the output in the rule
  */
-function replaceSubGraph(graph: Graph.Graph, newsub: Graph.Graph, converter: Graph.Converter) {
-    for (let i = 0; i < newsub.vertices.length; i++) {
-        const current: Graph.Vertex = newsub.vertices[i];
-        if (converter.vertexMap.has(i)) {
-            Graph.replaceVertex(graph, converter.vertexMap.get(i) as number, current);
+function replaceEdgeWithOutput(graph: Graph.Graph, edgeIndex: number, replacement: Graph.Graph) {
+    const edge = graph.edges[edgeIndex];
+    const vertexMap: Map<number, number> = new Map();
+
+    // remove Edge from graph
+    graph.edges.splice(edgeIndex, 1);
+
+    // set up vertex map and add vertecies to map
+    for (let v = 0; v < replacement.vertices.length; v++) {
+        if (v == 0) {
+            vertexMap.set(v, edge.source);
+            if (replacement.vertices[v].label != graph.vertices[edge.source].label) {
+                graph.vertices[edge.source].label = replacement.vertices[v].label
+            }
+        }
+        else if (v == replacement.edges.length - 1) {
+            vertexMap.set(v, edge.target);
+            if (replacement.vertices[v].label != graph.vertices[edge.target].label) {
+                graph.vertices[edge.target].label = replacement.vertices[v].label;
+            }
         }
         else {
-            Graph.addVertex(graph, current);
-            converter.vertexMap.set(i, graph.vertices.length - 1);
+            vertexMap.set(v, graph.vertices.length);
+            Graph.addVertex(graph, replacement.vertices[v])
         }
     }
-    // all vertecies should have an entry in the map now
-    for (let i = 0; i < newsub.edges.length; i++) {
-        const current: Graph.Edge = newsub.edges[i];
-        const newEdge: Graph.Edge = { 
-            source: converter.vertexMap.get(current.source) as number, 
-            target: converter.vertexMap.get(current.target) as number
-        };
-        if (converter.edgeMap.has(i)) {
-            Graph.replaceEdge(graph, converter.edgeMap.get(i) as number, newEdge);
-        }
-        else {
-            Graph.addEdge(graph, newEdge);
-        }
-    }
+
+    // convert edges of replacement to edges of graph, then add them to graph
+    for (let edge of replacement.edges) {
+        Graph.addEdge(graph, {
+            label: edge.label,
+            source: vertexMap.get(edge.source) as number,
+            target: vertexMap.get(edge.target) as number
+        });
+    } 
 }
 
 /*
@@ -192,7 +232,7 @@ function replaceSubGraph(graph: Graph.Graph, newsub: Graph.Graph, converter: Gra
  * It cleans the graph of non-terminals by running all of the termination rules until they cannot
  * be run further.
  */
-function terminate(graph: Graph.Graph, grammar: GraphGrammar) { 
+function terminate(graph: Graph.Graph, grammar: GraphGrammar) {
     // Loops through grammar.rules, and tries to run any rule labeled 'terminator'
 }
 

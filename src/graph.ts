@@ -8,6 +8,7 @@ export interface Vertex {
 }
 
 export interface Edge {
+    label?: number;
     source: number;
     target: number;
 }
@@ -49,15 +50,15 @@ export function replaceVertex(graph: Graph, index: number, vertex: Vertex) {
 }
 
 // Returns all edges in the graph that have the same source and target
-export function findEdges(graph: Graph, s: number, t: number): Edge[] {
-    const edges: Edge[] = [];
-    graph.edges.forEach(function (edge: Edge) {
+export function findEdges(graph: Graph, s: number, t: number): number[] {
+    const edges: number[] = [];
+    for (let i = 0; i < graph.edges.length; i++) {
         let smatch = (s == -1) ? true : false;
         let tmatch = (t == -1) ? true : false;
-        if (s > -1 && edge.source == s) smatch = true;
-        if (t > -1 && edge.target == t) tmatch = true;
-        if (smatch && tmatch) edges.push(edge);
-    });
+        if (s > -1 && graph.edges[i].source == s) smatch = true;
+        if (s > -1 && graph.edges[i].target == t) tmatch = true;
+        if (smatch && tmatch) edges.push(i);
+    }
     return edges;
 }
 
