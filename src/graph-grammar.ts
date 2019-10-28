@@ -374,7 +374,211 @@ export const questGrammar: GraphGrammar = {
         
     ],
     rules: [
-        
+        {
+            input: {
+                source: 'e',
+                label: 'S',
+                target: 'g'
+            },
+            output: {
+                vertices: [
+                    { label: 'source' },
+                    { label: 'gr' },
+                    { label: 'pu' },
+                    { label: 'tr' },
+                    { label: 'bl' },
+                    { label: 'target' }
+                ],
+                edges: [
+                    { source: 0, target: 1 },
+                    { source: 1, target: 2 },
+                    { source: 2, target: 3, label: 'CM' },
+                    { source: 3, target: 4, label: 'CF' },
+                    { source: 4, target: 5 }
+                ]
+            }
+        },
+        {
+            input: {
+                label: 'CM'
+            },
+            output: {
+                vertices: [
+                    { label: 'source' },
+                    { label: 'bm' },
+                    { label: 'iq' },
+                    { label: 'ei' },
+                    { label: 'target' }
+                ],
+                edges: [
+                    { source: 0, target: 1, label: 'C' },
+                    { source: 1, target: 2 },
+                    { source: 2, target: 3 },
+                    { source: 3, target: 4 }
+                ]
+            }
+        },
+        {
+            input: {
+                label: 'CF'
+            },
+            output: {
+                vertices: [
+                    { label: 'source' },
+                    { label: 'n' },
+                    { label: 'ec' },
+                    { label: 'lf' },
+                    { label: 'kf' },
+                    { label: 'ib' },
+                    { label: 'ib' },
+                    { label: 'target' }
+                ],
+                edges: [
+                    { source: 0, target: 1 },
+                    { source: 1, target: 3, label: 'C' },
+                    { source: 3, target: 7 },
+                    { source: 1, target: 2 },
+                    { source: 2, target: 4 },
+                    { source: 1, target: 5, label: 'H' },
+                    { source: 2, target: 6, label: 'H' }
+                ]
+            }
+        },
+        {
+            input: {
+                label: 'C'
+            },
+            output: {
+                vertices: [
+                    { label: 'source' },
+                    { label: 'k' },
+                    { label: 'l' },
+                    { label: 'target' }
+                ],
+                edges: [
+                    { source: 0, target: 1 },
+                    { source: 1, target: 2 },
+                    { source: 2, target: 3, label: 'C' }
+                ]
+            }
+        },
+        {
+            input: {
+                label: 'C'
+            },
+            output: {
+                vertices: [
+                    { label: 'source' },
+                    { label: 'n' },
+                    { label: 'k' },
+                    { label: 'l' },
+                    { label: 'target' }
+                ],
+                edges: [
+                    { source: 0, target: 1 },
+                    { source: 1, target: 3, label: 'C' },
+                    { source: 1, target: 2 },
+                    { source: 2, target: 3 },
+                    { source: 3, target: 4 }
+                ]
+            }
+        },
+        {
+            input: {
+                label: 'C'
+            },
+            output: {
+                vertices: [
+                    { label: 'source' },
+                    { label: 'ec' },
+                    { label: 'target' }
+                ],
+                edges: [
+                    { source: 0, target: 1 },
+                    { source: 1, target: 2, label: 'C' }
+                ]
+            }
+        },
+        {
+            input: {
+                label: 'C'
+            },
+            output: {
+                vertices: [
+                    { label: 'source' },
+                    { label: 'es' },
+                    { label: 'target' }
+                ],
+                edges: [
+                    { source: 0, target: 1 },
+                    { source: 1, target: 2, label: 'C' }
+                ]
+            }
+        },
+        {
+            input: {
+                source: 'n'
+            },
+            output: {
+                vertices: [
+                    { label: 'source' },
+                    { label: 'ib' },
+                    { label: 'target' }
+                ],
+                edges: [
+                    { source: 0, target: 1 },
+                    { source: 0, target: 2, label: 'H' }
+                ]
+            }
+        },
+        {
+            input: {
+                label: 'H'
+            },
+            output: {
+                vertices: [
+                    { label: 'source' },
+                    { label: 'ec' },
+                    { label: 'target' }
+                ],
+                edges: [
+                    { source: 0, target: 1 },
+                    { source: 1, target: 2 }
+                ]
+            }
+        },
+        {
+            input: {
+                label: 'H'
+            },
+            output: {
+                vertices: [
+                    { label: 'source' },
+                    { label: 'es' },
+                    { label: 'target' }
+                ],
+                edges: [
+                    { source: 0, target: 1 },
+                    { source: 1, target: 2 }
+                ]
+            }
+        },
+        {
+            input: {
+                label: 'H'
+            },
+            output: {
+                vertices: [
+                    { label: 'source' },
+                    { label: 'ei' },
+                    { label: 'target' }
+                ],
+                edges: [
+                    { source: 0, target: 1 },
+                    { source: 1, target: 2 }
+                ]
+            }
+        },
     ]
 }
 
