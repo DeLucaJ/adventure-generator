@@ -2,7 +2,29 @@
   <section class="page container">
     <div class="columns">
       <div class="column is-one-fifth">
-        <div class="notification"><strong>Adventure Menu</strong></div>
+        <b-menu>
+          <b-menu-list label="Adventure">
+            <b-menu-item label="Overview" icon="eye"/>
+            <b-menu-item  icon="book-open-variant" :active="isActive" :expanded="isActive" @click="isActive = !isActive">
+              <template slot="label" slot-scope="props">
+                Narrative
+                <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-down' : 'menu-up'"></b-icon>
+              </template>
+              <b-menu-item label="Overview"/>
+              <b-menu-item label="Quests"/>
+              <b-menu-item label="Encounters"/>
+            </b-menu-item >
+            <b-menu-item icon="earth" :active="isActive" :expanded="isActive" @click="isActive = !isActive">
+              <template slot="label" slot-scope="props">
+                Setting
+                <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-down' : 'menu-up'"></b-icon>
+              </template>
+              <b-menu-item label="Overview"/>
+              <b-menu-item label="Characters"/>
+              <b-menu-item label="Locations"/>
+            </b-menu-item >
+          </b-menu-list>
+        </b-menu>
       </div>
       <div class="column">
         <div class="notification"><strong>Adventure Viewer</strong></div>
@@ -10,3 +32,9 @@
     </div>
   </section>
 </template>
+
+<style scoped>
+.viewport {
+  height: 100%;
+}
+</style>
