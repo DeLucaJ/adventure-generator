@@ -23,10 +23,6 @@ export default class App extends Vue {
 </script>
 
 <style>
-html, body {
-  height: 100%;
-}
-
 .page {
   padding: 15px;
 }

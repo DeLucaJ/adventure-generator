@@ -27,14 +27,8 @@
         </b-menu>
       </div>
       <div class="column">
-        <div class="notification"><strong>Adventure Viewer</strong></div>
+        <strong>Adventure Viewer</strong>
       </div>
     </div>
   </section>
 </template>
-
-<style scoped>
-.viewport {
-  height: 100%;
-}
-</style>
