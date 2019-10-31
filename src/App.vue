@@ -1,12 +1,8 @@
 <template>
   <div id="app">
     <AppHeader/>
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
     <router-view/>
-    <AppFooter/>
+    <AppFooter style="bottom: 0"/>
   </div>
 </template>
 
@@ -26,5 +22,11 @@ export default class App extends Vue {
 </script>
 
 <style>
+html, body {
+  height: 100%;
+}
 
+.page {
+  padding: 15px;
+}
 </style>

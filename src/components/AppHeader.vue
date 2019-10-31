@@ -6,7 +6,7 @@
           Adventure Generator
         </h1>
         <h2 class="subtitle">
-          By Joseph DeLuca
+          <em>By Joseph DeLuca</em>
         </h2>
       </div>
     </div>
@@ -15,6 +15,7 @@
         <b-navbar>
           <template slot='start'>
             <b-navbar-item tag="router-link" :to="{ path: '/'}">Home</b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ path: '/adventure-viewer'}">Adventures</b-navbar-item>
             <b-navbar-item tag="router-link" :to="{ path: '/about'}">About</b-navbar-item>
           </template>
         </b-navbar>
