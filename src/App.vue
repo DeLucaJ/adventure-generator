@@ -22,8 +22,13 @@ export default class App extends Vue {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "~bulma/sass/utilities/_all";
+
 .page {
   padding: 15px;
 }
+
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
 </style>
