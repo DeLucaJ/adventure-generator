@@ -24,7 +24,7 @@ export default class App extends Vue {
 
 <style lang="scss">
 @import "~bulma/sass/utilities/_all";
-@import "https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css";
+@import "~mdi/";
 
 // Customize colors
 
