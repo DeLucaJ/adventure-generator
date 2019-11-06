@@ -24,7 +24,6 @@ export default class App extends Vue {
 
 <style lang="scss">
 @import "~bulma/sass/utilities/_all";
-@import "~mdi/";
 
 // Customize colors
 
