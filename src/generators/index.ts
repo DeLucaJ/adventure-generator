@@ -1,2 +1,2 @@
-export { default as Graph } from "./graph";
+export { default as Graph, Vertex, Edge } from "./graph";
 export { default as GraphGrammar } from "./graph-grammar"
