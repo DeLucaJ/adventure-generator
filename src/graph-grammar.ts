@@ -117,13 +117,13 @@ function replaceEdgeWithOutput(graph: Graph.Graph, edgeIndex: number, replacemen
         }
         else {
             vertexMap.set(v, graph.vertices.length);
-            Graph.addVertex(graph, replacement.vertices[v])
+            graph.addVertex(replacement.vertices[v])
         }
     }
 
     // convert edges of replacement to edges of graph, then add them to graph
     for (let edge of replacement.edges) {
-        Graph.addEdge(graph, {
+        graph.addEdge({
             label: edge.label,
             source: vertexMap.get(edge.source) as number,
             target: vertexMap.get(edge.target) as number
@@ -190,7 +190,7 @@ export const narrativeGrammar: GraphGrammar = {
                     { source: 0, target: 1, label: 'A3' },
                     { source: 4, target: 5 }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -206,7 +206,7 @@ export const narrativeGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 1, target: 2 },
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -226,7 +226,7 @@ export const narrativeGrammar: GraphGrammar = {
                     { source: 1, target: 3, label: 'H' },
                     { source: 1, target: 4, label: 'C' }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -242,7 +242,7 @@ export const narrativeGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 1, target: 2 },
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -260,7 +260,7 @@ export const narrativeGrammar: GraphGrammar = {
                     { source: 1, target: 2 },
                     { source: 2, target: 3, label: 'C' }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -284,7 +284,7 @@ export const narrativeGrammar: GraphGrammar = {
                     { source: 4, target: 5, label: 'C' },
                     { source: 5, target: 6 }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -300,7 +300,7 @@ export const narrativeGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 1, target: 2 }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -316,7 +316,7 @@ export const narrativeGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 1, target: 2 }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -332,7 +332,7 @@ export const narrativeGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 1, target: 2 }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -348,7 +348,7 @@ export const narrativeGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 1, target: 2 }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -364,7 +364,7 @@ export const narrativeGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 0, target: 2 }
                 ]
-            }
+            } as Graph.Graph
         }
     ]
 }
@@ -396,7 +396,7 @@ export const questGrammar: GraphGrammar = {
                     { source: 3, target: 4, label: 'CF' },
                     { source: 4, target: 5 }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -416,7 +416,7 @@ export const questGrammar: GraphGrammar = {
                     { source: 2, target: 3 },
                     { source: 3, target: 4 }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -442,7 +442,7 @@ export const questGrammar: GraphGrammar = {
                     { source: 1, target: 5, label: 'H' },
                     { source: 2, target: 6, label: 'H' }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -460,7 +460,7 @@ export const questGrammar: GraphGrammar = {
                     { source: 1, target: 2 },
                     { source: 2, target: 3, label: 'C' }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -481,7 +481,7 @@ export const questGrammar: GraphGrammar = {
                     { source: 2, target: 3 },
                     { source: 3, target: 4 }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -497,7 +497,7 @@ export const questGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 1, target: 2, label: 'C' }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -513,7 +513,7 @@ export const questGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 1, target: 2, label: 'C' }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -529,7 +529,7 @@ export const questGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 0, target: 2, label: 'H' }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -545,7 +545,7 @@ export const questGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 1, target: 2 }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -561,7 +561,7 @@ export const questGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 1, target: 2 }
                 ]
-            }
+            } as Graph.Graph
         },
         {
             input: {
@@ -577,7 +577,7 @@ export const questGrammar: GraphGrammar = {
                     { source: 0, target: 1 },
                     { source: 1, target: 2 }
                 ]
-            }
+            } as Graph.Graph
         },
     ]
 }
