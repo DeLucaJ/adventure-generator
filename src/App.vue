@@ -40,6 +40,11 @@ $colors: (
   "danger": ($danger, $danger-invert)
 );
 
+// Link Color Variables
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
 .page {
   padding: 15px;
 }
