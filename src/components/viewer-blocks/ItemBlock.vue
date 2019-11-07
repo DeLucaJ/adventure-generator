@@ -6,7 +6,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class ItemViewer extends Vue {
+export default class ItemBlock extends Vue {
 
 }
 </script>

@@ -6,7 +6,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class NarrativeViewer extends Vue {
+export default class NarrativeBlock extends Vue {
 
 }
 </script>

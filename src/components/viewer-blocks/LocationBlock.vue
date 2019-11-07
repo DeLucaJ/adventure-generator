@@ -6,7 +6,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class LocationViewer extends Vue {
+export default class LocationBlock extends Vue {
 
 }
 </script>

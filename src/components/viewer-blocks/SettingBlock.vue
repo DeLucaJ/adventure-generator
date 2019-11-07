@@ -6,7 +6,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class SettingViewer extends Vue {
+export default class SettingBlock extends Vue {
 
 }
 </script>
