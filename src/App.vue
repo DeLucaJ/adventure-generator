@@ -20,14 +20,6 @@ import AppFooter from "./components/AppFooter.vue";
 export default class App extends Vue {
 
 }
-
-export class Inner {
-  property: string;
-
-  constructor(property: string) {
-    this.property = property;
-  }
-}
 </script>
 
 <style lang="scss">
