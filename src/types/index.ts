@@ -5,6 +5,7 @@ export { default as Encounter } from './encounter';
 export { default as PlotPoint } from './plot-point';
 export { default as Setting } from './setting';
 export { default as Character } from './character';
-export { default as Villain } from './villain';
+export { default as Adversary } from './adversary';
 export { default as Area } from './area';
 export { default as Item } from './item';
+export { default as Faction } from './faction';

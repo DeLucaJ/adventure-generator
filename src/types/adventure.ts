@@ -1,12 +1,18 @@
 import * as Graph from '../generators/graph'
-import * as Types from './index';
+import { Narrative, Setting} from './index';
 
 export default class Adventure {
-  narrative: Types.Narrative;
-  setting: Types.Setting;
+  title: string;
+  narrative: Narrative;
+  setting: Setting;
 
-  constructor() {
-    this.narrative = { }
-    this.setting = { }
+  constructor(
+    title: string = "", 
+    narrative: Narrative = new Narrative(),
+    setting: Setting = new Setting()
+  ) {
+    this.title = title;
+    this.narrative = narrative;
+    this.setting = setting;
   }
 }
