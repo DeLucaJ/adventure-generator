@@ -1,4 +1,3 @@
-import * as Graph from '../generators/graph'
 import { Narrative, Setting} from './index';
 
 export default class Adventure {
