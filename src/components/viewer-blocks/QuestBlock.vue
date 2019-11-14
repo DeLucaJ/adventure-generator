@@ -1,5 +1,9 @@
 <template>
-    
+  <section>
+    <h3 class="title is-3">Quest: {{ quest.title }}</h3>
+    <!-- Graph
+    Encounters -->
+  </section>
 </template>
 
 <script lang="ts">

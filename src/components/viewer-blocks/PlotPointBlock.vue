@@ -1,5 +1,8 @@
 <template>
-    
+  <section>
+    <h3 class="title is-3">PlotPoint: {{ plotPoint.title }}</h3>
+    <!-- Encounter -->
+  </section>
 </template>
 
 <script lang="ts">

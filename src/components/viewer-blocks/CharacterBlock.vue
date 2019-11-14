@@ -1,5 +1,8 @@
 <template>
-    
+  <section>
+    <h3 class="title is-3">Character: {{ character.title }}</h3>
+    <p>{{ character.description }}</p>
+  </section>
 </template>
 
 <script lang="ts">

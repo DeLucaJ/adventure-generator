@@ -27,8 +27,11 @@
         </b-menu>
       </div>
       <div class="column">
-        <strong>Adventure Viewer</strong>
+        <h1 class="title is-1">
+          Adventure: {{ adventure.title }}
+        </h1>
         <NarrativeBlock />
+        <SettingBlock />
       </div>
     </div>
   </section>
@@ -44,10 +47,7 @@ import SettingBlock from "@/components/viewer-blocks/SettingBlock.vue";
   components: {
     NarrativeBlock,
     SettingBlock
-  }/* ,
-  props: {
-    adventure: Adventure
-  } */
+  }
 })
 export default class AdventureViewer extends Vue {
   @Prop({})
