@@ -9,7 +9,7 @@ export default class Quest {
   constructor(
     title: string = "",
     graph: Graph = new Graph(),
-    encounters: Encounter[],
+    encounters: Encounter[] = [],
   ) {
     this.title = title;
     this.graph = graph;

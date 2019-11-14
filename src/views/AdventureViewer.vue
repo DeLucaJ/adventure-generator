@@ -28,7 +28,29 @@
       </div>
       <div class="column">
         <strong>Adventure Viewer</strong>
+        <NarrativeBlock />
       </div>
     </div>
   </section>
 </template>
+
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
+import { Adventure } from "@/types";
+import NarrativeBlock from "@/components/viewer-blocks/NarrativeBlock.vue";
+import SettingBlock from "@/components/viewer-blocks/SettingBlock.vue";
+
+@Component ({
+  components: {
+    NarrativeBlock,
+    SettingBlock
+  }/* ,
+  props: {
+    adventure: Adventure
+  } */
+})
+export default class AdventureViewer extends Vue {
+  @Prop({})
+  adventure: Adventure = new Adventure();
+}
+</script>
