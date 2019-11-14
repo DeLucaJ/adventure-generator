@@ -27,9 +27,7 @@
         </b-menu>
       </div>
       <div class="column">
-        <h1 class="title is-1">
-          Adventure: {{ adventure.title }}
-        </h1>
+        <h1 class="title is-1">Adventure: {{ adventure.title }}</h1>
         <NarrativeBlock />
         <SettingBlock />
       </div>
