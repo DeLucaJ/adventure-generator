@@ -11,7 +11,7 @@ import { Item } from "@/types";
 
 @Component
 export default class ItemBlock extends Vue {
-  @Prop()
-  item: Item = new Item();
+  @Prop({ default: new Item() })
+  item!: Item;
 }
 </script>

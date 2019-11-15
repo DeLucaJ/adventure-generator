@@ -1,5 +1,5 @@
-import { Graph } from "../generators/graph";
-import { PlotPoint, Quest } from "./index";
+import { Graph } from "@/generators";
+import { PlotPoint, Quest } from "@/types";
 
 export default class Narrative {
   title: string;

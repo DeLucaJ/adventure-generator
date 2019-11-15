@@ -1,5 +1,5 @@
 import { Encounter } from "./index";
-import { Graph } from "../generators/graph";
+import { Graph } from "@/generators";
 
 export default class Quest {
   title: string;

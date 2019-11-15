@@ -1,4 +1,4 @@
-export class Graph {
+export default class Graph {
     vertices: Vertex[];
     edges: Edge[];
 

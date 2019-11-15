@@ -12,7 +12,7 @@ import { Faction } from "@/types";
 
 @Component
 export default class FactionBlock extends Vue {
-  @Prop()
-  faction: Faction = new Faction();
+  @Prop({ default: new Faction() })
+  faction!: Faction;
 }
 </script>

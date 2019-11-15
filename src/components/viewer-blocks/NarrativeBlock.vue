@@ -14,7 +14,7 @@ import { Narrative } from "@/types";
 
 @Component
 export default class NarrativeBlock extends Vue {
-  @Prop()
-  narrative: Narrative = new Narrative();
+  @Prop({ default: new Narrative() })
+  narrative!: Narrative;
 }
 </script>

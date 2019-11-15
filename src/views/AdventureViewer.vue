@@ -48,7 +48,7 @@ import SettingBlock from "@/components/viewer-blocks/SettingBlock.vue";
   }
 })
 export default class AdventureViewer extends Vue {
-  @Prop({})
-  adventure: Adventure = new Adventure();
+  @Prop({ default: new Adventure() })
+  adventure!: Adventure;
 }
 </script>

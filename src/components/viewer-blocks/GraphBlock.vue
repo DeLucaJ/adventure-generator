@@ -1,18 +1,17 @@
 <template>
   <section>
-    <h3 class="title is-3">Quest: {{ quest.title }}</h3>
-    <!-- Graph
-    Encounters -->
+    <h4 class="title is-4">Graph: {{ quest.title }}</h4>
+    <!-- Graph -->
   </section>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Quest } from "@/types";
+import Graph from "@/generators/graph";
 
 @Component
 export default class QuestBlock extends Vue {
-  @Prop({ default: new Quest() })
-  quest!: Quest;
+  @Prop({ default: new Graph() })
+  graph!: Graph;
 }
 </script>

@@ -13,7 +13,7 @@ import { Setting } from "@/types";
 
 @Component
 export default class SettingBlock extends Vue {
-  @Prop()
-  setting: Setting = new Setting();
+  @Prop({ default: new Setting() })
+  setting!: Setting;
 }
 </script>

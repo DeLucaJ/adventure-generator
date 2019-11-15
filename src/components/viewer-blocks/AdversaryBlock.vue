@@ -14,7 +14,7 @@ import { Adversary } from "@/types";
 
 @Component
 export default class AdversaryBlock extends Vue {
-  @Prop()
-  adversary: Adversary = new Adversary();
+  @Prop({ default: new Adversary() })
+  adversary!: Adversary;
 }
 </script>
