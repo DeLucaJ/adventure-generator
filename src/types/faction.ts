@@ -10,8 +10,8 @@ export default class Faction {
   motivations: string[]; */
 
   constructor(
-    title: string = "",
-    description: string = "",
+    title: string = "New Faction",
+    description: string = "This is an organization at work in the Setting.",
     members: Character[] = []
   ) {
     this.title = title;

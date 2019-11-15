@@ -6,8 +6,8 @@ export default class Area {
   // map: AreaMap;
 
   constructor(
-    title: string = "",
-    description: string = "",
+    title: string = "New Area",
+    description: string = "This is a location that can be travelled to in the Setting",
     subAreas: Area[] = []
   ) {
     this.title = title,

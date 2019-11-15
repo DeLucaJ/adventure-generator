@@ -9,8 +9,8 @@ export default class Encounter {
   // goons: Goon[];
 
   constructor(
-    title: string = "",
-    description: string = "",
+    title: string = "New Encounter",
+    description: string = "This is an encounter that takes place in the Narrative.",
     area: Area = new Area(),
     characters: Character[] = [] 
   ) {

@@ -3,8 +3,8 @@ export default class Item {
   description: string;
 
   constructor(
-    title: string = "",
-    description: string = ""
+    title: string = "New Item",
+    description: string = "This is a unique item or type of item in the Setting"
   ) {
     this.title = title;
     this.description = description;

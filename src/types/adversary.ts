@@ -8,8 +8,8 @@ export default class Adversary {
   villains: Character[]; // is it one?
 
   constructor(
-    title: string = "",
-    description: string = "",
+    title: string = "New Adversary",
+    description: string = "The adversary are the primary sources of conflict in the narrative.",
     portent: string[] = [],
     factions: Faction[] = [],
     villains: Character[] = []

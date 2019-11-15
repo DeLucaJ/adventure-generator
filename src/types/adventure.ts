@@ -6,7 +6,7 @@ export default class Adventure {
   setting: Setting;
 
   constructor(
-    title: string = "", 
+    title: string = "New Adventure", 
     narrative: Narrative = new Narrative(),
     setting: Setting = new Setting()
   ) {
