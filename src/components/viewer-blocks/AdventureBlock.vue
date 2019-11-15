@@ -1,8 +1,10 @@
 <template>
-  <section>
-    <h1 class="title is-1">Adventure: {{ adventure.title }}</h1>
-    <NarrativeBlock v-bind:narrative="adventure.narrative" />
-    <SettingBlock v-bind:setting="adventure.setting" />
+  <section class="section">
+    <div class="container">
+      <h1 class="title is-1">Adventure: {{ adventure.title }}</h1>
+      <NarrativeBlock v-bind:narrative="adventure.narrative" />
+      <SettingBlock v-bind:setting="adventure.setting" />
+    </div>
   </section>
 </template>
 

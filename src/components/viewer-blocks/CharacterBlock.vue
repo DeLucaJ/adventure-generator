@@ -1,7 +1,9 @@
 <template>
-  <section>
-    <h3 class="title is-3">Character: {{ character.title }}</h3>
-    <p>{{ character.description }}</p>
+  <section class="section">
+    <div class="container">
+      <h3 class="title is-3">Character: {{ character.title }}</h3>
+      <p>{{ character.description }}</p>
+    </div>
   </section>
 </template>
 

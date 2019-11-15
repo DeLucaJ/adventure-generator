@@ -1,9 +1,11 @@
 <template>
-  <section>
-    <h2 class="title is-2">Setting: {{ setting.title }}</h2>
-    <h3 class="title is-3">Areas</h3>
-    <h3 class="title is-3">Characters</h3>
-    <h3 class="title is-3">Items</h3>
+  <section class="section">
+    <div class="container">
+      <h2 class="title is-2">Setting: {{ setting.title }}</h2>
+      <h3 class="title is-3">Areas</h3>
+      <h3 class="title is-3">Characters</h3>
+      <h3 class="title is-3">Items</h3>
+    </div>
   </section>
 </template>
 

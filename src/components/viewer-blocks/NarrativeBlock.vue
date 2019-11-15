@@ -1,10 +1,12 @@
 <template>
-  <section>
-    <h2 class="title is-2">Narrative: {{ narrative.title }}</h2>
-    <h3 class="title is-3">Graph</h3>
-    <!-- Show these in order of graph -->
-    <!-- Quests -->
-    <!-- PlotPoints -->
+  <section class="section">
+    <div class="container">
+      <h2 class="title is-2">Narrative: {{ narrative.title }}</h2>
+      <h3 class="title is-3">Graph</h3>
+      <!-- Show these in order of graph -->
+      <!-- Quests -->
+      <!-- PlotPoints -->
+    </div>
   </section>
 </template>
 

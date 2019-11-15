@@ -1,8 +1,10 @@
 <template>
-  <section>
-    <h3 class="title is-3">Area: {{ area.title }}</h3>
-    <p>{{ area.description }}</p>
-    <h4 class="title is-4">Subareas</h4>
+  <section class="section">
+    <div class="container">
+      <h3 class="title is-3">Area: {{ area.title }}</h3>
+      <p>{{ area.description }}</p>
+      <h4 class="title is-4">Subareas</h4>
+    </div>
   </section>
 </template>
 

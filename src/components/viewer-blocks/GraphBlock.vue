@@ -1,7 +1,9 @@
 <template>
-  <section>
-    <h4 class="title is-4">Graph: {{ quest.title }}</h4>
-    <!-- Graph -->
+  <section class="section">
+    <div class="container">
+      <h4 class="title is-4">Graph: {{ quest.title }}</h4>
+      <!-- Graph -->
+    </div>
   </section>
 </template>
 
