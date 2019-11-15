@@ -1,3 +1,5 @@
+import { Vertex, Edge } from "@/generators";
+
 export default class Graph {
     vertices: Vertex[];
     edges: Edge[];
@@ -32,14 +34,5 @@ export default class Graph {
     }
 }
 
-export interface Vertex {
-    label: string;
-}
-
-export interface Edge {
-    label?: string;
-    source: number;
-    target: number;
-}
 
 

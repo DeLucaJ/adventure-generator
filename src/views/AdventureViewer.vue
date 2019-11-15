@@ -27,9 +27,7 @@
         </b-menu>
       </div>
       <div class="column">
-        <h1 class="title is-1">Adventure: {{ adventure.title }}</h1>
-        <NarrativeBlock />
-        <SettingBlock />
+        <AdventureBlock v-bind:adventure="adventure" />
       </div>
     </div>
   </section>
@@ -38,17 +36,15 @@
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Adventure } from "@/types";
-import NarrativeBlock from "@/components/viewer-blocks/NarrativeBlock.vue";
-import SettingBlock from "@/components/viewer-blocks/SettingBlock.vue";
+import AdventureBlock from "@/components/viewer-blocks/AdventureBlock.vue";
 
 @Component ({
   components: {
-    NarrativeBlock,
-    SettingBlock
+    AdventureBlock
   }
 })
 export default class AdventureViewer extends Vue {
-  @Prop({ default: new Adventure() })
-  adventure!: Adventure;
+  adventure: Adventure = new Adventure();
+  isActive: boolean = true;
 }
 </script>
