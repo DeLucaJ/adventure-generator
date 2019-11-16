@@ -95,29 +95,28 @@ function matchEdges(graph: Graph, input: InputEdge): number[] {
  * This function swaps a subgraph of graph matching the input of the rule with the output in the rule
  */
 function replaceEdgeWithOutput(graph: Graph, edgeIndex: number, replacement: Graph) {
-    const edge = graph.edges[edgeIndex];
+    // debugger;
+    const givenEdge = graph.edges[edgeIndex];
     const vertexMap: Map<number, number> = new Map();
+    // const labelMap: Map<number, string> = new Map();
 
     // remove Edge from graph
     graph.edges.splice(edgeIndex, 1);
 
     // set up vertex map and add vertecies to map
     for (let v = 0; v < replacement.vertices.length; v++) {
-        if (v == 0) {
-            vertexMap.set(v, edge.source);
-            /* if (replacement.vertices[v].label != graph.vertices[edge.source].label) {
-                graph.vertices[edge.source].label = replacement.vertices[v].label
-            } */
+        if (v === 0) {
+            vertexMap.set(v, givenEdge.source);
+            // labelMap.set(v, graph.vertices[givenEdge.source].label);
         }
-        else if (v == replacement.edges.length - 1) {
-            vertexMap.set(v, edge.target);
-            /* if (replacement.vertices[v].label != graph.vertices[edge.target].label) {
-                graph.vertices[edge.target].label = replacement.vertices[v].label;
-            } */
+        else if (v === (replacement.vertices.length - 1)) {
+            vertexMap.set(v, givenEdge.target);
+            // labelMap.set(v, graph.vertices[givenEdge.target].label);
         }
         else {
             vertexMap.set(v, graph.vertices.length);
-            graph.addVertex(replacement.vertices[v])
+            // labelMap.set(v, replacement.vertices[v].label);
+            graph.addVertex(replacement.vertices[v]);
         }
     }
 
@@ -185,9 +184,9 @@ export const narrativeGrammar: GraphGrammar = {
                 ],
                 edges: [
                     { source: 0, target: 1 },
-                    { source: 0, target: 1, label: 'A1' },
-                    { source: 0, target: 1, label: 'A2' },
-                    { source: 0, target: 1, label: 'A3' },
+                    { source: 1, target: 2, label: 'A1' },
+                    { source: 2, target: 3, label: 'A2' },
+                    { source: 3, target: 4, label: 'A3' },
                     { source: 4, target: 5 }
                 ]
             } as Graph

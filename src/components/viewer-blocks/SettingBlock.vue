@@ -3,8 +3,11 @@
     <div class="container">
       <h2 class="title is-2">Setting: {{ setting.title }}</h2>
       <h3 class="title is-3">Areas</h3>
+      <AreaBlock v-for="area in setting.areas" v-bind:key="area.title"/>
       <h3 class="title is-3">Characters</h3>
+      <CharacterBlock v-for="char in setting.characters" v-bind:key="char.title"/>
       <h3 class="title is-3">Items</h3>
+      <ItemBlock v-for="item in setting.items" v-bind:key="item.title"/>
     </div>
   </section>
 </template>
@@ -12,8 +15,15 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Setting } from "@/types";
+import { AreaBlock, CharacterBlock, ItemBlock } from "@/components/viewer-blocks";
 
-@Component
+@Component({
+  components: {
+    AreaBlock,
+    CharacterBlock,
+    ItemBlock
+  }
+})
 export default class SettingBlock extends Vue {
   @Prop({ default: new Setting() })
   setting!: Setting;
