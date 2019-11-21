@@ -10,6 +10,7 @@
       >
         Generate Narrative
       </b-button>
+      <GraphBlock :graph="narrative.graph" />
       <!-- Should Key these by an ID relative to the node -->
       <h3 class="title is-3">Quests</h3>
       <QuestBlock v-for="quest in narrative.quests" v-bind:key="quest.title"/>
@@ -22,12 +23,13 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Narrative } from "@/types";
-import { QuestBlock, PlotPointBlock } from '@/components/viewer-blocks/index';
+import { QuestBlock, PlotPointBlock, GraphBlock } from '@/components/viewer-blocks/index';
 
 @Component({
   components: {
     QuestBlock,
-    PlotPointBlock
+    PlotPointBlock,
+    GraphBlock
   }
 })
 export default class NarrativeBlock extends Vue {

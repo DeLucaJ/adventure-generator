@@ -31,7 +31,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class AppHeader extends Vue {
+export default class AppFooter extends Vue {
   //@Prop() private msg!: string;
 }
 </script>
