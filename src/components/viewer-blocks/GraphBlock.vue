@@ -18,8 +18,11 @@ import cytoscape from "cytoscape";
 export default class GraphBlock extends Vue {
   @Prop({ default: new Graph() })
   graph!: Graph;
-  instance: cytoscape.Core = cytoscape(
-    {
+
+  instance!: cytoscape.Core;
+
+  mounted() {
+    this.instance = cytoscape({
       container: document.getElementById('cy'),
       elements: {
         nodes: [
@@ -31,50 +34,20 @@ export default class GraphBlock extends Vue {
         ],
         edges: [
           { data: { id: "e1", source: "n1", target: "n2" } },
-          { data: { id: "e1", source: "n2", target: "n3" } },
-          { data: { id: "e1", source: "n3", target: "n4" } },
-          { data: { id: "e1", source: "n4", target: "n5" } },
+          { data: { id: "e2", source: "n2", target: "n3" } },
+          { data: { id: "e3", source: "n3", target: "n4" } },
+          { data: { id: "e4", source: "n4", target: "n5" } },
         ],
-      },
-      layout: {
-        name: 'preset',
-        positions: undefined, // map of (node id) => (position obj); or function(node){ return somPos; }
-        zoom: undefined, // the zoom level to set (prob want fit = false if set)
-        pan: undefined, // the pan level to set (prob want fit = false if set)
-        fit: true, // whether to fit to viewport
-        padding: 30, // padding on fit
-        animate: false, // whether to transition the node positions
-        animationDuration: 500, // duration of animation in ms if enabled
-        animationEasing: undefined, // easing of animation if enabled
-        ready: undefined, // callback on layoutready
-        stop: undefined, // callback on layoutstop
-      },
-      zoom: 1,
-      pan: { x: 0, y: 0 },
-      // interaction options:
-      minZoom: 1e-50,
-      maxZoom: 1e50,
-      zoomingEnabled: true,
-      userZoomingEnabled: true,
-      panningEnabled: true,
-      userPanningEnabled: true,
-      boxSelectionEnabled: true,
-      selectionType: 'single',
-      touchTapThreshold: 8,
-      desktopTapThreshold: 4,
-      autolock: false,
-      autoungrabify: false,
-      autounselectify: false,
-      // rendering options:
-      headless: false,
-      styleEnabled: true,
-      hideEdgesOnViewport: false,
-      textureOnViewport: false,
-      motionBlur: false,
-      motionBlurOpacity: 0.2,
-      wheelSensitivity: 1,
-      pixelRatio: 'auto'
-    }
-  );
+      }
+    });
+  }
 }
 </script>
+
+<style lang="scss">
+#cy {
+  width: 100%;
+  height: 100%;
+  min-height: 100px;
+}
+</style>
