@@ -24,22 +24,15 @@ export default class GraphBlock extends Vue {
   mounted() {
     this.instance = cytoscape({
       container: document.getElementById('cy'),
-      elements: {
-        nodes: [
-          { data: { id: "n1" } },
-          { data: { id: "n2" } },
-          { data: { id: "n3" } },
-          { data: { id: "n4" } },
-          { data: { id: "n5" } },
-        ],
-        edges: [
-          { data: { id: "e1", source: "n1", target: "n2" } },
-          { data: { id: "e2", source: "n2", target: "n3" } },
-          { data: { id: "e3", source: "n3", target: "n4" } },
-          { data: { id: "e4", source: "n4", target: "n5" } },
-        ],
-      }
+      elements: this.graph.cytoscape(),
+      layout: {
+        name: 'breadthfirst',
+        fit: true
+      },
+      zoom: 1,
+      zoomingEnabled: false
     });
+    console.log(this.instance);
   }
 }
 </script>
@@ -48,6 +41,6 @@ export default class GraphBlock extends Vue {
 #cy {
   width: 100%;
   height: 100%;
-  min-height: 100px;
+  min-height: 400px;
 }
 </style>
