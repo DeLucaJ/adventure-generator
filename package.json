@@ -10,10 +10,6 @@
     "@types/cytoscape": "^3.8.6",
     "buefy": "^0.8.6",
     "core-js": "^3.4.1",
-<<<<<<< HEAD
-=======
-    "gojs": "^2.1.2",
->>>>>>> d6caca3e3422105db0c0b0ba09da3259faa7bde9
     "node-sass": "^4.13.0",
     "sass": "^1.23.6",
     "sass-loader": "^8.0.0",
