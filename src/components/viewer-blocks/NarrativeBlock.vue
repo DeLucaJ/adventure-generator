@@ -3,13 +3,13 @@
     <div class="container">
       <h2 class="title is-2">Narrative: {{ narrative.title }}</h2>
       <h3 class="title is-3">Graph</h3>
-      <b-button 
+      <!-- <b-button 
         :disabled="!buttonActive"
         icon-left='settings' 
         @click="generateGraph()"
       >
         Generate Narrative
-      </b-button>
+      </b-button> -->
       <GraphBlock :graph="narrative.graph" />
       <!-- Should Key these by an ID relative to the node -->
       <h3 class="title is-3">Quests</h3>
@@ -37,10 +37,5 @@ export default class NarrativeBlock extends Vue {
   narrative!: Narrative;
   
   buttonActive: boolean= true;
-
-  generateGraph() {
-    this.narrative.generateGraph();
-    this.buttonActive = false;
-  }
 }
 </script>

@@ -21,7 +21,6 @@ export default class Narrative {
     this.graph = graph;
     this.quests = quests;
     this.plotPoints = plotPoints;
-    this.generateGraph();
   }
 
   generateGraph() {
