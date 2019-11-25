@@ -9,34 +9,34 @@
     <!-- Quest Menu -->
     <header class="title is-6">
       Quests
-      <b-button class="is-text is-pulled-right" icon-left="plus">Add Quest</b-button>
+      <b-button class="is-text is-small is-pulled-right" icon-left="plus">Add Quest</b-button>
     </header>
-    <QuestCard 
+    <ElementCard 
       v-for="quest in narrative.quests"
       v-bind:key="quest.title"
-      :quest="quest"/>
+      :element="quest"/>
+    <br>
     <!-- PlotPoint Menu -->
     <header class="title is-6">
       Plot Points
-      <b-button class="is-text is-pulled-right" icon-left="plus">Add Plot Point</b-button>
+      <b-button class="is-text is-small is-pulled-right" icon-left="plus">Add Plot Point</b-button>
     </header>
-    <PlotPointCard
+    <ElementCard
       v-for="pp in narrative.plotPoints"
       v-bind:key="pp.title"
-      :plotPoint="pp"/>
+      :element="pp"/>
+    <br>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Narrative } from "@/types";
-import QuestCard from "@/components/editors/cards/QuestCard.vue";
-import PlotPointCard from "@/components/editors/cards/PlotPointCard.vue";
+import ElementCard from "@/components/ElementCard.vue";
 
 @Component ({
   components: {
-    QuestCard,
-    PlotPointCard
+    ElementCard
   }
 })
 export default class NarrativeEditor extends Vue {
