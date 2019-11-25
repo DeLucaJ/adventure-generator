@@ -26,8 +26,7 @@
           </b-menu-list>
         </b-menu>
       </div>
-      <div class="column">
-        <NarrativeEditor :narrative="adventure.narrative"/>
+      <div class="column container">
         <AdventureBlock v-bind:adventure="adventure" />
       </div>
     </div>
@@ -38,12 +37,10 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Adventure } from "@/types";
 import AdventureBlock from "@/components/viewer-blocks/AdventureBlock.vue";
-import NarrativeEditor from "@/components/editors/NarrativeEditor.vue";
 
 @Component ({
   components: {
-    AdventureBlock,
-    NarrativeEditor
+    AdventureBlock
   }
 })
 export default class AdventureViewer extends Vue {

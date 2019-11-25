@@ -1,11 +1,10 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h3 class="title is-3">Faction: {{ faction.title }}</h3>
-      <p>{{ faction.description }}</p>
-      <h4 class="title is-4">Members</h4>
-    </div>
-  </section>
+  <div class="faction-block">
+    <h3 class="title is-3">Faction: {{ faction.title }}</h3>
+    <p>{{ faction.description }}</p>
+    <h4 class="title is-4">Members</h4>
+    <br>
+  </div>
 </template>
 
 <script lang="ts">

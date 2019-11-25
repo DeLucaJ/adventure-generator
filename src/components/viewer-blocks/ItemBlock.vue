@@ -1,10 +1,9 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h3 class="title is-3">Item: {{ item.title }}</h3>
-      <p>{{ item.description }}</p>
-    </div>
-  </section>
+  <div class="item-block">
+    <h3 class="title is-3">Item: {{ item.title }}</h3>
+    <p>{{ item.description }}</p>
+    <br>
+  </div>
 </template>
 
 <script lang="ts">

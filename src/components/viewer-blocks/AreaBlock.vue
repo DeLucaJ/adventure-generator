@@ -1,12 +1,11 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h3 class="title is-3">Area: {{ area.title }}</h3>
-      <p>{{ area.description }}</p>
-      <h4 class="title is-4">Subareas</h4>
-      <AreaBlock v-for="subarea in area.Subareas" v-bind:key="subarea.title"/>
-    </div>
-  </section>
+  <div class="container">
+    <h3 class="title is-3">Area: {{ area.title }}</h3>
+    <p>{{ area.description }}</p>
+    <h4 class="title is-4">Subareas</h4>
+    <AreaBlock v-for="subarea in area.Subareas" v-bind:key="subarea.title"/>
+    <br>
+  </div>
 </template>
 
 <script lang="ts">

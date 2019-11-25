@@ -1,9 +1,8 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <div id="draw-window"></div>
-    </div>
-  </section>
+  <div class="graph-block">
+    <div id="draw-window"></div>
+    <br>
+  </div>
 </template>
 
 <script lang="ts">

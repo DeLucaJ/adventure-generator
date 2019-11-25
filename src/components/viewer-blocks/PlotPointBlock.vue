@@ -1,10 +1,9 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h3 class="title is-3">PlotPoint: {{ plotPoint.title }}</h3>
-      <!-- Encounter -->
-    </div>
-  </section>
+  <div class="plotpoint-block">
+    <h4 class="title is-4">PlotPoint: {{ plotPoint.title }}</h4>
+    <!-- Encounter -->
+    <br>
+  </div>
 </template>
 
 <script lang="ts">

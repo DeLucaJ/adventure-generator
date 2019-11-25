@@ -1,15 +1,17 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h2 class="title is-2">Setting: {{ setting.title }}</h2>
-      <h3 class="title is-3">Areas</h3>
-      <AreaBlock v-for="area in setting.areas" v-bind:key="area.title"/>
-      <h3 class="title is-3">Characters</h3>
-      <CharacterBlock v-for="char in setting.characters" v-bind:key="char.title"/>
-      <h3 class="title is-3">Items</h3>
-      <ItemBlock v-for="item in setting.items" v-bind:key="item.title"/>
-    </div>
-  </section>
+  <div class="setting-block">
+    <h2 class="title is-2">Setting: {{ setting.title }}</h2>
+    <p>{{ setting.description }}</p>
+    <h3 class="title is-3">Areas</h3>
+    <AreaBlock v-for="area in setting.areas" v-bind:key="area.title"/>
+    <br>
+    <h3 class="title is-3">Characters</h3>
+    <CharacterBlock v-for="char in setting.characters" v-bind:key="char.title"/>
+    <br>
+    <h3 class="title is-3">Items</h3>
+    <ItemBlock v-for="item in setting.items" v-bind:key="item.title"/>
+    <br>
+  </div>
 </template>
 
 <script lang="ts">

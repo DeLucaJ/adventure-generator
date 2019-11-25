@@ -11,9 +11,9 @@ const routes = [
     component: About
   },
   {
-    path: '/adventure-viewer',
-    name: 'adventure-viewer',
-    component: () => import(/* webpackChunkName: "adventure-viewer" */ './views/AdventureViewer.vue')
+    path: '/viewer',
+    name: 'viewer',
+    component: () => import(/* webpackChunkName: "adventure-viewer" */ './views/Viewer.vue')
   },
   {
     path: '/adventure-list',
