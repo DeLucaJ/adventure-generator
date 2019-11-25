@@ -1,6 +1,6 @@
-export default class Character {
-  title: string;
-  description: string;
+import { AdventureElement } from '@/types';
+
+export default class Character extends AdventureElement {
   /* traits: string[];
   ideals: string[];
   bonds: string[];
@@ -14,7 +14,6 @@ export default class Character {
     title: string = "New Character",
     description: string = "This is a character that appears in the Setting. Will have more nuances in the future."
   ) {
-    this.title = title;
-    this.description = description;
+    super(title, description);
   }
 }

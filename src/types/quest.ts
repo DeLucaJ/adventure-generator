@@ -1,9 +1,7 @@
-import { Encounter } from "./index";
+import { AdventureElement, Encounter } from "@/types";
 import { Graph } from "@/generators";
 
-export default class Quest {
-  title: string;
-  description: string;
+export default class Quest extends AdventureElement {
   graph: Graph;
   encounters: Encounter[];
 
@@ -13,8 +11,7 @@ export default class Quest {
     graph: Graph = new Graph(),
     encounters: Encounter[] = [],
   ) {
-    this.title = title;
-    this.description = description;
+    super(title, description);
     this.graph = graph;
     this.encounters = encounters;
   }

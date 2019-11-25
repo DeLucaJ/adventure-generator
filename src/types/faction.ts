@@ -1,8 +1,6 @@
-import { Character } from './index';
+import { Character, AdventureElement } from '@/types';
 
-export default class Faction {
-  title: string;
-  description: string;
+export default class Faction extends AdventureElement {
   members: Character[];
   /* goons: Goon[];
   ideals: string[];
@@ -14,8 +12,7 @@ export default class Faction {
     description: string = "This is an organization at work in the Setting.",
     members: Character[] = []
   ) {
-    this.title = title;
-    this.description = description;
+    super(title, description);
     this.members = members;
   }
 }

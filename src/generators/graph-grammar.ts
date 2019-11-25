@@ -1,19 +1,19 @@
-import { Graph } from '@/generators';
+import { Graph, Vertex, Edge } from '@/generators';
 
 export interface GraphGrammar {
-    alphabet: string[];
-    rules: Rule[];
+  alphabet: string[];
+  rules: Rule[];
 }
 
 export interface Rule {
-    input: InputEdge;
-    output: Graph;
+  input: InputEdge;
+  output: Graph;
 }
 
 export interface InputEdge {
-    source?: string;
-    label?: string;
-    target?: string;
+  source?: string;
+  label?: string;
+  target?: string;
 }
 
 /* 
@@ -24,10 +24,11 @@ export interface InputEdge {
  * This function runs a number of rules of grammar on the graph
  */
 export function interpret(graph: Graph, grammar: GraphGrammar, steps: number) {
-    for (let i: number = 0; i < steps; i++) {
-        step(graph, grammar);
-    }
-    terminate(graph);
+  for (let i: number = 0; i < steps; i++) {
+    step(graph, grammar);
+  }
+  symetrizeParallels(graph);
+  terminate(graph);
 }
 
 /*
@@ -37,19 +38,19 @@ export function interpret(graph: Graph, grammar: GraphGrammar, steps: number) {
  * Runs a single, random, and valid rule from the grammar
  */
 function step(graph: Graph, grammar: GraphGrammar) {
-    const validRules: [Rule, number[]][] = [];
-    for (let rule of grammar.rules) {
-        const validEdges = matchEdges(graph, rule.input);
-        if (validEdges.length > 0) validRules.push([rule, validEdges]);
-    }
-    if (validRules.length > 0) {
-        const ri = Math.floor(Math.random() * validRules.length);
-        const ei = Math.floor(Math.random() * validRules[ri][1].length);
-        replaceEdgeWithOutput(graph, validRules[ri][1][ei], validRules[ri][0].output);
-    }
-    else {
-        console.log("No Valid Rules in Grammar")
-    }
+  const validRules: [Rule, number[]][] = [];
+  for (let rule of grammar.rules) {
+    const validEdges = matchEdges(graph, rule.input);
+    if (validEdges.length > 0) validRules.push([rule, validEdges]);
+  }
+  if (validRules.length > 0) {
+    const ri = Math.floor(Math.random() * validRules.length);
+    const ei = Math.floor(Math.random() * validRules[ri][1].length);
+    replaceEdgeWithOutput(graph, validRules[ri][1][ei], validRules[ri][0].output);
+  }
+  else {
+    console.log("No Valid Rules in Grammar")
+  }
 }
 
 /*
@@ -60,31 +61,31 @@ function step(graph: Graph, grammar: GraphGrammar) {
  * This function finds a valid subgraph in the starting graph in order to replace
  */
 function matchEdges(graph: Graph, input: InputEdge): number[] {
-    const valid: number[] = [];
-    for (let i = 0; i < graph.edges.length; i++) {
-        const edge = graph.edges[i];
-        let l = false, s = false, t = false;
-        if (input.label) {
-            if (edge.label && edge.label == input.label) l = true;
-        }
-        else {
-            l = true;
-        }
-        if (input.source) {
-            if (graph.vertices[edge.source].label == input.source) s = true;
-        }
-        else {
-            s = true;
-        }
-        if (input.target) {
-            if (graph.vertices[edge.target].label == input.target) t = true;
-        }
-        else {
-            t = true;
-        }
-        if (l && s && t) valid.push(i);
+  const valid: number[] = [];
+  for (let i = 0; i < graph.edges.length; i++) {
+    const edge = graph.edges[i];
+    let l = false, s = false, t = false;
+    if (input.label) {
+      if (edge.label && edge.label == input.label) l = true;
     }
-    return valid;
+    else {
+      l = true;
+    }
+    if (input.source) {
+      if (graph.vertices[edge.source].label == input.source) s = true;
+    }
+    else {
+      s = true;
+    }
+    if (input.target) {
+      if (graph.vertices[edge.target].label == input.target) t = true;
+    }
+    else {
+      t = true;
+    }
+    if (l && s && t) valid.push(i);
+  }
+  return valid;
 }
 
 /*
@@ -95,39 +96,39 @@ function matchEdges(graph: Graph, input: InputEdge): number[] {
  * This function swaps a subgraph of graph matching the input of the rule with the output in the rule
  */
 function replaceEdgeWithOutput(graph: Graph, edgeIndex: number, replacement: Graph) {
-    // debugger;
-    const givenEdge = graph.edges[edgeIndex];
-    const vertexMap: Map<number, number> = new Map();
-    // const labelMap: Map<number, string> = new Map();
+  // debugger;
+  const givenEdge = graph.edges[edgeIndex];
+  const vertexMap: Map<number, number> = new Map();
+  // const labelMap: Map<number, string> = new Map();
 
-    // remove Edge from graph
-    graph.edges.splice(edgeIndex, 1);
+  // remove Edge from graph
+  graph.edges.splice(edgeIndex, 1);
 
-    // set up vertex map and add vertecies to map
-    for (let v = 0; v < replacement.vertices.length; v++) {
-        if (v === 0) {
-            vertexMap.set(v, givenEdge.source);
-            // labelMap.set(v, graph.vertices[givenEdge.source].label);
-        }
-        else if (v === (replacement.vertices.length - 1)) {
-            vertexMap.set(v, givenEdge.target);
-            // labelMap.set(v, graph.vertices[givenEdge.target].label);
-        }
-        else {
-            vertexMap.set(v, graph.vertices.length);
-            // labelMap.set(v, replacement.vertices[v].label);
-            graph.addVertex(replacement.vertices[v]);
-        }
+  // set up vertex map and add vertecies to map
+  for (let v = 0; v < replacement.vertices.length; v++) {
+    if (v === 0) {
+      vertexMap.set(v, givenEdge.source);
+      // labelMap.set(v, graph.vertices[givenEdge.source].label);
     }
+    else if (v === (replacement.vertices.length - 1)) {
+      vertexMap.set(v, givenEdge.target);
+      // labelMap.set(v, graph.vertices[givenEdge.target].label);
+    }
+    else {
+      vertexMap.set(v, graph.vertices.length);
+      // labelMap.set(v, replacement.vertices[v].label);
+      graph.addVertex(replacement.vertices[v]);
+    }
+  }
 
-    // convert edges of replacement to edges of graph, then add them to graph
-    for (let edge of replacement.edges) {
-        graph.addEdge({
-            label: edge.label,
-            source: vertexMap.get(edge.source) as number,
-            target: vertexMap.get(edge.target) as number
-        });
-    } 
+  // convert edges of replacement to edges of graph, then add them to graph
+  for (let edge of replacement.edges) {
+    graph.addEdge({
+      label: edge.label,
+      source: vertexMap.get(edge.source) as number,
+      target: vertexMap.get(edge.target) as number
+    });
+  }
 }
 
 /*
@@ -136,7 +137,34 @@ function replaceEdgeWithOutput(graph: Graph, edgeIndex: number, replacement: Gra
  * This function turns a linear chain in 'parallel format' clonse it, and clones if for each BR node
  */
 function symetrizeParallels(graph: Graph) {
+  /* let num_branch: number;
+  const inner: number[] = [];
+  const extractParallel = (start: number) => {
+    let inside: boolean = true;
+    let current: number = start;
+    let end: number;
+    while (inside) {
+      for (let edge of graph.edges) {
+        if (edge.source == current) current = edge.target;
+      }
+      if (graph.vertices[current].label == 'BR') {
+        num_branch++;
+      }
+      else if (graph.vertices[current].label == 'PE') {
+        inside = false;
+        end = current;
+      }
+      else {
+        inner.push(current);
+      }
+    }
+  }
 
+  for (let i = 0; i < graph.vertices.length; i++) {
+    if (graph.vertices[i].label === 'PS') {
+      extractParallel(i);
+    }
+  } */
 }
 
 /*
@@ -146,9 +174,9 @@ function symetrizeParallels(graph: Graph) {
  * It cleans the graph of non-terminals by removing all attributes from the graph's edges
  */
 function terminate(graph: Graph) {
-    for (let edge of graph.edges) {
-        if(edge.label) delete edge.label;
-    }
+  for (let edge of graph.edges) {
+    if (edge.label) delete edge.label;
+  }
 }
 
 /*
@@ -160,428 +188,428 @@ function terminate(graph: Graph) {
 export function expand(graph: Graph, grammar: GraphGrammar) { }
 
 export const narrativeGrammar: GraphGrammar = {
-    alphabet: [
-        'S', 'A1', 'A2', 'A3', 'C', 'H',
-        'PS', 'BR', 'PE', 'AND', 'OR',
-        'i', 'r', 'ii', 'c', 'p', 'p1',
-        'p2', 'pb', 'm', 'mi', 'mf' 
-    ],
-    rules: [
-        {
-            input: {
-                label: 'S',
-                source: 'i',
-                target: 'r'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'ii' },
-                    { label: 'p1' },
-                    { label: 'p2' },
-                    { label: 'c' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2, label: 'A1' },
-                    { source: 2, target: 3, label: 'A2' },
-                    { source: 3, target: 4, label: 'A3' },
-                    { source: 4, target: 5 }
-                ]
-            } as Graph
+  alphabet: [
+    'S', 'A1', 'A2', 'A3', 'C', 'H',
+    'PS', 'BR', 'PE', 'AND', 'OR',
+    'i', 'r', 'ii', 'c', 'p', 'p1',
+    'p2', 'pb', 'm', 'mi', 'mf'
+  ],
+  rules: [
+    {
+      input: {
+        label: 'S',
+        source: 'i',
+        target: 'r'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'ii' },
+          { label: 'p1' },
+          { label: 'p2' },
+          { label: 'c' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2, label: 'A1' },
+          { source: 2, target: 3, label: 'A2' },
+          { source: 3, target: 4, label: 'A3' },
+          { source: 4, target: 5 }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'A1'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'mi' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2 },
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'A2'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'm' },
+          { label: 'target' },
+          /* { label: 'pb' },
+          { label: 'pb' } */
+        ],
+        edges: [
+          { source: 0, target: 1, label: 'C' },
+          { source: 1, target: 2, label: 'C' },
+          /* { source: 1, target: 3, label: 'H' },
+          { source: 1, target: 4, label: 'H' } */
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'A3'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'mf' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2 },
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'C'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'm' },
+          { label: 'p' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2 },
+          { source: 2, target: 3, label: 'C' }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'C'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'PS' },
+          { label: 'BR' },
+          { label: 'm' },
+          { label: 'p' },
+          { label: 'PE' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2, label: 'noOp' },
+          { source: 2, target: 3 },
+          { source: 3, target: 4 },
+          { source: 4, target: 5, label: 'C' },
+          { source: 5, target: 6 }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        target: 'BR'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'BR' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2 }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'noOp'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'OR' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2 }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'noOp'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'AND' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2 }
+        ]
+      } as Graph
+    },
+    /* {
+        input: {
+            label: 'H'
         },
-        {
-            input: {
-                label: 'A1'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'mi' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2 },
-                ]
-            } as Graph
+        output: {
+            vertices: [
+                { label: 'source' },
+                { label: 'm' },
+                { label: 'target' }
+            ],
+            edges: [
+                { source: 0, target: 1 },
+                { source: 1, target: 2 }
+            ]
+        } as Graph
+    }, 
+    {
+        input: {
+            source: 'p'
         },
-        {
-            input: {
-                label: 'A2'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'm' },
-                    { label: 'pb' },
-                    { label: 'pb' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1, label: 'C' },
-                    { source: 1, target: 2, label: 'H' },
-                    { source: 1, target: 3, label: 'H' },
-                    { source: 1, target: 4, label: 'C' }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'A3'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'mf' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2 },
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'C'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'm' },
-                    { label: 'p' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2 },
-                    { source: 2, target: 3, label: 'C' }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'C'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'PS' },
-                    { label: 'BR' },
-                    { label: 'm' },
-                    { label: 'p' },
-                    { label: 'PE' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2, label: 'noOp' },
-                    { source: 2, target: 3 },
-                    { source: 3, target: 4 },
-                    { source: 4, target: 5, label: 'C' },
-                    { source: 5, target: 6 }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                target: 'BR'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'BR' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2 }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'noOp'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'OR' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2 }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'noOp'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'AND' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2 }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'H'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'm' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2 }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                source: 'p'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'pb' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 0, target: 2 }
-                ]
-            } as Graph
-        }
-    ]
+        output: {
+            vertices: [
+                { label: 'source' },
+                { label: 'pb' },
+                { label: 'target' }
+            ],
+            edges: [
+                { source: 0, target: 1 },
+                { source: 0, target: 2 }
+            ]
+        } as Graph
+    } */
+  ]
 }
 
 export const questGrammar: GraphGrammar = {
-    alphabet: [
-        
-    ],
-    rules: [
-        {
-            input: {
-                source: 'e',
-                label: 'S',
-                target: 'g'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'gr' },
-                    { label: 'pu' },
-                    { label: 'tr' },
-                    { label: 'bl' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2 },
-                    { source: 2, target: 3, label: 'CM' },
-                    { source: 3, target: 4, label: 'CF' },
-                    { source: 4, target: 5 }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'CM'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'bm' },
-                    { label: 'iq' },
-                    { label: 'ei' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1, label: 'C' },
-                    { source: 1, target: 2 },
-                    { source: 2, target: 3 },
-                    { source: 3, target: 4 }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'CF'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'n' },
-                    { label: 'ec' },
-                    { label: 'lf' },
-                    { label: 'kf' },
-                    { label: 'ib' },
-                    { label: 'ib' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 3, label: 'C' },
-                    { source: 3, target: 7 },
-                    { source: 1, target: 2 },
-                    { source: 2, target: 4 },
-                    { source: 1, target: 5, label: 'H' },
-                    { source: 2, target: 6, label: 'H' }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'C'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'k' },
-                    { label: 'l' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2 },
-                    { source: 2, target: 3, label: 'C' }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'C'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'n' },
-                    { label: 'k' },
-                    { label: 'l' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 3, label: 'C' },
-                    { source: 1, target: 2 },
-                    { source: 2, target: 3 },
-                    { source: 3, target: 4 }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'C'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'ec' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2, label: 'C' }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'C'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'es' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2, label: 'C' }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                source: 'n'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'ib' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 0, target: 2, label: 'H' }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'H'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'ec' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2 }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'H'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'es' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2 }
-                ]
-            } as Graph
-        },
-        {
-            input: {
-                label: 'H'
-            },
-            output: {
-                vertices: [
-                    { label: 'source' },
-                    { label: 'ei' },
-                    { label: 'target' }
-                ],
-                edges: [
-                    { source: 0, target: 1 },
-                    { source: 1, target: 2 }
-                ]
-            } as Graph
-        },
-    ]
+  alphabet: [
+
+  ],
+  rules: [
+    {
+      input: {
+        source: 'e',
+        label: 'S',
+        target: 'g'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'gr' },
+          { label: 'pu' },
+          { label: 'tr' },
+          { label: 'bl' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2 },
+          { source: 2, target: 3, label: 'CM' },
+          { source: 3, target: 4, label: 'CF' },
+          { source: 4, target: 5 }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'CM'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'bm' },
+          { label: 'iq' },
+          { label: 'ei' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1, label: 'C' },
+          { source: 1, target: 2 },
+          { source: 2, target: 3 },
+          { source: 3, target: 4 }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'CF'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'n' },
+          { label: 'ec' },
+          { label: 'lf' },
+          { label: 'kf' },
+          { label: 'ib' },
+          { label: 'ib' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 3, label: 'C' },
+          { source: 3, target: 7 },
+          { source: 1, target: 2 },
+          { source: 2, target: 4 },
+          { source: 1, target: 5, label: 'H' },
+          { source: 2, target: 6, label: 'H' }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'C'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'k' },
+          { label: 'l' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2 },
+          { source: 2, target: 3, label: 'C' }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'C'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'n' },
+          { label: 'k' },
+          { label: 'l' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 3, label: 'C' },
+          { source: 1, target: 2 },
+          { source: 2, target: 3 },
+          { source: 3, target: 4 }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'C'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'ec' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2, label: 'C' }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'C'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'es' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2, label: 'C' }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        source: 'n'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'ib' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 0, target: 2, label: 'H' }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'H'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'ec' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2 }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'H'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'es' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2 }
+        ]
+      } as Graph
+    },
+    {
+      input: {
+        label: 'H'
+      },
+      output: {
+        vertices: [
+          { label: 'source' },
+          { label: 'ei' },
+          { label: 'target' }
+        ],
+        edges: [
+          { source: 0, target: 1 },
+          { source: 1, target: 2 }
+        ]
+      } as Graph
+    },
+  ]
 }
 
 export const structureGrammar: GraphGrammar = {
-    alphabet: [],
-    rules: []
+  alphabet: [],
+  rules: []
 }

@@ -1,8 +1,6 @@
-import { Encounter } from "./index";
+import { AdventureElement, Encounter } from '@/types';
 
-export default class PlotPoint {
-  title: string;
-  description: string;
+export default class PlotPoint extends AdventureElement {
   encounter: Encounter;
 
   constructor(
@@ -10,8 +8,7 @@ export default class PlotPoint {
     description: string = "This is an event that takes place in the Narrative but outside of Quests. It is represented by an Encounter.",
     encounter: Encounter = new Encounter(),
   ) {
-    this.title = title;
-    this.description = description;
+    super(title, description);
     this.encounter = encounter;
   }
 }

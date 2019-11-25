@@ -1,9 +1,7 @@
 import { Graph, Grammar } from "@/generators";
-import { PlotPoint, Quest } from "@/types";
+import { AdventureElement, PlotPoint, Quest } from "@/types";
 
-export default class Narrative {
-  title: string;
-  description: string;
+export default class Narrative extends AdventureElement {
   graph: Graph;
   quests: Quest[];
   plotPoints: PlotPoint[];
@@ -16,8 +14,7 @@ export default class Narrative {
     quests: Quest[] = [],
     plotPoints: PlotPoint[] = []
   ) {
-    this.title = title;
-    this.description = description;
+    super(title, description);
     this.graph = graph;
     this.quests = quests;
     this.plotPoints = plotPoints;

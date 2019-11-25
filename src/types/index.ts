@@ -1,4 +1,5 @@
 export { default as Adventure } from './adventure';
+export { default as AdventureElement } from './adventure-element';
 export { default as Narrative } from './narrative';
 export { default as Quest } from './quest';
 export { default as Encounter } from './encounter';

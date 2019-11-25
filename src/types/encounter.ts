@@ -1,8 +1,6 @@
-import { Area, Character } from '.';
+import { Area, Character, AdventureElement } from '@/types';
 
-export default class Encounter {
-  title: string;
-  description: string;
+export default class Encounter extends AdventureElement{
   area: Area;
   characters: Character[];
   // type: EncounterType;
@@ -14,8 +12,7 @@ export default class Encounter {
     area: Area = new Area(),
     characters: Character[] = [] 
   ) {
-    this.title = title;
-    this.description = description;
+    super(title, description);
     this.area = area;
     this.characters = characters;
   }

@@ -1,6 +1,6 @@
-export default class Area {
-  title: string;
-  description: string = "";
+import { AdventureElement } from '@/types';
+
+export default class Area extends AdventureElement{
   subAreas: Area[] = [];
   // type: AreaType;
   // map: AreaMap;
@@ -10,8 +10,7 @@ export default class Area {
     description: string = "This is a location that can be travelled to in the Setting",
     subAreas: Area[] = []
   ) {
-    this.title = title,
-    this.description = description;
+    super(title, description);
     this.subAreas = subAreas;
   }
 }

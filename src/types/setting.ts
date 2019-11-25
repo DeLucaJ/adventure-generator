@@ -1,8 +1,6 @@
-import { Area, Character, Item } from "./index";
+import { AdventureElement, Area, Character, Item } from "./index";
 
-export default class Setting {
-  title: string;
-  description: string;
+export default class Setting extends AdventureElement {
   areas: Area[]
   characters: Character[];
   items: Item[];
@@ -14,8 +12,7 @@ export default class Setting {
     characters: Character[] = [],
     items: Item[] = []
   ) {
-    this.title = title;
-    this.description = description;
+    super(title, description);
     this.areas = areas;
     this.characters = characters;
     this.items = items;
