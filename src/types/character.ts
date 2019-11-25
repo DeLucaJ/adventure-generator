@@ -1,14 +1,8 @@
-import { AdventureElement } from '@/types';
+import { Actor } from '@/types';
 
-export default class Character extends AdventureElement {
-  /* traits: string[];
-  ideals: string[];
-  bonds: string[];
-  flaws: string[];
-  secrets: string[];
-  mannerisms: string[];
-  goals: string[];
-  motivations: string[] */
+export default class Character extends Actor {
+  traits: string[] = [];
+  mannerisms: string[] = [];
 
   constructor(
     title: string = "New Character",
