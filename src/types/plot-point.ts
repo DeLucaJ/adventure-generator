@@ -1,6 +1,6 @@
-import { AdventureElement, Encounter } from '@/types';
+import { Element, Encounter } from '@/types';
 
-export default class PlotPoint extends AdventureElement {
+export default class PlotPoint extends Element {
   encounter: Encounter;
 
   constructor(

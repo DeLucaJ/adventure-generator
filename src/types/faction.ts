@@ -1,6 +1,6 @@
-import { Character, AdventureElement } from '@/types';
+import { Character, Element } from '@/types';
 
-export default class Faction extends AdventureElement {
+export default class Faction extends Element {
   members: Character[];
   ideals: string[] = [];
   bonds: string[] = [];

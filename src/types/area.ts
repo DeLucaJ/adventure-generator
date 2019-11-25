@@ -1,6 +1,6 @@
-import { AdventureElement } from '@/types';
+import { Element } from '@/types';
 
-export default class Area extends AdventureElement{
+export default class Area extends Element{
   subAreas: Area[] = [];
   // type: AreaType;
   // map: AreaMap;

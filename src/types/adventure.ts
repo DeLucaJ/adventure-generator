@@ -1,16 +1,16 @@
-import { Narrative, Setting} from './index';
+import { Element, Narrative, Setting} from './index';
 
-export default class Adventure {
-  title: string;
+export default class Adventure extends Element{
   narrative: Narrative;
   setting: Setting;
 
   constructor(
     title: string = "New Adventure", 
+    description: string = "This is your Adventure",
     narrative: Narrative = new Narrative(),
     setting: Setting = new Setting()
   ) {
-    this.title = title;
+    super(title, description);
     this.narrative = narrative;
     this.setting = setting;
   }

@@ -1,4 +1,4 @@
-export default abstract class AdventureElement {
+export default abstract class Element {
   title: string;
   description: string;
 

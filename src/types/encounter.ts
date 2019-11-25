@@ -1,6 +1,6 @@
-import { Area, Character, AdventureElement } from '@/types';
+import { Area, Character, Element } from '@/types';
 
-export default class Encounter extends AdventureElement{
+export default class Encounter extends Element{
   area: Area;
   characters: Character[];
   // type: EncounterType;

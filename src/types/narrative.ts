@@ -1,7 +1,7 @@
 import { Graph, Grammar } from "@/generators";
-import { Character, Faction, AdventureElement, PlotPoint, Quest } from "@/types";
+import { Character, Faction, Element, PlotPoint, Quest } from "@/types";
 
-export default class Narrative extends AdventureElement {
+export default class Narrative extends Element {
   graph: Graph;
   quests: Quest[];
   plotPoints: PlotPoint[];

@@ -1,6 +1,6 @@
-import { AdventureElement, Area, Character, Item } from "./index";
+import { Element, Area, Character, Item } from "./index";
 
-export default class Setting extends AdventureElement {
+export default class Setting extends Element {
   areas: Area[]
   characters: Character[];
   items: Item[];

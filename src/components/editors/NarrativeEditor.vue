@@ -7,19 +7,23 @@
       <b-input v-model="narrative.description" type="textarea"></b-input>
     </b-field>
     <!-- Quest Menu -->
-    <b-field label='Quests'>
-      <QuestCard 
-        v-for="quest in narrative.quests"
-        v-bind:key="quest.title"
-        :quest="quest"/>
-    </b-field>
+    <header class="title is-6">
+      Quests
+      <b-button class="is-text is-pulled-right" icon-left="plus">Add Quest</b-button>
+    </header>
+    <QuestCard 
+      v-for="quest in narrative.quests"
+      v-bind:key="quest.title"
+      :quest="quest"/>
     <!-- PlotPoint Menu -->
-    <b-field label='Plot Points'>
-      <PlotPointCard
-        v-for="pp in narrative.plotPoints"
-        v-bind:key="pp.title"
-        :plotPoint="pp"/>
-    </b-field>
+    <header class="title is-6">
+      Plot Points
+      <b-button class="is-text is-pulled-right" icon-left="plus">Add Plot Point</b-button>
+    </header>
+    <PlotPointCard
+      v-for="pp in narrative.plotPoints"
+      v-bind:key="pp.title"
+      :plotPoint="pp"/>
   </div>
 </template>
 
