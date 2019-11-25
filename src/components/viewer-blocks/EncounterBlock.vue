@@ -15,7 +15,7 @@ import { Encounter } from "@/types";
 
 @Component
 export default class EncounterBlock extends Vue {
-  @Prop({ default: new Encounter() })
+  @Prop()
   encounter!: Encounter;
 }
 </script>

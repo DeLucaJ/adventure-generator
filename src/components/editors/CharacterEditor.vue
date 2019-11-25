@@ -6,7 +6,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Character } from '@/types';
 
-@Component ({})
+@Component
 export default class CharacterEditor extends Vue {
   @Prop()
   character!: Character;

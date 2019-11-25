@@ -13,7 +13,7 @@ import { Character } from "@/types";
 
 @Component
 export default class CharacterBlock extends Vue {
-  @Prop({ default: new Character() })
+  @Prop()
   character!: Character;
 }
 </script>

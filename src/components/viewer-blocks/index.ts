@@ -1,5 +1,4 @@
 export { default as AdventureBlock } from "./AdventureBlock.vue";
-export { default as AdversaryBlock } from "./AdversaryBlock.vue";
 export { default as AreaBlock } from "./AreaBlock.vue";
 export { default as CharacterBlock } from "./CharacterBlock.vue";
 export { default as EncounterBlock } from "./EncounterBlock.vue";

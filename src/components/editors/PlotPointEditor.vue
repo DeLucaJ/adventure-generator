@@ -6,7 +6,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { PlotPoint } from '@/types';
 
-@Component ({})
+@Component
 export default class PlotPointEditor extends Vue {
   @Prop()
   plotpoint!: PlotPoint;

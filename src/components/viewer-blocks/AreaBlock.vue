@@ -15,7 +15,7 @@ import { Area } from "@/types";
 
 @Component
 export default class AreaBlock extends Vue {
-  @Prop({ default: new Area() })
+  @Prop()
   area!: Area;
 }
 </script>

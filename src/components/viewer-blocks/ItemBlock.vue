@@ -13,7 +13,7 @@ import { Item } from "@/types";
 
 @Component
 export default class ItemBlock extends Vue {
-  @Prop({ default: new Item() })
+  @Prop()
   item!: Item;
 }
 </script>

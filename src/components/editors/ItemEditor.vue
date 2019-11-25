@@ -6,7 +6,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Item } from '@/types';
 
-@Component ({})
+@Component
 export default class ItemEditor extends Vue {
   @Prop()
   item!: Item;

@@ -6,7 +6,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Encounter } from '@/types';
 
-@Component ({})
+@Component
 export default class EncounterEditor extends Vue {
   @Prop()
   encounter!: Encounter;

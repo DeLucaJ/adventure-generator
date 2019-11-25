@@ -6,7 +6,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Setting } from '@/types';
 
-@Component ({})
+@Component
 export default class SettingEditor extends Vue {
   @Prop()
   setting!: Setting;

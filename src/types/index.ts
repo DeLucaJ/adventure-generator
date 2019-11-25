@@ -1,4 +1,3 @@
-export { default as Actor } from './actor';
 export { default as Adventure } from './adventure';
 export { default as AdventureElement } from './adventure-element';
 export { default as Narrative } from './narrative';

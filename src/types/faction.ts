@@ -1,7 +1,13 @@
-import { Character, Actor } from '@/types';
+import { Character, AdventureElement } from '@/types';
 
-export default class Faction extends Actor {
+export default class Faction extends AdventureElement {
   members: Character[];
+  ideals: string[] = [];
+  bonds: string[] = [];
+  flaws: string[] = [];
+  secrets: string[] = [];
+  goals: string[] = [];
+  motivations: string[] = [];
 
   constructor(
     title: string = "New Faction",

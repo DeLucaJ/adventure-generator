@@ -1,11 +1,11 @@
 import { Graph, Grammar } from "@/generators";
-import { Actor, AdventureElement, PlotPoint, Quest } from "@/types";
+import { Character, Faction, AdventureElement, PlotPoint, Quest } from "@/types";
 
 export default class Narrative extends AdventureElement {
   graph: Graph;
   quests: Quest[];
   plotPoints: PlotPoint[];
-  adversaries: Actor[];
+  adversaries: (Character | Faction)[];
 
   constructor(
     title: string = "New Narrative",
@@ -13,13 +13,15 @@ export default class Narrative extends AdventureElement {
     graph: Graph = new Graph(),
     quests: Quest[] = [],
     plotPoints: PlotPoint[] = [],
-    adversaries: Actor[] = []
+    adversaries: (Character | Faction)[] = []
   ) {
     super(title, description);
     this.graph = graph;
     this.quests = quests;
     this.plotPoints = plotPoints;
     this.adversaries = adversaries;
+    this.quests.push(new Quest());
+    this.plotPoints.push(new PlotPoint());
   }
 
   generateGraph() {

@@ -13,7 +13,7 @@ import Two from "twojs-ts";
 
 @Component
 export default class GraphBlock extends Vue {
-  @Prop({ default: new Graph() })
+  @Prop()
   graph!: Graph;
 
   mounted() {

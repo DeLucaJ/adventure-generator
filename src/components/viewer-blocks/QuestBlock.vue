@@ -18,7 +18,7 @@ import { Quest } from "@/types";
 
 @Component
 export default class QuestBlock extends Vue {
-  @Prop({ default: new Quest() })
+  @Prop()
   quest!: Quest;
 }
 </script>

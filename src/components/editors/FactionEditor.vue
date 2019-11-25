@@ -6,7 +6,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Faction } from '@/types';
 
-@Component ({})
+@Component
 export default class FactionEditor extends Vue {
   @Prop()
   faction!: Faction;

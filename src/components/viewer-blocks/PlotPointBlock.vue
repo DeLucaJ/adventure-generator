@@ -13,7 +13,7 @@ import { PlotPoint } from "@/types";
 
 @Component
 export default class PlotPointBlock extends Vue {
-  @Prop({ default: new PlotPoint() })
+  @Prop()
   plotPoint!: PlotPoint;
 }
 </script>

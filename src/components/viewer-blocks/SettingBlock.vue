@@ -25,7 +25,7 @@ import { AreaBlock, CharacterBlock, ItemBlock } from "@/components/viewer-blocks
   }
 })
 export default class SettingBlock extends Vue {
-  @Prop({ default: new Setting() })
+  @Prop()
   setting!: Setting;
 }
 </script>
