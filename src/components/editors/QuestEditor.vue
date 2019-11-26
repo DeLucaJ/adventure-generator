@@ -1,6 +1,14 @@
 <template>
-  <div class="quest-editor">
-    
+  <div id="quest-editor">
+    <header class="modal-card-head">
+
+    </header>
+    <p class="modal-card-body">
+
+    </p>
+    <footer class="modal-card-foot">
+
+    </footer>
   </div>
 </template>
 
