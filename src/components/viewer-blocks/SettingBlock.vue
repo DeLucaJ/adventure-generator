@@ -2,6 +2,7 @@
   <div class="setting-block">
     <h2 class="title is-2">Setting: {{ setting.title }}</h2>
     <p>{{ setting.description }}</p>
+    <br>
     <h3 class="title is-3">Areas</h3>
     <AreaBlock v-for="area in setting.areas" v-bind:key="area.title"/>
     <br>

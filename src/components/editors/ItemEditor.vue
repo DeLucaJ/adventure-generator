@@ -9,7 +9,7 @@ import { Item } from '@/types';
 @Component
 export default class ItemEditor extends Vue {
   @Prop()
-  item!: Item;
+  subject!: Item;
 }
 </script>
 

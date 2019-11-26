@@ -1,10 +1,10 @@
 <template>
-  <div id="narrative-editor">
+  <div id="subject-editor">
     <b-field label="Title" label-position="on-border">
-      <b-input v-model="narrative.title"></b-input>
+      <b-input v-model="subject.title"></b-input>
     </b-field>
     <b-field label="Description" label-position="on-border">
-      <b-input v-model="narrative.description" type="textarea"></b-input>
+      <b-input v-model="subject.description" type="textarea"></b-input>
     </b-field>
     <!-- Quest Menu -->
     <header class="title is-6">
@@ -12,7 +12,7 @@
       <b-button class="is-text is-small is-pulled-right" icon-left="plus">Add Quest</b-button>
     </header>
     <ElementCard 
-      v-for="quest in narrative.quests"
+      v-for="quest in subject.quests"
       v-bind:key="quest.title"
       :element="quest"/>
     <br>
@@ -22,7 +22,7 @@
       <b-button class="is-text is-small is-pulled-right" icon-left="plus">Add Plot Point</b-button>
     </header>
     <ElementCard
-      v-for="pp in narrative.plotPoints"
+      v-for="pp in subject.plotPoints"
       v-bind:key="pp.title"
       :element="pp"/>
     <br>
@@ -41,7 +41,7 @@ import ElementCard from "@/components/ElementCard.vue";
 })
 export default class NarrativeEditor extends Vue {
   @Prop()
-  narrative!: Narrative;
+  subject!: Narrative;
 }
 </script>
 

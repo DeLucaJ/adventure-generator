@@ -9,7 +9,7 @@ import { Area } from '@/types';
 @Component
 export default class AreaEditor extends Vue {
   @Prop()
-  area!: Area;
+  subject!: Area;
 }
 </script>
 

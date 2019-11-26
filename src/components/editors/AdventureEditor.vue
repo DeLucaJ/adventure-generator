@@ -9,7 +9,7 @@ import { Adventure } from '@/types';
 @Component
 export default class AdventureEditor extends Vue {
   @Prop()
-  adventure!: Adventure;
+  subject!: Adventure;
 }
 </script>
 

@@ -9,7 +9,7 @@ import { Setting } from '@/types';
 @Component
 export default class SettingEditor extends Vue {
   @Prop()
-  setting!: Setting;
+  subject!: Setting;
 }
 </script>
 

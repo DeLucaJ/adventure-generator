@@ -9,7 +9,7 @@ import { PlotPoint } from '@/types';
 @Component
 export default class PlotPointEditor extends Vue {
   @Prop()
-  plotpoint!: PlotPoint;
+  subject!: PlotPoint;
 }
 </script>
 

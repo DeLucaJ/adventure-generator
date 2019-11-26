@@ -9,7 +9,7 @@ import { Faction } from '@/types';
 @Component
 export default class FactionEditor extends Vue {
   @Prop()
-  faction!: Faction;
+  subject!: Faction;
 }
 </script>
 

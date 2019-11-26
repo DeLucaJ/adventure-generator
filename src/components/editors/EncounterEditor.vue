@@ -9,7 +9,7 @@ import { Encounter } from '@/types';
 @Component
 export default class EncounterEditor extends Vue {
   @Prop()
-  encounter!: Encounter;
+  subject!: Encounter;
 }
 </script>
 

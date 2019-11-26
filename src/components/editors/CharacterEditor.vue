@@ -9,7 +9,7 @@ import { Character } from '@/types';
 @Component
 export default class CharacterEditor extends Vue {
   @Prop()
-  character!: Character;
+  subject!: Character;
 }
 </script>
 

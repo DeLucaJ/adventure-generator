@@ -1,5 +1,7 @@
 <template>
-  
+  <div class="quest-editor">
+    
+  </div>
 </template>
 
 <script lang="ts">
@@ -9,7 +11,7 @@ import { Quest } from '@/types';
 @Component
 export default class QuestEditor extends Vue {
   @Prop()
-  quest!: Quest;
+  subject!: Quest;
 }
 </script>
 

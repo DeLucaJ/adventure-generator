@@ -1,6 +1,8 @@
 <template>
   <div class="narrative-block">
     <h2 class="title is-2">Narrative: {{ narrative.title }}</h2>
+    {{ narrative.description }}
+    <br>
     <h3 class="title is-3">Quests</h3>
     <QuestBlock 
       v-for="quest in narrative.quests" 
