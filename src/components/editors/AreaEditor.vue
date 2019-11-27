@@ -1,11 +1,11 @@
 <template>
   <div id="area-editor">
     <header class="modal-card-head">
-
+      Area Editor
     </header>
-    <p class="modal-card-body">
+    <div class="modal-card-body">
 
-    </p>
+    </div>
     <footer class="modal-card-foot">
 
     </footer>

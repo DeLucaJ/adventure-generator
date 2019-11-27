@@ -1,11 +1,11 @@
 <template>
   <div id="setting-editor">
     <header class="modal-card-head">
-
+      Setting Editor
     </header>
-    <p class="modal-card-body">
+    <div class="modal-card-body">
 
-    </p>
+    </div>
     <footer class="modal-card-foot">
 
     </footer>

@@ -1,11 +1,11 @@
 <template>
   <div id="faction-editor">
     <header class="modal-card-head">
-
+      Faction Editor
     </header>
-    <p class="modal-card-body">
+    <div class="modal-card-body">
 
-    </p>
+    </div>
     <footer class="modal-card-foot">
 
     </footer>
