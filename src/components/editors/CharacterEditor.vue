@@ -1,9 +1,9 @@
 <template>
   <div id="charater-editor">
     <header class="modal-card-head">
-      Character Editor
+      <p class="modal-card-title">Character Editor</p>
     </header>
-    <div class="modal-card-body">
+    <section class="modal-card-body">
       <b-field label="Title" label-position="on-border">
         <b-input v-model="subject.title"></b-input>
       </b-field>
@@ -66,7 +66,7 @@
       <ul>
         <li v-for="m in subject.motivations" :key="m">{{ m }}</li>
       </ul>
-    </div>
+    </section>
     <footer class="modal-card-foot">
       <b-button>Save</b-button>
     </footer>

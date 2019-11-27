@@ -1,13 +1,16 @@
 <template>
   <div class="item-block">
-    <h3 class="title is-3">Item: {{ item.title }}</h3>
+    <h3 class="title is-3">
+      {{ item.title }}
+      <b-button class="is-text" icon-left="pencil"></b-button>
+    </h3>
     <p>{{ item.description }}</p>
-    <br>
+    <br />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 import { Item } from "@/types";
 
 @Component

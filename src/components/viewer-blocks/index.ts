@@ -1,11 +1,11 @@
-export { default as AdventureBlock } from "./AdventureBlock.vue";
 export { default as AreaBlock } from "./AreaBlock.vue";
 export { default as CharacterBlock } from "./CharacterBlock.vue";
 export { default as EncounterBlock } from "./EncounterBlock.vue";
 export { default as FactionBlock } from "./FactionBlock.vue";
 export { default as GraphBlock } from "./GraphBlock.vue";
 export { default as ItemBlock } from "./ItemBlock.vue";
-export { default as NarrativeBlock } from "./NarrativeBlock.vue";
-export { default as PlotPointBlock } from "./PlotPointBlock.vue";
 export { default as QuestBlock } from "./QuestBlock.vue";
+export { default as PlotPointBlock } from "./PlotPointBlock.vue";
+export { default as NarrativeBlock } from "./NarrativeBlock.vue";
 export { default as SettingBlock } from "./SettingBlock.vue";
+export { default as AdventureBlock } from "./AdventureBlock.vue";

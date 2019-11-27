@@ -1,16 +1,16 @@
 <template>
   <div id="item-editor">
     <header class="modal-card-head">
-      Item Editor
+      <p class="modal-card-title">Item Editor</p>
     </header>
-    <div class="modal-card-body">
+    <section class="modal-card-body">
       <b-field label="Title" label-position="on-border">
         <b-input v-model="subject.title"></b-input>
       </b-field>
       <b-field label="Description" label-position="on-border">
         <b-input v-model="subject.description" type="textarea"></b-input>
       </b-field>
-    </div>
+    </section>
     <footer class="modal-card-foot">
       <b-button>Save</b-button>
     </footer>

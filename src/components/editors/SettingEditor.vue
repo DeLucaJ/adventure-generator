@@ -1,9 +1,9 @@
 <template>
   <div id="setting-editor">
     <header class="modal-card-head">
-      Setting Editor
+      <p class="modal-card-title">Setting Editor</p>
     </header>
-    <div class="modal-card-body">
+    <section class="modal-card-body">
       <b-field label="Title" label-position="on-border">
         <b-input v-model="subject.title"></b-input>
       </b-field>
@@ -37,7 +37,7 @@
         v-bind:key="i.title"
         :element="i"/>
       <br>
-    </div>
+    </section>
     <footer class="modal-card-foot">
       <b-button>Save</b-button>
     </footer>

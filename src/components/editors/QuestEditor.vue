@@ -1,9 +1,9 @@
 <template>
   <div id="quest-editor">
     <header class="modal-card-head">
-      Quest Editor
+      <p class="modal-card-title">Quest Editor</p>
     </header>
-    <div class="modal-card-body">
+    <section class="modal-card-body">
       <b-field label="Title" label-position="on-border">
         <b-input v-model="subject.title"></b-input>
       </b-field>
@@ -19,7 +19,7 @@
         v-bind:key="enc.title"
         :element="enc"/>
       <br>
-    </div>
+    </section>
     <footer class="modal-card-foot">
       <b-button>Save</b-button>
     </footer>

@@ -1,9 +1,9 @@
 <template>
   <div id="narrative-editor">
     <header class="modal-card-header">
-      Narrative Editor
+      <p class="modal-card-title">Narrative Editor</p>r
     </header>
-    <div class="modal-card-body">
+    <section class="modal-card-body">
       <b-field label="Title" label-position="on-border">
         <b-input v-model="subject.title"></b-input>
       </b-field>
@@ -29,7 +29,7 @@
         v-for="pp in subject.plotPoints"
         v-bind:key="pp.title"
         :element="pp"/>
-    </div>
+    </section>
     <footer class="modal-card-foot">
       <b-button>Save</b-button>
     </footer>

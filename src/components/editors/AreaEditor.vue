@@ -1,17 +1,16 @@
 <template>
   <div id="area-editor">
     <header class="modal-card-head">
-      Area Editor
+      <p class="modal-card-title">Area Editor</p>
     </header>
-    <div class="modal-card-body">
+    <section class="modal-card-body">
       <b-field label="Title" label-position="on-border">
         <b-input v-model="subject.title"></b-input>
       </b-field>
       <b-field label="Description" label-position="on-border">
         <b-input v-model="subject.description" type="textarea"></b-input>
       </b-field>
-    </div>
-    <header class="title is-6">
+      <header class="title is-6">
         Sub-Areas
         <b-button class="is-text is-small is-pulled-right" icon-left="plus">Add Sub-Area</b-button>
       </header>
@@ -20,6 +19,7 @@
         v-bind:key="sub.title"
         :element="sub"/>
       <br>
+    </section>
     <footer class="modal-card-foot">
       <b-button>Save</b-button>
     </footer>

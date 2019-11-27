@@ -1,9 +1,9 @@
 <template>
   <div id="adventure-editor">
     <header class="modal-card-head">
-      Adventure Editor
+      <p class="modal-card-title">Adventure Editor</p>
     </header>
-    <div class="modal-card-body">
+    <section class="modal-card-body">
       <b-field label="Title" label-position="on-border">
         <b-input v-model="subject.title"></b-input>
       </b-field>
@@ -11,10 +11,8 @@
         <b-input v-model="subject.description" type="textarea"></b-input>
       </b-field>
       <ElementCard :element="subject.narrative"/>
-      <br>
       <ElementCard :element="subject.setting"/>
-      <br>
-    </div>
+    </section>
     <footer class="modal-card-foot">
       <b-button>Save</b-button>
     </footer>

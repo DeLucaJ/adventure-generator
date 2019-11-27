@@ -1,14 +1,17 @@
 <template>
   <div class="faction-block">
-    <h3 class="title is-3">Faction: {{ faction.title }}</h3>
+    <h3 class="title is-3">
+      {{ faction.title }}
+      <b-button class="is-text" icon-left="pencil"></b-button>
+    </h3>
     <p>{{ faction.description }}</p>
     <h4 class="title is-4">Members</h4>
-    <br>
+    <br />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 import { Faction } from "@/types";
 
 @Component
