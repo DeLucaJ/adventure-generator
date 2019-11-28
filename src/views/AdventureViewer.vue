@@ -30,13 +30,6 @@
         <AdventureBlock :adventure="adventure" />
       </div>
     </div>
-    <!-- <b-modal :active.sync="editorActive"
-      has-modal-card
-      trap-focus
-      aria-role="dialog"
-      aria-modal>
-      <component :is="editor" :subject="editSubject"/>
-    </b-modal> -->
   </section>
 </template>
 

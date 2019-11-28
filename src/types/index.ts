@@ -13,3 +13,4 @@ export { default as PlotEvent } from "./plot-event";
 export { default as Chapter } from "./chapter";
 export { default as World } from "./world";
 export { default as Adventure } from "./adventure";
+export { AdventureMeta, WorldMeta } from "./meta";
