@@ -35,3 +35,4 @@ export default class AppFooter extends Vue {
   //@Prop() private msg!: string;
 }
 </script>
+
