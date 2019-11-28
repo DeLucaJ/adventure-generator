@@ -10,10 +10,7 @@ export default class Adventure extends Dated {
   encounters: Encounter[] = [];
   plotevents: PlotEvent[] = [];
 
-  constructor(
-    title: string = "New Adventure",
-    world: World = new World()
-  ) {
+  constructor(title: string = "New Adventure", world: World) {
     super();
     this.title = title;
     this.world = world;
