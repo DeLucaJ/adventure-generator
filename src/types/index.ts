@@ -1,4 +1,4 @@
-export { Element, WorldElement, NarrativeElement } from "./element";
+export { Element, WorldElement, AdventureElement } from "./element";
 export { default as Relation } from "./relation";
 export { default as CastMember } from "./cast-member";
 export { default as Actor } from "./actor";
@@ -10,5 +10,5 @@ export { default as Item } from "./item";
 export { default as Encounter } from "./encounter";
 export { default as PlotEvent } from "./plot-event";
 export { default as Chapter } from "./chapter";
-export { default as Narrative } from "./narrative";
+export { default as World } from "./world";
 export { default as Adventure } from "./adventure";

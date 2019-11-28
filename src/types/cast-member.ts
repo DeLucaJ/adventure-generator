@@ -1,9 +1,12 @@
 import { WorldElement } from "@/types";
+import World from "./world";
 
 export default class CastMember extends WorldElement {
-  
-  
-  constructor(title: string, description: string) {
-    super(title, description);
+  traits: string[] = [];
+  ideals: string[] = [];
+  flaws: string[] = [];
+
+  constructor(title: string, description: string, world: World) {
+    super(title, description, world);
   }
 }

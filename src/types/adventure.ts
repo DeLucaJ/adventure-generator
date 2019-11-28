@@ -1,33 +1,21 @@
-import {
-  Relation,
-  Narrative,
-  Chapter,
-  Encounter,
-  PlotEvent,
-  Character,
-  Extra,
-  Faction,
-  Area,
-  Item
-} from './index';
+import { Chapter, Encounter, PlotEvent } from './index';
+import { Graph } from '@/generators';
+import World from "./world";
 
 export default class Adventure {
   title: string;
-  narrative: Narrative;
+  world: World;
+  graph: Graph;
   chapters: Chapter[] = [];
   encounters: Encounter[] = [];
   plotevents: PlotEvent[] = [];
-  characters: Character[] = [];
-  extras: Extra[] = [];
-  factions: Faction[] = [];
-  areas: Area[] = [];
-  items: Item[] = [];
-  relations: Relation[] = [];
 
   constructor(
-    title: string = "New Adventure"
+    title: string = "New Adventure",
+    world: World = new World()
   ) {
     this.title = title;
-    this.narrative = new Narrative("new Narrative", "new Narrative");
+    this.world = world;
+    this.graph = new Graph();
   }
 }

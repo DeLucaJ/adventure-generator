@@ -1,7 +1,8 @@
-import { NarrativeElement, Encounter } from "@/types";
+import { AdventureElement, Encounter } from "@/types";
+import Adventure from "./adventure";
 import { Graph } from "@/generators";
 
-export default class Chapter extends NarrativeElement {
+export default class Chapter extends AdventureElement {
   graph: Graph;
   encounters: Encounter[];
 
@@ -10,8 +11,9 @@ export default class Chapter extends NarrativeElement {
     description: string = "This is a Quest that must be resolved in the Narrative.",
     graph: Graph = new Graph(),
     encounters: Encounter[] = [],
+    adventure: Adventure
   ) {
-    super(title, description);
+    super(title, description, adventure);
     this.graph = graph;
     this.encounters = encounters;
   }
