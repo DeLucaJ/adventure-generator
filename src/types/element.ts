@@ -1,11 +1,13 @@
 import World from "./world";
 import Adventure from "./adventure";
+import Dated from "./dated";
 
-export abstract class Element {
+export abstract class Element extends Dated {
   title: string;
   description: string;
 
   constructor(title: string, description: string) {
+    super();
     this.title = title;
     this.description = description;
   }

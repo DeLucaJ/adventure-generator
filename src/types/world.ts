@@ -1,6 +1,6 @@
-import { Relation, Character, Extra, Faction, Area, Item } from "@/types";
+import { Dated, Relation, Character, Extra, Faction, Area, Item } from "@/types";
 
-export default class World {
+export default class World extends Dated {
   title: string;
   relations: Relation[] = [];
   characters: Character[] = [];
@@ -10,6 +10,7 @@ export default class World {
   items: Item[] = [];
 
   constructor(title: string = "New World") {
+    super();
     this.title = title;
   }
 }
