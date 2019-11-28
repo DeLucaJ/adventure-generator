@@ -1,7 +1,7 @@
-import { Element, Encounter } from "@/types";
+import { NarrativeElement, Encounter } from "@/types";
 import { Graph } from "@/generators";
 
-export default class Quest extends Element {
+export default class Chapter extends NarrativeElement {
   graph: Graph;
   encounters: Encounter[];
 

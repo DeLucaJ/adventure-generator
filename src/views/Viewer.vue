@@ -30,12 +30,19 @@
         <AdventureBlock :adventure="adventure" />
       </div>
     </div>
+    <!-- <b-modal :active.sync="editorActive"
+      has-modal-card
+      trap-focus
+      aria-role="dialog"
+      aria-modal>
+      <component :is="editor" :subject="editSubject"/>
+    </b-modal> -->
   </section>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { Adventure } from "@/types";
+import { Element, Adventure } from "@/types";
 import AdventureBlock from "@/components/viewer-blocks/AdventureBlock.vue";
 
 @Component ({

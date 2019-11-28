@@ -1,8 +1,8 @@
 import { Graph, Grammar } from "@/generators";
-import { Character, Faction, Element, PlotPoint, Quest } from "@/types";
+import { Element } from "@/types";
 
 export default class Narrative extends Element {
-  graph: Graph;
+  /* graph: Graph;
   quests: Quest[];
   plotPoints: PlotPoint[];
   adversaries: (Character | Faction)[];
@@ -30,5 +30,8 @@ export default class Narrative extends Element {
     this.graph.addEdge({ label: 'S', source: 0, target: 1 });
     Grammar.interpret(this.graph, Grammar.narrativeGrammar, 5);
     console.log(JSON.stringify(this.graph, null, '\t'));
+  } */
+  constructor(title: string, description: string) {
+    super(title, description);
   }
 }

@@ -1,17 +1,33 @@
-import { Element, Narrative, Setting} from './index';
+import {
+  Relation,
+  Narrative,
+  Chapter,
+  Encounter,
+  PlotEvent,
+  Character,
+  Extra,
+  Faction,
+  Area,
+  Item
+} from './index';
 
-export default class Adventure extends Element{
+export default class Adventure {
+  title: string;
   narrative: Narrative;
-  setting: Setting;
+  chapters: Chapter[] = [];
+  encounters: Encounter[] = [];
+  plotevents: PlotEvent[] = [];
+  characters: Character[] = [];
+  extras: Extra[] = [];
+  factions: Faction[] = [];
+  areas: Area[] = [];
+  items: Item[] = [];
+  relations: Relation[] = [];
 
   constructor(
-    title: string = "New Adventure", 
-    description: string = "This is your Adventure",
-    narrative: Narrative = new Narrative(),
-    setting: Setting = new Setting()
+    title: string = "New Adventure"
   ) {
-    super(title, description);
-    this.narrative = narrative;
-    this.setting = setting;
+    this.title = title;
+    this.narrative = new Narrative("new Narrative", "new Narrative");
   }
 }

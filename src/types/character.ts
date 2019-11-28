@@ -1,14 +1,14 @@
-import { Element } from '@/types';
+import { Actor } from '@/types';
 
-export default class Character extends Element {
-  traits: string[] = [];
+export default class Character extends Actor {
+  /* traits: string[] = [];
   mannerisms: string[] = [];
   ideals: string[] = [];
   bonds: string[] = [];
   flaws: string[] = [];
   secrets: string[] = [];
   goals: string[] = [];
-  motivations: string[] = [];
+  motivations: string[] = []; */
 
   constructor(
     title: string = "New Character",

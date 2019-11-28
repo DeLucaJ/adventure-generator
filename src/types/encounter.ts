@@ -1,10 +1,8 @@
-import { Area, Character, Element } from '@/types';
+import { Area, Character, NarrativeElement } from '@/types';
 
-export default class Encounter extends Element{
+export default class Encounter extends NarrativeElement{
   area: Area;
   characters: Character[];
-  // type: EncounterType;
-  // goons: Goon[];
 
   constructor(
     title: string = "New Encounter",
