@@ -63,57 +63,71 @@ export const mutations = {
 // probably need some validation for local storage
 export const actions = {
   loadAdventures: function ({ commit }: any): Types.AdventureMeta[] {
+    console.log("Loading Adventures")
     const adventures = JSON.parse(localStorage.getItem("_adventures_") as string) as Types.AdventureMeta[];
     commit("loadAdventures", adventures);
     return adventures
   },
   loadWorlds: function ({ commit }: any): Types.WorldMeta[] {
+    console.log("Loading All Worlds");
     const worlds = JSON.parse(localStorage.getItem("_worlds_") as string) as Types.WorldMeta[];
     commit("loadWorlds", worlds);
     return worlds;
   },
   loadAdventure: function ({ commit }: any, key: string) {
+    console.log(`Loading Adventure: @${key}`);
     const adventure = JSON.parse(localStorage.get(key) as string) as Types.Adventure;
     commit("setCurrentAdventure", adventure);
   },
   loadWorld: function ({ commit }: any, key: string) {
+    console.log(`Loading World: @${key}`);
     const world = JSON.parse(localStorage.get(key) as string) as Types.World;
     commit("setCurrentWorld", world);
   },
   addAdventure: function ({ commit }: any, adventure: Types.Adventure) {
+    console.log(`Add Adventure: ${adventure.title}, ${adventure.key}`);
     localStorage.setItem(adventure.key, JSON.stringify(adventure));
     commit("addAdventure", adventure.meta);
   },
   addWorld: function ({ commit }: any, world: Types.World) {
+    console.log(`Add World: ${world.title}, ${world.key}`);
     localStorage.setItem(world.key, JSON.stringify(world));
     commit("addWorld", world.meta);
   },
   removeAdventure: function ({ commit }: any, adventure: Types.Adventure) {
+    console.log(`Remove Adventure: ${adventure.title}, ${adventure.key}`);
     localStorage.removeItem(adventure.key);
     commit("removeAdventure", adventure.meta);
   },
   removeWorld: function ({ commit }: any, world: Types.World) {
+    console.log(`Remove World: ${world.title}, ${world.key}`);
     localStorage.removeItem(world.key);
     commit("removeWorld", world.meta);
   },
   updateAdventure: function ({ commit }: any, adventure: Types.Adventure) {
+    console.log(`Update Adventure: ${adventure.title}`);
     localStorage.setItem(adventure.key, JSON.stringify(adventure));
     commit("updateAdventure", adventure.meta);
   },
   updateWorld: function ({ commit }: any, world: Types.World) {
+    console.log(`Update World: ${world.title}`);
     localStorage.setItem(world.key, JSON.stringify(world));
     commit("updateWorld", world.meta);
   },
   setEditing: function ({ commit }: any, target: Types.Dated) {
+    console.log(`Set Editing: ${target}`);
     commit("setEditing", target);
   },
   setPreview: function ({ commit }: any, target: Types.Dated) {
+    console.log(`Set Preview: ${target}`);
     commit("setPreview", target);
   },
   clear: function ({ commit }: any) {
+    console.log("Clear State");
     commit("clear");
   },
   eraseStorage: function({ commit }: any) {
+    console.log("Erase Storage");
     localStorage.clear();
     commit("clear");
   }

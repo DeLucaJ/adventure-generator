@@ -44,7 +44,6 @@ import AdventureBlock from "@/components/viewer-blocks/AdventureBlock.vue";
   }
 })
 export default class AdventureViewer extends Vue {
-  adventure: Adventure = new Adventure();
   isActive: boolean = true;
 }
 </script>
