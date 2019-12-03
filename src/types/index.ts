@@ -8,7 +8,7 @@ export { default as Character } from "./character";
 export { default as Extra } from "./extra";
 export { default as Faction } from "./faction";
 export { default as Item } from "./item";
-export { default as Encounter } from "./encounter";
+export { default as Encounter, EncounterEvent } from "./encounter";
 export { default as PlotEvent } from "./plot-event";
 export { default as Chapter } from "./chapter";
 export { default as World } from "./world";

@@ -1,19 +1,20 @@
 <template>
-  <div class="item-block">
-    <h3 class="title is-3">
-      {{ item.title }}
-      <b-button class="is-text" icon-left="pencil"></b-button>
-    </h3>
-    <p>{{ item.description }}</p>
-    <br />
+  <div class="element-block">
+    <element-block :element="item" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { ElementBlock } from "@/components/blocks";
 import { Item } from "@/types";
 
-@Component
+@Component({
+  name: "item-block",
+  components: {
+    ElementBlock
+  }
+})
 export default class ItemBlock extends Vue {
   @Prop()
   item!: Item;
