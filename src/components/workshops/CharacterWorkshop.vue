@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Character, World } from "@/types";
+import { Character } from "@/types";
 import {
   StringListWorkshop,
   ElementWorkshop,

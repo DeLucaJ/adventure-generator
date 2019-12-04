@@ -30,11 +30,15 @@ export default class Encounter extends AdventureElement {
 }
 
 export class EncounterEvent {
+  static eventId: number = 0
   condition: string;
   event: string;
+  id: number;
 
   constructor(condition: string, event: string) {
     this.condition = condition;
     this.event = event;
+    this.id = EncounterEvent.eventId;
+    EncounterEvent.eventId += 1;
   }
 }
