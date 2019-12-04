@@ -18,7 +18,9 @@ import AppFooter from "./components/AppFooter.vue";
   }
 })
 export default class App extends Vue {
-
+  mounted() {
+    // this.$store.dispatch("eraseStorage");
+  }
 }
 </script>
 

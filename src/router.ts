@@ -11,11 +11,6 @@ const routes = [
     component: About
   },
   {
-    path: '/viewer',
-    name: 'viewer',
-    component: () => import(/* webpackChunkName: "adventure-viewer" */ './views/Viewer.vue')
-  },
-  {
     path: '/adventure-list',
     name: 'adventure-list',
     component: () => import(/* webpackChunkName: "adventure-list" */ './views/AdventureList.vue')

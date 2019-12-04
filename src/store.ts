@@ -5,45 +5,72 @@ import { any } from 'expect';
 
 Vue.use(Vuex)
 
+function grab(key: string): any {
+  // console.log(`Grabbing item @${key}`)
+  let obj = JSON.parse(localStorage.getItem(key) as string)
+  // console.log(obj);
+  return obj;
+}
+
+function put(key: string, value: any) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
 // These change the state
 export const mutations = {
-  loadAdventures: function (state: any, adventures: Types.AdventureMeta[]) {
+  adventuresLoaded: function (state: any, adventures: Types.AdventureMeta[]) {
+    console.log(`Adventures Loaded: ${adventures.length}`)
     state.adventures = adventures;
   },
-  loadWorlds: function (state: any, worlds: Types.WorldMeta[]) {
+  worldsLoaded: function (state: any, worlds: Types.WorldMeta[]) {
+    console.log(`Worlds Loaded: ${worlds.length}`)
     state.worlds = worlds;
   },
-  addAdventure: function (state: any, adventure: Types.AdventureMeta[]) {
+  adventureAdded: function (state: any, adventure: Types.AdventureMeta) {
+    console.log(`Adventure Added: ${adventure.title}`)
     state.adventures = [...state.adventures, adventure];
-    localStorage.setItem("_adventures_", JSON.stringify(state.adventures));
+    put("_adventures_", state.adventures);
   },
-  addWorld: function (state: any, world: Types.WorldMeta[]) {
-    state.adventures = [...state.adventures, world];
-    localStorage.setItem("_worlds_", JSON.stringify(state.worlds));
+  worldAdded: function (state: any, world: Types.WorldMeta) {
+    console.log(`World Added: ${world.title}`);
+    state.worlds = [...state.worlds, world];
+    put("_worlds_", state.worlds);
   },
-  removeAdventure: function (state: any, adventure: Types.AdventureMeta) {
+  adventureRemoved: function (state: any, adventure: Types.AdventureMeta) {
+    console.log(`Adventure Removed: ${adventure.title}`);
     state.adventures = state.adventures.filter((a: Types.AdventureMeta) => a.key !== adventure.key);
-    localStorage.setItem("_adventures_", JSON.stringify(state.adventures));
+    if (state.currentAdventure.title === adventure.title) {
+      state.currentAdventure = undefined;
+    }
+    put("_adventures_", state.adventures);
   },
-  removeWorld: function (state: any, world: Types.WorldMeta) {
+  worldRemoved: function (state: any, world: Types.WorldMeta) {
+    console.log(`World Removed: ${world.title}`);
     state.worlds = state.worlds.filter((w: Types.WorldMeta) => w.key !== world.key);
-    localStorage.setItem("_worlds_", JSON.stringify(state.worlds));
+    if (state.currentWorld.title === world.title) {
+      state.currentWorld = undefined;
+    }
+    put("_worlds_", state.worlds);
   },
-  updateAdventure: function (state: any, adventure: Types.AdventureMeta) {
+  adventureUpdated: function (state: any, adventure: Types.AdventureMeta) {
+    console.log(`Adventure Updated: ${adventure.title}`);
     state.adventures = state.adventures.map((a: Types.AdventureMeta) => a.key === adventure.key ? adventure : a);
-    localStorage.setItem("_adventures_", JSON.stringify(state.adventures));
+    put("_adventures_", state.adventures);
   },
-  updateWorld: function (state: any, world: Types.WorldMeta) {
+  worldUpdated: function (state: any, world: Types.WorldMeta) {
+    console.log(`World Removed: ${world.title}`);
     state.worlds = state.worlds.map((w: Types.WorldMeta) => w.key === world.key ? world : w);
-    localStorage.setItem("_worlds_", JSON.stringify(state.worlds));
+    put("_worlds_", state.worlds);
   },
-  setCurrentAdventure: function (state: any, adventure: Types.Adventure) {
+  currentAdventureSet: function (state: any, adventure: Types.Adventure) {
+    console.log(`Current Adventure: ${adventure.title}`);
     state.currentAdventure = adventure;
   },
-  setCurrentWorld: function (state: any, world: Types.World) {
+  currentWorldSet: function (state: any, world: Types.World) {
+    console.log(`Current World: ${world.title}`);
     state.currentWorld = world;
   },
   setEditing: function (state: any, editing: Types.Dated) {
+    
     state.editing = editing;
   },
   setPreview: function (state: any, preview: Types.Element) {
@@ -62,58 +89,64 @@ export const mutations = {
 // These access the information in store/database and then commit them to state
 // probably need some validation for local storage
 export const actions = {
-  loadAdventures: function ({ commit }: any): Types.AdventureMeta[] {
+  loadAdventures: function ({ commit }: any) {
     console.log("Loading Adventures")
-    const adventures = JSON.parse(localStorage.getItem("_adventures_") as string) as Types.AdventureMeta[];
-    commit("loadAdventures", adventures);
-    return adventures
+    let adventures: Types.AdventureMeta[] = grab("_adventures_");
+    if (adventures === null){
+      put("_adventures_", []);
+      adventures = []
+    }
+    commit("adventuresLoaded", adventures);
   },
-  loadWorlds: function ({ commit }: any): Types.WorldMeta[] {
+  loadWorlds: function ({ commit }: any) {
     console.log("Loading All Worlds");
-    const worlds = JSON.parse(localStorage.getItem("_worlds_") as string) as Types.WorldMeta[];
-    commit("loadWorlds", worlds);
-    return worlds;
+    let worlds: Types.WorldMeta[] = grab("_worlds_");
+    if(worlds === null) {
+      put("_worlds_", []);
+      worlds = [];
+    }
+    commit("worldsLoaded", worlds);
   },
   loadAdventure: function ({ commit }: any, key: string) {
     console.log(`Loading Adventure: @${key}`);
-    const adventure = JSON.parse(localStorage.get(key) as string) as Types.Adventure;
-    commit("setCurrentAdventure", adventure);
+    const adventure: Types.Adventure = grab(key);
+    commit("currentAdventureSet", adventure);
   },
   loadWorld: function ({ commit }: any, key: string) {
     console.log(`Loading World: @${key}`);
-    const world = JSON.parse(localStorage.get(key) as string) as Types.World;
-    commit("setCurrentWorld", world);
+    const world: Types.World = grab(key);
+    commit("currentWorldSet", world);
   },
   addAdventure: function ({ commit }: any, adventure: Types.Adventure) {
     console.log(`Add Adventure: ${adventure.title}, ${adventure.key}`);
-    localStorage.setItem(adventure.key, JSON.stringify(adventure));
-    commit("addAdventure", adventure.meta);
+    put(adventure.key, adventure);
+    commit("adventureAdded", adventure.meta);
   },
   addWorld: function ({ commit }: any, world: Types.World) {
     console.log(`Add World: ${world.title}, ${world.key}`);
-    localStorage.setItem(world.key, JSON.stringify(world));
-    commit("addWorld", world.meta);
+    put(world.key, world);
+    commit("worldAdded", world.meta);
   },
-  removeAdventure: function ({ commit }: any, adventure: Types.Adventure) {
+  removeAdventure: function ({ commit }: any, adventure: Types.AdventureMeta) {
     console.log(`Remove Adventure: ${adventure.title}, ${adventure.key}`);
     localStorage.removeItem(adventure.key);
-    commit("removeAdventure", adventure.meta);
+    commit("adventureRemoved", adventure);
   },
-  removeWorld: function ({ commit }: any, world: Types.World) {
+  removeWorld: function ({ commit }: any, world: Types.WorldMeta) {
     console.log(`Remove World: ${world.title}, ${world.key}`);
     localStorage.removeItem(world.key);
-    commit("removeWorld", world.meta);
+    commit("worldRemoved", world);
   },
   updateAdventure: function ({ commit }: any, adventure: Types.Adventure) {
     console.log(`Update Adventure: ${adventure.title}`);
     localStorage.setItem(adventure.key, JSON.stringify(adventure));
-    commit("updateAdventure", adventure.meta);
+    commit("adventureUpdated", adventure.meta);
+    // update current adventure?
   },
   updateWorld: function ({ commit }: any, world: Types.World) {
     console.log(`Update World: ${world.title}`);
-    localStorage.setItem(world.key, JSON.stringify(world));
-    commit("updateWorld", world.meta);
-    // update current world???
+    put(world.key, world);
+    commit("worldUpdated", world.meta);
   },
   setEditing: function ({ commit }: any, target: Types.Dated) {
     console.log(`Set Editing: ${target}`);

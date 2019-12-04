@@ -1,5 +1,7 @@
 <template>
   <section class="container">
+    <br />
+    <b-button class="is-pulled-right" icon-left="plus" @click="generate()">New World</b-button>
     <b-table
       :data="worlds"
       :paginated="isPaginated"
@@ -10,61 +12,67 @@
       :default-sort-direction="defaultSortDirection"
       :sort-icon="sortIcon"
       :sort-icon-size="sortIconSize"
-      default-sort=""
+      default-sort
       aria-next-label="Next page"
       aria-previous-label="Previous page"
       aria-page-label="Page"
-      aria-current-label="Current page">
-      <template slot-scope="">
-          <!-- <b-table-column field="id" label="ID" width="40" sortable numeric>
-              {{ props.row.id }}
-          </b-table-column>
-
-          <b-table-column field="user.first_name" label="First Name" sortable>
-              {{ props.row.user.first_name }}
-          </b-table-column>
-
-          <b-table-column field="user.last_name" label="Last Name" sortable>
-              {{ props.row.user.last_name }}
-          </b-table-column>
-
-          <b-table-column field="date" label="Date" sortable centered>
-              <span class="tag is-success">
-                  {{ new Date(props.row.date).toLocaleDateString() }}
-              </span>
-          </b-table-column>
-
-          <b-table-column label="Gender">
-              <span>
-                  <b-icon pack="fas"
-                      :icon="props.row.gender === 'Male' ? 'mars' : 'venus'">
-                  </b-icon>
-                  {{ props.row.gender }}
-              </span>
-          </b-table-column> -->
+      aria-current-label="Current page"
+    >
+      <template slot-scope="props">
+        <b-table-column field="title" label="Name">
+          {{ props.row.title }}
+        </b-table-column>
+        <b-table-column field="erase" numeric>
+          <b-button type="is-danger" icon-left="delete" @click="remove(props.row)"/>
+        </b-table-column>
+      </template>
+      <template slot="empty">
+        <section class="section">
+          <div class="content has-text-grey has-text-centered">
+            <p>
+              <b-icon icon="emoticon-sad" size="is-large"></b-icon>
+            </p>
+            <p>No Worlds to Load.</p>
+          </div>
+        </section>
       </template>
     </b-table>
   </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'vue-class-component';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { World, WorldMeta } from "@/types";
 
 @Component
 export default class WorldList extends Vue {
   isPaginated: boolean = true;
   isPaginationSimple: boolean = false;
-  paginationPosition: string = 'bottom';
-  defaultSortDirection: string = 'asc';
-  sortIcon: string = 'arrow-up';
-  sortIconSize: string = 'is-small';
+  paginationPosition: string = "bottom";
+  defaultSortDirection: string = "asc";
+  sortIcon: string = "arrow-up";
+  sortIconSize: string = "is-small";
   currentPage: number = 1;
-  perPage: number = 5;
+  perPage: number = 10;
+
+  worldId = 0;
 
   get worlds() {
-    return this.$store.dispatch("loadWorlds");
+    return this.$store.state.worlds;
   }
 
+  generate() {
+    let newWorld = new World("New World", this.worldId++);
+    this.$store.dispatch("addWorld", newWorld);
+    this.$store.dispatch("loadWorld", newWorld.key);
+  }
+
+  remove(world: WorldMeta) {
+    this.$store.dispatch("removeWorld", world);
+  }
+
+  mounted() {
+    this.$store.dispatch("loadWorlds");
+  }
 }
 </script>
