@@ -11,6 +11,6 @@ export { default as Item } from "./item";
 export { default as Encounter, EncounterEvent } from "./encounter";
 export { default as PlotEvent } from "./plot-event";
 export { default as Chapter } from "./chapter";
-export { default as World } from "./world";
-export { default as Adventure } from "./adventure";
+export { default as World/* , WorldGenMeta */ } from "./world";
+export { default as Adventure/* , AdventureGenMeta */ } from "./adventure";
 export { AdventureMeta, WorldMeta } from "./meta";

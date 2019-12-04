@@ -1,8 +1,21 @@
-import { Dated, Relation, Character, Extra, Faction, Area, Item } from "@/types";
+import { Element, Relation, Character, Extra, Faction, Area, Item } from "@/types";
 import { WorldMeta } from "./meta";
 
-export default class World extends Dated {
-  title: string;
+export default class World extends Element {
+  /* static nextID: number = 0;
+
+  static createWorld(): World {
+    return new World(`New World ${++this.nextID}`, this.nextID);
+  }
+
+  static get meta(): WorldGenMeta {
+    return new WorldGenMeta(this.nextID);
+  }
+
+  static set meta(meta: WorldGenMeta) {
+    this.nextID = meta.nextID;
+  } */
+
   id: number;
   relations: Relation[] = [];
   characters: Character[] = [];
@@ -11,8 +24,8 @@ export default class World extends Dated {
   areas: Area[] = [];
   items: Item[] = [];
   
-  constructor(title: string = "New World", id: number) {
-    super();
+  constructor(title: string, description: string, id: number) {
+    super(title, description);
     this.id = id;
     this.title = title;
   }
@@ -25,3 +38,11 @@ export default class World extends Dated {
     return new WorldMeta(this);
   }
 }
+
+/* export class WorldGenMeta {
+  nextID: number;
+  
+  constructor(nextID: number) {
+    this.nextID = nextID;
+  }
+} */

@@ -66,9 +66,9 @@ export default class WorldList extends Vue {
   }
 
   generate() {
-    let newWorld = new World("New World", this.worldId++);
+    /* let newWorld = new World("New World", this.worldId++);
     this.$store.dispatch("addWorld", newWorld);
-    this.$store.dispatch("loadWorld", newWorld.key);
+    this.$store.dispatch("loadWorld", newWorld.key); */
   }
 
   remove(world: WorldMeta) {

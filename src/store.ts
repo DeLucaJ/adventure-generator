@@ -89,6 +89,13 @@ export const mutations = {
 // These access the information in store/database and then commit them to state
 // probably need some validation for local storage
 export const actions = {
+  /* loadAdvGenMeta: function ({ commit }: any) {
+    console.log("Loading Adventre Generator Meta");
+    let 
+  },
+  loadWorldGenMeta: function ({ commit }: any){
+
+  }, */
   loadAdventures: function ({ commit }: any) {
     console.log("Loading Adventures")
     let adventures: Types.AdventureMeta[] = grab("_adventures_");

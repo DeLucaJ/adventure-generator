@@ -85,13 +85,13 @@ export default class AdventureList extends Vue {
   }
 
   generate() {
-    let newAd = new Adventure(
+    /* let newAd = new Adventure(
       `New Adventure ${this.adventureId}`,
       this.adventureId++,
       this.$store.state.currentWorld
     );
     this.$store.dispatch("addAdventure", newAd);
-    this.$store.dispatch("loadAdventure", newAd.key);
+    this.$store.dispatch("loadAdventure", newAd.key); */
   }
 
   remove(adventure: AdventureMeta) {
