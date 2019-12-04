@@ -1,12 +1,7 @@
 <template>
   <section class="container">
     <br />
-    <!-- <b-field class="is-pulled-right" label="World" label-position="on-border">
-      <b-select placeholder="Choose a World">
-        <option v-for="world in worlds" :value="world.title" :key="world.id">{{ world.title }}</option>
-      </b-select>
-    </b-field>-->
-    <b-button class="is-pulled-right" icon-left="plus" @click="generate()">New Adventure</b-button>
+    <b-button class="is-pulled-right is-info" icon-left="plus" @click="create()">New Adventure</b-button>
     <b-table
       :data="adventures"
       :paginated="isPaginated"
@@ -47,23 +42,22 @@
         </section>
       </template>
     </b-table>
-    <!-- <b-modal
-      :active.sync="isComponentModalActive"
-      has-modal-card
-      trap-focus
-      aria-role="dialog"
-      aria-modal
-    >
-      
-    </b-modal>-->
+    <b-modal :active.sync="creating">
+      <adventure-modal />
+    </b-modal>
   </section>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Adventure, AdventureMeta, WorldMeta } from "@/types";
+import AdventureModal from "@/components/AdventureModal.vue";
 
-@Component
+@Component({
+  components: {
+    AdventureModal
+  }
+})
 export default class AdventureList extends Vue {
   isPaginated: boolean = true;
   isPaginationSimple: boolean = false;
@@ -75,6 +69,7 @@ export default class AdventureList extends Vue {
   perPage: number = 10;
   //selectedWorld: WorldMeta = null;
   adventureId = 0;
+  creating = false;
 
   get adventures(): AdventureMeta[] {
     return this.$store.state.adventures;
@@ -84,14 +79,8 @@ export default class AdventureList extends Vue {
     return this.$store.state.worlds;
   }
 
-  generate() {
-    /* let newAd = new Adventure(
-      `New Adventure ${this.adventureId}`,
-      this.adventureId++,
-      this.$store.state.currentWorld
-    );
-    this.$store.dispatch("addAdventure", newAd);
-    this.$store.dispatch("loadAdventure", newAd.key); */
+  create() {
+    this.creating = true;
   }
 
   remove(adventure: AdventureMeta) {

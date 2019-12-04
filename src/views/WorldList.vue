@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <br />
-    <b-button class="is-pulled-right" icon-left="plus" @click="generate()">New World</b-button>
+    <b-button class="is-pulled-right is-info" icon-left="plus" @click="create()">New World</b-button>
     <b-table
       :data="worlds"
       focusable
@@ -42,14 +42,22 @@
         </section>
       </template>
     </b-table>
+    <b-modal :active.sync="creating">
+      <world-modal />
+    </b-modal>
   </section>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { World, WorldMeta } from "@/types";
+import WorldModal from "@/components/WorldModal.vue";
 
-@Component
+@Component({
+  components: {
+    WorldModal
+  }
+})
 export default class WorldList extends Vue {
   isPaginated: boolean = true;
   isPaginationSimple: boolean = false;
@@ -61,14 +69,14 @@ export default class WorldList extends Vue {
   perPage: number = 10;
   worldId = 0;
 
+  creating = false;
+
   get worlds() {
     return this.$store.state.worlds;
   }
 
-  generate() {
-    /* let newWorld = new World("New World", this.worldId++);
-    this.$store.dispatch("addWorld", newWorld);
-    this.$store.dispatch("loadWorld", newWorld.key); */
+  create() {
+    this.creating = true;
   }
 
   remove(world: WorldMeta) {
