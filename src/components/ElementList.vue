@@ -1,5 +1,6 @@
 <template>
-  <div class="element-list-block">
+  <div class="element-list">
+    <!-- Add Button -->
     <b-collapse
       class="card"
       v-for="(element, index) of list"
@@ -17,10 +18,9 @@
         <div class="content">{{ element.description }}</div>
       </div>
       <footer class="card-footer">
-        <!-- Button for Viewing -->
-        <b-button @click="view(element)">View</b-button>
-        <!-- Button for Editing -->
-        <b-button @click="edit(element)">Edit</b-button>
+        <b-button @click="view(element)" icon-right="eye">View</b-button>
+        <b-button v-if="canEdit" @click="edit(element, index)" icon-right="pencil">Edit</b-button>
+        <b-button v-if="canEdit" @click="remove(element, index)" icon-right="remove">Remove</b-button>
       </footer>
     </b-collapse>
   </div>
@@ -30,20 +30,22 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({
-  name: "Element-list-workshop"
+  name: "element-list"
 })
-export default class ElementListWorkshop extends Vue {
+export default class ElementList extends Vue {
   @Prop()
   list!: Element[];
-  
+  @Prop({ default: false })
+  canEdit!: boolean;
+
   isOpen: number = 0;
 
-  view(element: Element) {
+  view(element: Element) {}
 
-  }
+  edit(element: Element, index: number) {}
 
-  edit(element: Element) {
+  remove(element: Element, index: number) {}
 
-  }
+  /* add function */
 }
 </script>

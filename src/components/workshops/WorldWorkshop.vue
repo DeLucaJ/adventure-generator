@@ -1,16 +1,18 @@
 <template>
   <div class="world-workshop">
-    <h1 class="title is-1">{{ world.title }}</h1><hr/>
+    <b-field label="Name" :label-position="labelpos">
+      <b-input v-model="world.title" @input="update()" />
+    </b-field>
     <h2 class="title is-2">Areas</h2>
-    <!-- list of areas with links -->
+    <element-list :canEdit="true" :list.sync="world.areas" @update:list="update()" />
     <h2 class="title is-2">Factions</h2>
-    <!-- list of factions with links -->
+    <element-list :canEdit="true" :list.sync="world.factions" @update:list="update()" />
     <h2 class="title is-2">Characters</h2>
-    <!-- list of characters with links -->
+    <element-list :canEdit="true" :list.sync="world.characters" @update:list="update()" />
     <h2 class="title is-2">Extras</h2>
-    <!-- list of extras with links -->
+    <element-list :canEdit="true" :list.sync="world.extras" @update:list="update()" />
     <h2 class="title is-2">Items</h2>
-    <!-- list of items with links -->
+    <element-list :canEdit="true" :list.sync="world.items" @update:list="update()" />
   </div>
 </template>
 
@@ -24,5 +26,9 @@ import { World } from "@/types";
 export default class WorldWorkshop extends Vue {
   @Prop()
   world!: World;
+
+  update() {
+    this.$store.dispatch("updateWorld", this.world);
+  }
 }
 </script>

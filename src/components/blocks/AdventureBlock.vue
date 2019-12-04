@@ -4,11 +4,11 @@
     <h2 class="title is-2">The World: {{ world.title }}</h2>
     <!-- a way to link to the world -->
     <h2 class="title is-2">Chapters</h2>
-    <!-- list of chapters with links -->
+    <element-list :list.sync="adventure.chapters"/>
     <h2 class="title is-2">Events</h2>
-    <!-- list of events with links -->
+    <element-list :list.sync="adventure.plotevents"/>
     <h2 class="title is-2">Encounters</h2>
-    <!-- list of extras with links-->
+    <element-list :list.sync="adventure.encounters"/>
   </div>
 </template>
 

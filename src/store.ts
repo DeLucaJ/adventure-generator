@@ -113,6 +113,7 @@ export const actions = {
     console.log(`Update World: ${world.title}`);
     localStorage.setItem(world.key, JSON.stringify(world));
     commit("updateWorld", world.meta);
+    // update current world???
   },
   setEditing: function ({ commit }: any, target: Types.Dated) {
     console.log(`Set Editing: ${target}`);

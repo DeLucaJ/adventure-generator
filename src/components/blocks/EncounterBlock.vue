@@ -1,6 +1,10 @@
 <template>
   <div class="encounter-block">
     <element-block :element="encounter" />
+    <h2 class="title is-2">Area</h2>
+    {{ encounter.area.title }}
+    <h2 class="title is-2">Cast</h2>
+    <element-list :list.sync="encounter.cast" />
     <h2 class="title is-2">Objectives</h2>
     <ul v-if="(encounter.objectives.length > 0)">
       <li v-for="obj in encounter.objectives" :key="obj">{{ obj }}</li>
@@ -19,12 +23,14 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { ElementBlock } from "@/components/blocks";
+import ElementList from "@/components/ElementList.vue";
 import { Encounter } from "@/types";
 
 @Component({
   name: "encounter-block",
   components: {
-    ElementBlock
+    ElementBlock,
+    ElementList
   }
 })
 export default class EncounterBlock extends Vue {

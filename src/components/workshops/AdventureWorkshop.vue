@@ -1,14 +1,17 @@
 <template>
   <div class="adventure-workshop">
-    <h1 class="title is-1">{{ world.title }}</h1><hr/>
+    <b-field label="Name" :label-position="labelpos">
+      <b-input v-model="adventure.title" @input="update()" />
+    </b-field>
+    <hr />
     <h2 class="title is-2">The World: {{ world.title }}</h2>
     <!-- a way to link to the world -->
     <h2 class="title is-2">Chapters</h2>
-    <!-- list of chapters with links -->
+    <element-list :canEdit="true" :list.sync="adventure.chapters" @update:list="update()" />
     <h2 class="title is-2">Events</h2>
-    <!-- list of events with links -->
+    <element-list :canEdit="true" :list.sync="adventure.events" @update:list="update()" />>
     <h2 class="title is-2">Encounters</h2>
-    <!-- list of extras with links-->
+    <element-list :canEdit="true" :list.sync="adventure.encounters" @update:list="update()" />
   </div>
 </template>
 
@@ -22,5 +25,9 @@ import { Adventure } from "@/types";
 export default class AdventureWorkshop extends Vue {
   @Prop()
   adventure!: Adventure;
+
+  update() {
+    this.$store.dispatch("updateAdventure", this.adventure);
+  }
 }
 </script>

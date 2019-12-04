@@ -2,8 +2,8 @@
   <div class="chapter-workshop">
     <element-workshop :element.sync="chapter" @update:element="update()" />
     <string-list-workshop :list.sync="chapter.objectives" @update:list="update()" />
-    <!-- Encounters -->
-    <!-- <element-list-workshop :list.sync="chapter.encounters" @update:list="update()" /> -->
+    <h2 class="has-text-weight-semibold">Encounters</h2>
+    <element-list :canEdit="true" :list.sync="chapter.encounters" @update:list="update()" />
   </div>
 </template>
 
@@ -11,9 +11,9 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import {
   ElementWorkshop,
-  StringListWorkshop,
-  ElementListWorkshop
+  StringListWorkshop
 } from "@/components/workshops";
+import ElementList from "@/components/ElementList.vue";
 import { Chapter, Encounter } from "@/types";
 
 @Component({
@@ -21,7 +21,7 @@ import { Chapter, Encounter } from "@/types";
   components: {
     ElementWorkshop,
     StringListWorkshop,
-    ElementListWorkshop
+    ElementList
   }
 })
 export default class ChapterWorkshop extends Vue {

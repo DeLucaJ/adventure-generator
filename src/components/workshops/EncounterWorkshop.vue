@@ -1,8 +1,11 @@
 <template>
   <div class="encounter-workshop">
     <element-workshop :element.sync="encounter" @update:element="update()" />
-    <!-- Area -->
-    <!-- Cast -->
+    <h2 class="has-text-weight-semibold">Areas</h2>
+    <!-- Needs Single Element Viewer/Editor -->
+    {{ encounter.are.title }}
+    <h2 class="has-text-weight-semibold">Cast</h2>
+    <element-list :canEdit="true" :list.sync="encounter.cast" @update:list="update()" />
     <string-list-workshop :list.sync="encounter.objectives" @update:list="update()" />
     <div class="encounter-event-workshop">
       <h2 class="has-text-weight-semibold">Events</h2>
@@ -39,7 +42,7 @@
           <section class="modal-card-body"></section>
           <foooter class="modal-card-foot"></foooter>
         </div>
-      </b-modal> -->
+      </b-modal>-->
     </div>
   </div>
 </template>
@@ -48,11 +51,14 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { ElementWorkshop, StringListWorkshop } from "@/components/workshops";
 import { Encounter, EncounterEvent } from "@/types";
+import ElementList from "@/components/ElementList.vue";
 
 @Component({
   name: "encounter-workshop",
   components: {
-    ElementWorkshop
+    ElementWorkshop,
+    ElementList,
+    StringListWorkshop
   }
 })
 export default class EncounterWorkshop extends Vue {
@@ -88,9 +94,7 @@ export default class EncounterWorkshop extends Vue {
     );
   }
 
-  editEvent(event: EncounterEvent) {
-
-  }
+  editEvent(event: EncounterEvent) {}
 
   deleteEvent(event: EncounterEvent) {
     this.encounter.events = this.encounter.events.filter(
