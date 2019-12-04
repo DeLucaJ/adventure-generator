@@ -10,7 +10,7 @@ export default class World extends Dated {
   factions: Faction[] = [];
   areas: Area[] = [];
   items: Item[] = [];
-
+  
   constructor(title: string = "New World", id: number) {
     super();
     this.id = id;
