@@ -25,6 +25,13 @@
     >
       <template slot-scope="props">
         <b-table-column field="title" label="Name">{{ props.row.title }}</b-table-column>
+        <b-table-column field="world-title" label="Setting">{{ props.row.world_title }}</b-table-column>
+        <b-table-column field="created" label="Created">
+          <span>{{ new Date(props.row.created).toLocaleString() }}</span>
+        </b-table-column>
+        <b-table-column field="edited" label="Last Edited">
+          <span>{{ new Date(props.row.edited).toLocaleString() }}</span>
+        </b-table-column>
         <b-table-column field="erase" numeric>
           <b-button type="is-danger" icon-left="delete" @click="remove(props.row)" />
         </b-table-column>

@@ -4,6 +4,7 @@
     <b-button class="is-pulled-right" icon-left="plus" @click="generate()">New World</b-button>
     <b-table
       :data="worlds"
+      focusable
       :paginated="isPaginated"
       :per-page="perPage"
       :current-page.sync="currentPage"
@@ -19,11 +20,15 @@
       aria-current-label="Current page"
     >
       <template slot-scope="props">
-        <b-table-column field="title" label="Name">
-          {{ props.row.title }}
+        <b-table-column field="title" label="Name">{{ props.row.title }}</b-table-column>
+        <b-table-column field="created" label="Created">
+          <span>{{ new Date(props.row.created).toLocaleString() }}</span>
         </b-table-column>
-        <b-table-column field="erase" numeric>
-          <b-button type="is-danger" icon-left="delete" @click="remove(props.row)"/>
+        <b-table-column field="edited" label="Last Edited">
+          <span>{{ new Date(props.row.edited).toLocaleString() }}</span>
+        </b-table-column>
+        <b-table-column field="buttons" numeric>
+          <b-button type="is-danger" icon-left="delete" @click="remove(props.row)" />
         </b-table-column>
       </template>
       <template slot="empty">
@@ -54,7 +59,6 @@ export default class WorldList extends Vue {
   sortIconSize: string = "is-small";
   currentPage: number = 1;
   perPage: number = 10;
-
   worldId = 0;
 
   get worlds() {
