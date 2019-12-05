@@ -1,4 +1,4 @@
-import { AdventureElement, Encounter } from "@/types";
+import { EType, AdventureElement, Encounter } from "@/types";
 import Adventure from "./adventure";
 import { Graph } from "@/generators";
 
@@ -15,7 +15,7 @@ export default class Chapter extends AdventureElement {
     objectives: string[] = [],
     adventure: Adventure
   ) {
-    super(title, description, adventure);
+    super(EType.CHAPTER, title, description, adventure);
     this.graph = graph;
     this.encounters = encounters;
     this.objectives = objectives;

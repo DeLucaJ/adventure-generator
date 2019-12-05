@@ -1,4 +1,4 @@
-import { WorldElement } from "@/types";
+import { EType, WorldElement } from "@/types";
 import World from "./world";
 
 export default class CastMember extends WorldElement {
@@ -6,7 +6,7 @@ export default class CastMember extends WorldElement {
   ideals: string[] = [];
   flaws: string[] = [];
 
-  constructor(title: string, description: string, world: World) {
-    super(title, description, world);
+  constructor(etype: EType, title: string, description: string, world: World) {
+    super(etype, title, description, world);
   }
 }

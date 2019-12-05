@@ -1,4 +1,4 @@
-import { Actor } from "@/types";
+import { EType, Actor } from "@/types";
 import World from "./world";
 
 export default class Faction extends Actor {
@@ -7,6 +7,6 @@ export default class Faction extends Actor {
     description: string = "This is an organization at work in the Setting.",
     world: World
   ) {
-    super(title, description, world);
+    super(EType.FACTION, title, description, world);
   }
 }

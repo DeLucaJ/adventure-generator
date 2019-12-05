@@ -43,33 +43,39 @@ export default class Editor extends Vue {
     return this.$store.state.editing;
   }
 
+<<<<<<< HEAD
   get currentEditor(): string {
     switch(typeof this.target) {
       case typeof Types.Character:
+=======
+  get currentEditor() {
+    switch(this.target.type) {
+      case Types.EType.CHARACTER:
+>>>>>>> 956af5a861aaa1ec9b2f7294b6628290364b919f
         return "character-workshop";
         break;
-      case typeof Types.Extra:
+      case Types.EType.EXTRA:
         return "extra-workshop";
         break;
-      case typeof Types.Faction:
+      case Types.EType.FACTION:
         return "faction-workshop";
         break;
-      case typeof Types.Item:
+      case Types.EType.ITEM:
         return "item-workshop";
         break;
-      case typeof Types.Encounter:
+      case Types.EType.ENCOUNTER:
         return "encounter-workshop";
         break;
-      case typeof Types.Chapter:
+      case Types.EType.CHAPTER:
         return "chapter-workshop";
         break;
-      case typeof Types.PlotEvent:
+      case Types.EType.EVENT:
         return "event-workshop";
         break;
-      case typeof Types.World:
+      case Types.EType.WORLD:
         return "world-workshop";
         break;
-      case typeof Types.Adventure:
+      case Types.EType.ADVENTURE:
         return "adventure-workshop";
         break;
       default:

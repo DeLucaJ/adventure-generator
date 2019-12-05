@@ -44,32 +44,32 @@ export default class Viewer extends Vue {
   }
 
   get currentViewer() {
-    switch(typeof this.target) {
-      case typeof Types.Character:
+    switch(this.target.type) {
+      case Types.EType.CHARACTER:
         return "character-block";
         break;
-      case typeof Types.Extra:
+      case Types.EType.EXTRA:
         return "extra-block";
         break;
-      case typeof Types.Faction:
+      case Types.EType.FACTION:
         return "faction-block";
         break;
-      case typeof Types.Item:
+      case Types.EType.ITEM:
         return "item-block";
         break;
-      case typeof Types.Encounter:
+      case Types.EType.ENCOUNTER:
         return "encounter-block";
         break;
-      case typeof Types.Chapter:
+      case Types.EType.CHAPTER:
         return "chapter-block";
         break;
-      case typeof Types.PlotEvent:
+      case Types.EType.EVENT:
         return "event-block";
         break;
-      case typeof Types.World:
+      case Types.EType.WORLD:
         return "world-block";
         break;
-      case typeof Types.Adventure:
+      case Types.EType.ADVENTURE:
         return "adventure-block";
         break;
       default:

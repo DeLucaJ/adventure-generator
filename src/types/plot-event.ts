@@ -1,4 +1,4 @@
-import { AdventureElement, Encounter } from '@/types';
+import { EType, AdventureElement, Encounter } from '@/types';
 import Adventure from "./adventure";
 
 export default class PlotEvent extends AdventureElement {
@@ -7,6 +7,6 @@ export default class PlotEvent extends AdventureElement {
     description: string = "This is an event that takes place in the Narrative but outside of Quests. It is represented by an Encounter.",
     adventure: Adventure
   ) {
-    super(title, description, adventure);
+    super(EType.EVENT, title, description, adventure);
   }
 }

@@ -1,4 +1,4 @@
-import { Element, Chapter, Encounter, PlotEvent } from './index';
+import { EType, Element, Chapter, Encounter, PlotEvent } from './index';
 import { Graph } from '@/generators';
 import { AdventureMeta, WorldMeta } from "./meta";
 
@@ -25,7 +25,7 @@ export default class Adventure extends Element {
   plotevents: PlotEvent[] = [];
 
   constructor(title: string, description: string, id: number, world: WorldMeta) {
-    super(title, description);
+    super(EType.ADVENTURE, title, description);
     this.id = id;
     this.title = title;
     this.world = world;
