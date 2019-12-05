@@ -179,7 +179,7 @@ export default new Vuex.Store({
     currentWorld: undefined,
     currentAdventure: undefined,
     viewing: undefined,
-    editing: undefined
+    editing: undefined,
   },
   mutations,
   actions,

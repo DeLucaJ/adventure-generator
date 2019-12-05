@@ -92,11 +92,21 @@ export default class AdventureList extends Vue {
   }
 
   view(adventure: AdventureMeta) {
-    console.log(`Viewing ${adventure.title}`);
+    this.$store.dispatch("loadAdventure", adventure.key).then(() => {
+      this.$store
+        .dispatch("setViewing", this.$store.state.currentAdventure)
+        .then(() => this.$store.dispatch("loadWorld", adventure.world_key))
+        .then(() => this.$router.push('/viewer'))
+    });
   }
 
   edit(adventure: AdventureMeta) {
-    console.log(`Editing ${adventure.title}`);
+    this.$store.dispatch("loadAdventure", adventure.key).then(() => {
+      this.$store
+      .dispatch("setEditing", this.$store.state.currentAdventure)
+      .then(() => this.$store.dispatch("loadWorld", adventure.world_key))
+      .then(() => this.$router.push('/editor'))
+    });
   }
 
   remove(adventure: AdventureMeta) {

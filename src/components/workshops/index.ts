@@ -1,5 +1,4 @@
 export { default as StringListWorkshop } from "./StringListWorkshop.vue";
-export { default as ElementListWorkshop } from "./ElementListWorkshop.vue";
 export { default as ElementWorkshop } from "./ElementWorkshop.vue";
 export { default as CastWorkshop } from "./CastWorkshop.vue";
 export { default as ActorWorkshop } from "./ActorWorkshop.vue";

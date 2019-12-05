@@ -1,5 +1,11 @@
 <template>
-  <div class="element-viewer">
+  <div class="container element-viewer">
+    <br />
+    <h1 class="title">
+      {{ target.title }}
+    </h1>
+    <hr />
+    {{ currentEditor }}
     <component :is="currentViewer" :element="target" />
   </div>
 </template>
@@ -67,7 +73,7 @@ export default class Viewer extends Vue {
         return "adventure-block";
         break;
       default:
-        return ""
+        return "world-block"
     }
   }
 }

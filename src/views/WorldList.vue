@@ -88,11 +88,19 @@ export default class WorldList extends Vue {
   }
 
   view(world: WorldMeta) {
-    console.log(`Viewing ${world.title}`);
+    this.$store.dispatch("loadWorld", world.key).then(() => {
+      this.$store
+        .dispatch("setViewing", this.$store.state.currentWorld)
+        .then(() => this.$router.push("/viewer"));
+    });
   }
 
   edit(world: WorldMeta) {
-    console.log(`Editing ${world.title}`);
+    this.$store.dispatch("loadWorld", world.key).then(() => {
+      this.$store
+        .dispatch("setEditing", this.$store.state.currentWorld)
+        .then(() => this.$router.push("/editor"));
+    });
   }
 
   remove(world: WorldMeta) {

@@ -1,5 +1,11 @@
 <template>
-  <div class="element-editor">
+  <div class="container element-editor">
+    <br />
+    <h1 class="title">
+      {{ target.title }}
+    </h1>
+    <hr />
+    {{ currentEditor }}
     <component :is="currentEditor" :element="target" />
   </div>
 </template>
@@ -37,7 +43,7 @@ export default class Editor extends Vue {
     return this.$store.state.editing;
   }
 
-  get currentEditor() {
+  get currentEditor(): string {
     switch(typeof this.target) {
       case typeof Types.Character:
         return "character-workshop";
@@ -67,7 +73,8 @@ export default class Editor extends Vue {
         return "adventure-workshop";
         break;
       default:
-        return ""
+        return "world-workshop"
+        break;
     }
   }
 }

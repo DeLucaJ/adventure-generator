@@ -19,6 +19,16 @@ const routes = [
     path: '/world-list',
     name: 'world-list',
     component: () => import(/* webpackChunkName: "world-list" */ './views/WorldList.vue')
+  },
+  {
+    path: '/viewer',
+    name: 'viewer',
+    component: () => import(/* webpackChunkName: "viewer" */ './views/Viewer.vue')
+  },
+  {
+    path: '/editor',
+    name: 'editor',
+    component: () => import(/* webpackChunkName: "editor" */ './views/Editor.vue')
   }
 ]
 
