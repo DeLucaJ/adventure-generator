@@ -1,8 +1,8 @@
 <template>
   <div class="faction-workshop">
-    <element-workshop :element.sync="faction" @update:element="update()"/>
-    <cast-workshop :castmember.sync="faction" @update:castmember="update()"/>
-    <actor-workshop :actor.sync="faction" @update:actor="update()"/>
+    <element-workshop :element.sync="element" @update:element="update()"/>
+    <cast-workshop :element.sync="element" @update:element="update()"/>
+    <actor-workshop :element.sync="element" @update:element="update()"/>
   </div>
 </template>
 
@@ -27,10 +27,10 @@ import {
 })
 export default class FactionWorkshop extends Vue {
   @Prop()
-  faction!: Faction;
+  element!: Faction;
 
   update() {
-    this.$emit("update:faction", this.faction);
+    this.$emit("update:element", this.element);
   }
 }
 </script>

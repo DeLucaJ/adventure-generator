@@ -2,13 +2,13 @@
   <div class="actor-workshop">
     <!-- Secrets-->
     <h2 class="has-text-weight-semibold">Secrets</h2>
-    <string-list-workshop :list.sync="actor.secrets" @update:list="update()"/>
+    <string-list-workshop :list.sync="element.secrets" @update:list="update()"/>
     <!-- Goals -->
     <h2 class="has-text-weight-semibold">Goals</h2>
-    <string-list-workshop :list.sync="actor.goals" @update:list="update()"/>
+    <string-list-workshop :list.sync="element.goals" @update:list="update()"/>
     <!-- Motivations -->
     <h2 class="has-text-weight-semibold">Motivations</h2>
-    <string-list-workshop :list.sync="actor.motivations" @update:list="update()"/>
+    <string-list-workshop :list.sync="element.motivations" @update:list="update()"/>
   </div>
 </template>
 
@@ -25,10 +25,10 @@ import { StringListWorkshop } from "@/components/workshops";
 })
 export default class ActorWorkshop extends Vue {
   @Prop()
-  actor!: Actor;
+  element!: Actor;
 
   update() {
-    this.$emit("update:actor", this.actor);
+    this.$emit("update:element", this.element);
   }
 }
 </script>

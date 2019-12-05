@@ -1,11 +1,11 @@
 <template>
   <div class="character-workshop">
-    <element-workshop :element.sync="character" @update:element="update()"/>
-    <cast-workshop :castmember.sync="character" @update:castmember="update()"/>
-    <actor-workshop :actor.sync="character" @update:actor="update()"/>
+    <element-workshop :element.sync="element" @update:element="update()"/>
+    <cast-workshop :element.sync="element" @update:element="update()"/>
+    <actor-workshop :element.sync="element" @update:element="update()"/>
     <!-- Mannerisms-->
     <h2 class="has-text-weight-semibold">Mannerisms</h2>
-    <string-list-workshop :list.sync="character.mannerisms" @update:list="update()" />
+    <string-list-workshop :list.sync="element.mannerisms" @update:list="update()" />
   </div>
 </template>
 
@@ -30,10 +30,10 @@ import {
 })
 export default class CharacterWorkshop extends Vue {
   @Prop()
-  character!: Character;
+  element!: Character;
 
   update() {
-    this.$emit("update:character", this.character);
+    this.$emit("update:element", this.element);
   }
 }
 </script>

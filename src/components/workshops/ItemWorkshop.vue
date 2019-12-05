@@ -1,6 +1,6 @@
 <template>
   <div class="item-workshop">
-    <element-workshop :element.sync="item" @update:item="update()"/>
+    <element-workshop :element.sync="element" @update:element="update()"/>
   </div>
 </template>
 
@@ -17,10 +17,10 @@ import { Item } from "@/types";
 })
 export default class ItemWorkshop extends Vue {
   @Prop()
-  item!: Item;
+  element!: Item;
 
   update() {
-    this.$emit("update:item", this.item);
+    this.$emit("update:element", this.element);
   }
 }
 </script>

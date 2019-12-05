@@ -1,6 +1,6 @@
 <template>
-  <div class="element-block">
-    <element-block :element="event" />
+  <div class="event-block">
+    <element-block :element="element" />
     <!-- Other Event Props -->
   </div>
 </template>
@@ -18,6 +18,6 @@ import { PlotEvent } from "@/types";
 })
 export default class EventBlock extends Vue {
   @Prop()
-  event!: PlotEvent;
+  element!: PlotEvent;
 }
 </script>

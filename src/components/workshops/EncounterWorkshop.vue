@@ -1,12 +1,12 @@
 <template>
   <div class="encounter-workshop">
-    <element-workshop :element.sync="encounter" @update:element="update()" />
+    <element-workshop :element.sync="element" @update:element="update()" />
     <h2 class="has-text-weight-semibold">Areas</h2>
     <!-- Needs Single Element Viewer/Editor -->
-    {{ encounter.are.title }}
+    {{ element.are.title }}
     <h2 class="has-text-weight-semibold">Cast</h2>
-    <element-list :canEdit="true" :list.sync="encounter.cast" @update:list="update()" />
-    <string-list-workshop :list.sync="encounter.objectives" @update:list="update()" />
+    <element-list :canEdit="true" :list.sync="element.cast" @update:list="update()" />
+    <string-list-workshop :list.sync="element.objectives" @update:list="update()" />
     <div class="encounter-event-workshop">
       <h2 class="has-text-weight-semibold">Events</h2>
       <b-button
@@ -21,7 +21,7 @@
         <b-button class="is-text" icon-left="plus" @click="addEvent()" />
       </b-field>
       <ul class="encounter-events">
-        <li v-for="event in encounter.events" :key="event.condition">
+        <li v-for="event in element.events" :key="event.condition">
           <span class="has-text-weight-bold">{{ event.condtion }}&nbsp;</span>
           <b-icon icon="arrow-right-bold" />
           <span class="is-italic">&nbsp;{{ event.event }}</span>
@@ -63,7 +63,7 @@ import ElementList from "@/components/ElementList.vue";
 })
 export default class EncounterWorkshop extends Vue {
   @Prop()
-  encounter!: Encounter;
+  element!: Encounter;
 
   newcondition?: string = undefined;
   newevent?: string = undefined;
@@ -76,12 +76,12 @@ export default class EncounterWorkshop extends Vue {
   targetevent?: EncounterEvent = undefined; */
 
   update() {
-    this.$emit("update:encounter", this.encounter);
+    this.$emit("update:element", this.element);
   }
 
   addEvent() {
     if (this.newcondition && this.newevent) {
-      this.encounter.events.push(
+      this.element.events.push(
         new EncounterEvent(this.newcondition, this.newevent)
       );
       this.update();
@@ -89,7 +89,7 @@ export default class EncounterWorkshop extends Vue {
   }
 
   updateEvent(event: EncounterEvent) {
-    this.encounter.events = this.encounter.events.map(e =>
+    this.element.events = this.element.events.map(e =>
       e.id === event.id ? event : e
     );
   }
@@ -97,7 +97,7 @@ export default class EncounterWorkshop extends Vue {
   editEvent(event: EncounterEvent) {}
 
   deleteEvent(event: EncounterEvent) {
-    this.encounter.events = this.encounter.events.filter(
+    this.element.events = this.element.events.filter(
       e => e.id !== event.id
     );
   }

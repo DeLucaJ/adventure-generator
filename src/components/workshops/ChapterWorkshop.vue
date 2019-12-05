@@ -1,9 +1,9 @@
 <template>
   <div class="chapter-workshop">
-    <element-workshop :element.sync="chapter" @update:element="update()" />
-    <string-list-workshop :list.sync="chapter.objectives" @update:list="update()" />
+    <element-workshop :element.sync="element" @update:element="update()" />
+    <string-list-workshop :list.sync="element.objectives" @update:list="update()" />
     <h2 class="has-text-weight-semibold">Encounters</h2>
-    <element-list :canEdit="true" :list.sync="chapter.encounters" @update:list="update()" />
+    <element-list :canEdit="true" :list.sync="element.encounters" @update:list="update()" />
   </div>
 </template>
 
@@ -26,10 +26,10 @@ import { Chapter, Encounter } from "@/types";
 })
 export default class ChapterWorkshop extends Vue {
   @Prop()
-  chapter!: Chapter;
+  element!: Chapter;
 
   update() {
-    this.$emit("update:chapter", this.chapter);
+    this.$emit("update:element", this.element);
   }
 }
 </script>

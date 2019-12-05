@@ -1,7 +1,11 @@
 <template>
   <section class="container">
     <br />
-    <b-button class="is-pulled-right is-info" icon-left="plus" @click="create()">New World</b-button>
+    <h1 class="title">
+      Worlds
+      <b-button class="is-pulled-right is-info" icon-left="plus" @click="create()">New World</b-button>
+    </h1>
+    <hr />
     <b-table
       :data="worlds"
       focusable
@@ -28,7 +32,11 @@
           <span>{{ new Date(props.row.edited).toLocaleString() }}</span>
         </b-table-column>
         <b-table-column field="buttons" numeric>
-          <b-button type="is-danger" icon-left="delete" @click="remove(props.row)" />
+          <div class="buttons has-addons is-pulled-right">
+            <b-button type="is-success" icon-left="eye" @click="view(props.row)" />
+            <b-button type="is-warning" icon-left="pencil" @click="edit(props.row)" />
+            <b-button type="is-danger" icon-left="delete" @click="remove(props.row)" />
+          </div>
         </b-table-column>
       </template>
       <template slot="empty">
@@ -77,6 +85,14 @@ export default class WorldList extends Vue {
 
   create() {
     this.creating = true;
+  }
+
+  view(world: WorldMeta) {
+    console.log(`Viewing ${world.title}`);
+  }
+
+  edit(world: WorldMeta) {
+    console.log(`Editing ${world.title}`);
   }
 
   remove(world: WorldMeta) {

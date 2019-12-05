@@ -1,13 +1,13 @@
 <template>
-  <div class="element-block">
-    <element-block :element="chapter" />
+  <div class="chapter-block">
+    <element-block :element="element" />
     <!-- Graph -->
     <h2 class="title is-2">Objectives</h2>
     <ul>
-      <li v-for="(objective, index) in chapter.objectives" :key="index">{{ objective }}</li>
+      <li v-for="(objective, index) in element.objectives" :key="index">{{ objective }}</li>
     </ul>
     <h2 class="title is-2">Encounters</h2>
-    <element-list :list.sync="chapter.encounters" :canEdit="false" :update:list="update()" />
+    <element-list :list.sync="element.encounters" :canEdit="false" :update:list="update()" />
   </div>
 </template>
 
@@ -26,10 +26,10 @@ import { Chapter } from "@/types";
 })
 export default class ChapterBlock extends Vue {
   @Prop()
-  chapter!: Chapter;
+  element!: Chapter;
 
   update() {
-    this.$emit("update:chapter", this.chapter);
+    this.$emit("update:chapter", this.element);
   }
 }
 </script>

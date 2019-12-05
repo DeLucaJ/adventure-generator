@@ -1,6 +1,6 @@
 <template>
   <div class="element-block">
-    <element-block :element="item" />
+    <element-block :element="element" />
   </div>
 </template>
 
@@ -17,6 +17,6 @@ import { Item } from "@/types";
 })
 export default class ItemBlock extends Vue {
   @Prop()
-  item!: Item;
+  element!: Item;
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="area-workshop">
-    <element-workshop :element.sync="area" @update:area="update()"/>
+    <element-workshop :element.sync="element" @update:element="update()"/>
   </div>
 </template>
 
@@ -17,10 +17,10 @@ import { Area } from "@/types";
 })
 export default class AreaWorkshop extends Vue {
   @Prop()
-  area!: Area;
+  element!: Area;
 
   update() {
-    this.$emit("update:area", this.area);
+    this.$emit("update:element", this.element);
   }
 }
 </script>

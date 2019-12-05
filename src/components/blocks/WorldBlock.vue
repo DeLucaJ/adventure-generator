@@ -1,16 +1,16 @@
 <template>
   <div class="world-block">
-    <h1 class="title is-1">{{ world.title }}</h1><hr/>
+    <h1 class="title is-1">{{ element.title }}</h1><hr/>
     <h2 class="title is-2">Areas</h2>
-    <element-list :list.sync="world.areas"/>
+    <element-list :list.sync="element.areas"/>
     <h2 class="title is-2">Factions</h2>
-    <element-list :list.sync="world.factions"/>
+    <element-list :list.sync="element.factions"/>
     <h2 class="title is-2">Characters</h2>
-    <element-list :list.sync="world.characters"/>
+    <element-list :list.sync="element.characters"/>
     <h2 class="title is-2">Extras</h2>
-    <element-list :list.sync="world.extras"/>
+    <element-list :list.sync="element.extras"/>
     <h2 class="title is-2">Items</h2>
-    <element-list :list.sync="world.items"/>
+    <element-list :list.sync="element.items"/>
   </div>
 </template>
 
@@ -27,6 +27,6 @@ import ElementList from "@/components/ElementList.vue";
 })
 export default class WorldBlock extends Vue {
   @Prop()
-  world!: World;
+  element!: World;
 }
 </script>

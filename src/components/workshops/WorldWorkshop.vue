@@ -1,18 +1,18 @@
 <template>
   <div class="world-workshop">
     <b-field label="Name" :label-position="labelpos">
-      <b-input v-model="world.title" @input="update()" />
+      <b-input v-model="element.title" @input="update()" />
     </b-field>
     <h2 class="title is-2">Areas</h2>
-    <element-list :canEdit="true" :list.sync="world.areas" @update:list="update()" />
+    <element-list :canEdit="true" :list.sync="element.areas" @update:list="update()" />
     <h2 class="title is-2">Factions</h2>
-    <element-list :canEdit="true" :list.sync="world.factions" @update:list="update()" />
+    <element-list :canEdit="true" :list.sync="element.factions" @update:list="update()" />
     <h2 class="title is-2">Characters</h2>
-    <element-list :canEdit="true" :list.sync="world.characters" @update:list="update()" />
+    <element-list :canEdit="true" :list.sync="element.characters" @update:list="update()" />
     <h2 class="title is-2">Extras</h2>
-    <element-list :canEdit="true" :list.sync="world.extras" @update:list="update()" />
+    <element-list :canEdit="true" :list.sync="element.extras" @update:list="update()" />
     <h2 class="title is-2">Items</h2>
-    <element-list :canEdit="true" :list.sync="world.items" @update:list="update()" />
+    <element-list :canEdit="true" :list.sync="element.items" @update:list="update()" />
   </div>
 </template>
 
@@ -25,10 +25,10 @@ import { World } from "@/types";
 })
 export default class WorldWorkshop extends Vue {
   @Prop()
-  world!: World;
+  element!: World;
 
   update() {
-    this.$store.dispatch("updateWorld", this.world);
+    this.$store.dispatch("updateWorld", this.element);
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="element-block">
-    <element-block :element="area" />
+    <element-block :element="element" />
   </div>
 </template>
 
@@ -17,6 +17,6 @@ import { Area } from "@/types";
 })
 export default class AreaBlock extends Vue {
   @Prop()
-  area!: Area;
+  element!: Area;
 }
 </script>

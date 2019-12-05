@@ -1,8 +1,8 @@
 <template>
-  <div class="character-block">
-    <element-block :element="subject" />
-    <cast-block :castmember="subject" />
-    <actor-block :actor="subject" />
+  <div class="faction-block">
+    <element-block :element="element" />
+    <cast-block :element="element" />
+    <actor-block :actor="element" />
   </div>
 </template>
 
@@ -21,6 +21,6 @@ import { Character, Faction } from "@/types";
 })
 export default class ExtraBlock extends Vue {
   @Prop()
-  subject!: Faction;
+  element!: Faction;
 }
 </script>

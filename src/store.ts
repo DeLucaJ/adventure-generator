@@ -69,20 +69,18 @@ export const mutations = {
     console.log(`Current World: ${world.title}`);
     state.currentWorld = world;
   },
-  setEditing: function (state: any, editing: Types.Dated) {
-    
-    state.editing = editing;
+  viewingSet: function (state: any, target: Types.Element) {
+    state.viewing = target;
   },
-  setPreview: function (state: any, preview: Types.Element) {
-    state.preview = preview;
+  editingSet: function (state: any, target: Types.Element) {
+    state.editing = target;
   },
   clear: function (state: any) {
     state.adventures = [];
     state.worlds = [];
     state.currentAdventure = undefined;
     state.currentWorld = undefined;
-    state.editing = undefined;
-    state.preview = undefined;
+    state.target = undefined;
   }
 }
 
@@ -155,13 +153,13 @@ export const actions = {
     put(world.key, world);
     commit("worldUpdated", world.meta);
   },
-  setEditing: function ({ commit }: any, target: Types.Dated) {
-    console.log(`Set Editing: ${target}`);
-    commit("setEditing", target);
+  setViewing: function ({ commit }: any, target: Types.Element) {
+    console.log(`Set Viewing: ${target}`);
+    commit("viewingSet", target);
   },
-  setPreview: function ({ commit }: any, target: Types.Dated) {
-    console.log(`Set Preview: ${target}`);
-    commit("setPreview", target);
+  setEditing: function ({ commit }: any, target: Types.Element) {
+    console.log(`Set Editing: ${target}`);
+    commit("editingSet", target);
   },
   clear: function ({ commit }: any) {
     console.log("Clear State");
@@ -180,8 +178,8 @@ export default new Vuex.Store({
     worlds: [], // WorldMeta[]
     currentWorld: undefined,
     currentAdventure: undefined,
-    editing: undefined,
-    preview: undefined
+    viewing: undefined,
+    editing: undefined
   },
   mutations,
   actions,

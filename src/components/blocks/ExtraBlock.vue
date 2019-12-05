@@ -1,7 +1,7 @@
 <template>
   <div class="extra-block">
-    <element-block :element="subject" />
-    <cast-block :castmember="subject" />
+    <element-block :element="element" />
+    <cast-block :element="element" />
   </div>
 </template>
 
@@ -18,6 +18,6 @@ import { Extra } from "@/types";
 })
 export default class ExtraBlock extends Vue {
   @Prop()
-  subject!: Extra;
+  element!: Extra;
 }
 </script>

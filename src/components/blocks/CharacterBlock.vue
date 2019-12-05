@@ -1,11 +1,11 @@
 <template>
   <div class="character-block">
-    <element-block :element="subject" />
-    <cast-block :castmember="subject" />
-    <actor-block :actor="subject" />
+    <element-block :element="element" />
+    <cast-block :element="element" />
+    <actor-block :element="element" />
     <h2 class="title is-2">Mannerisms</h2>
-    <ul v-if="(subject.mannerisms.length > 0)">
-      <li v-for="m in castmember.mannerisms" :key="m">{{ m }}</li>
+    <ul v-if="(element.mannerisms.length > 0)">
+      <li v-for="m in element.mannerisms" :key="m">{{ m }}</li>
     </ul>
   </div>
 </template>
@@ -25,6 +25,6 @@ import { Character } from "@/types";
 })
 export default class ExtraBlock extends Vue {
   @Prop()
-  subject!: Character;
+  element!: Character;
 }
 </script>

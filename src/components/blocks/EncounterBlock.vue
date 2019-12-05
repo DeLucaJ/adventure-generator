@@ -1,17 +1,17 @@
 <template>
   <div class="encounter-block">
-    <element-block :element="encounter" />
+    <element-block :element="element" />
     <h2 class="title is-2">Area</h2>
-    {{ encounter.area.title }}
+    {{ element.area.title }}
     <h2 class="title is-2">Cast</h2>
-    <element-list :list.sync="encounter.cast" />
+    <element-list :list.sync="element.cast" />
     <h2 class="title is-2">Objectives</h2>
-    <ul v-if="(encounter.objectives.length > 0)">
-      <li v-for="obj in encounter.objectives" :key="obj">{{ obj }}</li>
+    <ul v-if="(element.objectives.length > 0)">
+      <li v-for="obj in element.objectives" :key="obj">{{ obj }}</li>
     </ul>
     <h2 class="title is-2">Events</h2>
-    <ul v-if="(encounter.events.length > 0)">
-      <li v-for="event in encounter.events" :key="event.condition">
+    <ul v-if="(element.events.length > 0)">
+      <li v-for="event in element.events" :key="event.condition">
         <span class="has-text-weight-bold">{{ event.condtion }}&nbsp;</span>
         <b-icon icon="arrow-right-bold" />
         <span class="is-italic">&nbsp;{{ event.event }}</span>
@@ -35,6 +35,6 @@ import { Encounter } from "@/types";
 })
 export default class EncounterBlock extends Vue {
   @Prop()
-  encounter!: Encounter;
+  element!: Encounter;
 }
 </script>

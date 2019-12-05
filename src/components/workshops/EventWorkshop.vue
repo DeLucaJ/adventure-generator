@@ -1,6 +1,6 @@
 <template>
   <div class="event-workshop">
-    <element-workshop :element.sync="event" @update:element="update()"/>
+    <element-workshop :element.sync="element" @update:element="update()"/>
     <!-- Other Stuff? -->
   </div>
 </template>
@@ -12,10 +12,10 @@ import { PlotEvent } from "@/types";
 
 export default class EventWorkshop extends Vue {
   @Prop()
-  event!: PlotEvent;
+  element!: PlotEvent;
 
   update() {
-    this.$emit("update:event", this.event);
+    this.$emit("update:element", this.element);
   }
 }
 </script>

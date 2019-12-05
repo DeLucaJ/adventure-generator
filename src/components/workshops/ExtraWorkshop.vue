@@ -1,7 +1,7 @@
 <template>
   <div class="extra-workshop">
-    <element-workshop :element.sync="extra" @update:element="update()"/>
-    <cast-workshop :castmember.sync="extra" @update:castmember="update()"/>
+    <element-workshop :element.sync="element" @update:element="update()"/>
+    <cast-workshop :element.sync="element" @update:element="update()"/>
   </div>
 </template>
 
@@ -24,10 +24,10 @@ import {
 })
 export default class ExtraWorkshop extends Vue {
   @Prop()
-  extra!: Extra;
+  element!: Extra;
 
   update() {
-    this.$emit("update:extra", this.extra);
+    this.$emit("update:element", this.element);
   }
 }
 </script>
