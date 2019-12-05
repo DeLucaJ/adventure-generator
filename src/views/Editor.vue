@@ -43,15 +43,9 @@ export default class Editor extends Vue {
     return this.$store.state.editing;
   }
 
-<<<<<<< HEAD
-  get currentEditor(): string {
-    switch(typeof this.target) {
-      case typeof Types.Character:
-=======
   get currentEditor() {
     switch(this.target.type) {
       case Types.EType.CHARACTER:
->>>>>>> 956af5a861aaa1ec9b2f7294b6628290364b919f
         return "character-workshop";
         break;
       case Types.EType.EXTRA:
