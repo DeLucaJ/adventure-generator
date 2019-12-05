@@ -1,5 +1,5 @@
 export { default as Dated } from "./dated";
-export { Element, WorldElement, AdventureElement } from "./element";
+export { EType, Element, WorldElement, AdventureElement } from "./element";
 export { default as Relation } from "./relation";
 export { default as CastMember } from "./cast-member";
 export { default as Actor } from "./actor";

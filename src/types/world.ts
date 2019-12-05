@@ -1,4 +1,4 @@
-import { Element, Relation, Character, Extra, Faction, Area, Item } from "@/types";
+import { EType, Element, Relation, Character, Extra, Faction, Area, Item } from "@/types";
 import { WorldMeta } from "./meta";
 
 export default class World extends Element {
@@ -25,7 +25,7 @@ export default class World extends Element {
   items: Item[] = [];
   
   constructor(title: string, description: string, id: number) {
-    super(title, description);
+    super(EType.WORLD, title, description);
     this.id = id;
     this.title = title;
   }

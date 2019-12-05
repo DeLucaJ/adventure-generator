@@ -1,4 +1,4 @@
-import { WorldElement } from '@/types';
+import { EType, WorldElement } from '@/types';
 import World from "./world";
 
 export default class Area extends WorldElement{
@@ -10,6 +10,6 @@ export default class Area extends WorldElement{
     description: string = "This is a location that can be travelled to in the Setting",
     world: World
   ) {
-    super(title, description, world);
+    super(EType.AREA, title, description, world);
   }
 }

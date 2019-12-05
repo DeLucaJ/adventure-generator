@@ -1,4 +1,4 @@
-import { Area, CastMember, AdventureElement } from '@/types';
+import { EType, Area, CastMember, AdventureElement } from '@/types';
 import Adventure from "./adventure";
 
 export default class Encounter extends AdventureElement {
@@ -21,7 +21,7 @@ export default class Encounter extends AdventureElement {
     objectives: string[] = [],
     events: EncounterEvent[] = []
   ) {
-    super(title, description, adventure);
+    super(EType.ENCOUNTER, title, description, adventure);
     this.area = area;
     this.cast = cast;
     this.objectives = objectives;

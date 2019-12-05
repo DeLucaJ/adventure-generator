@@ -1,4 +1,4 @@
-import { WorldElement } from '@/types';
+import { EType, WorldElement } from '@/types';
 import World from "./world";
 
 export default class Item extends WorldElement {
@@ -7,6 +7,6 @@ export default class Item extends WorldElement {
     description: string = "This is a unique item or type of item in the Setting",
     world: World
   ) {
-    super(title, description, world);
+    super(EType.ITEM, title, description, world);
   }
 }
