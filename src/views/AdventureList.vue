@@ -32,7 +32,7 @@
           <span>{{ new Date(props.row.edited).toLocaleString() }}</span>
         </b-table-column>
         <b-table-column field="erase" numeric>
-          <div class="buttons">
+          <div class="buttons has-addons is-pulled-right">
             <b-button type="is-success" icon-left="eye" @click="view(props.row)" />
             <b-button type="is-warning" icon-left="pencil" @click="edit(props.row)" />
             <b-button type="is-danger" icon-left="delete" @click="remove(props.row)" />

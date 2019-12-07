@@ -1,6 +1,6 @@
 <template>
   <div class="element-block">
-    <h1 class="title is-1">{{ element.title }}</h1>
+    <h1 class="title">{{ element.title }}</h1><hr />
     <p>{{ element.description }}</p>
   </div>
 </template>

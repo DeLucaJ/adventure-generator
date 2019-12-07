@@ -3,7 +3,7 @@ import Adventure from "./adventure";
 import Dated from "./dated";
 
 export abstract class Element extends Dated {
-  private _etype: EType;
+  _etype: EType;
   title: string;
   description: string;
 

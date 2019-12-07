@@ -3,7 +3,7 @@
     <element-block :element="element" />
     <cast-block :element="element" />
     <actor-block :element="element" />
-    <h2 class="title is-2">Mannerisms</h2>
+    <h2 class="title">Mannerisms</h2>
     <ul v-if="(element.mannerisms.length > 0)">
       <li v-for="m in element.mannerisms" :key="m">{{ m }}</li>
     </ul>

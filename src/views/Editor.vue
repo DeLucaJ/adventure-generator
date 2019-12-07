@@ -1,12 +1,7 @@
 <template>
   <div class="container element-editor">
     <br />
-    <h1 class="title">
-      {{ target.title }}
-    </h1>
-    <hr />
-    {{ currentEditor }}
-    <component :is="currentEditor" :element="target" />
+    <component v-if="target" :is="currentEditor" :element="target" />
   </div>
 </template>
 
@@ -44,37 +39,35 @@ export default class Editor extends Vue {
   }
 
   get currentEditor() {
-    switch(this.target.type) {
-      case Types.EType.CHARACTER:
-        return "character-workshop";
-        break;
-      case Types.EType.EXTRA:
-        return "extra-workshop";
-        break;
-      case Types.EType.FACTION:
-        return "faction-workshop";
-        break;
-      case Types.EType.ITEM:
-        return "item-workshop";
-        break;
-      case Types.EType.ENCOUNTER:
-        return "encounter-workshop";
-        break;
-      case Types.EType.CHAPTER:
-        return "chapter-workshop";
-        break;
-      case Types.EType.EVENT:
-        return "event-workshop";
-        break;
-      case Types.EType.WORLD:
-        return "world-workshop";
-        break;
-      case Types.EType.ADVENTURE:
-        return "adventure-workshop";
-        break;
-      default:
-        return "world-workshop"
-        break;
+    if (this.target._etype === Types.EType.CHARACTER) {
+      return "character-workshop";
+    }
+    else if (this.target._etype === Types.EType.EXTRA) {
+      return "extra-workshop";
+    }
+    else if (this.target._etype === Types.EType.FACTION) {
+      return "faction-workshop";
+    }
+    else if (this.target._etype === Types.EType.ITEM) {
+      return "item-workshop";
+    }
+    else if (this.target._etype === Types.EType.ENCOUNTER) {
+      return "encounter-workshop";
+    }
+    else if (this.target._etype === Types.EType.CHAPTER) {
+      return "character-workshop";
+    }
+    else if (this.target._etype === Types.EType.EVENT) {
+      return "event-workshop";
+    }
+    else if (this.target._etype === Types.EType.WORLD) {
+      return "world-workshop";
+    }
+    else if (this.target._etype === Types.EType.ADVENTURE) {
+      return "adventure-workshop";
+    }
+    else {
+      return undefined;
     }
   }
 }

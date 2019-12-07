@@ -1,10 +1,6 @@
 <template>
   <div class="container element-viewer">
     <br />
-    <h1 class="title">
-      {{ target.title }}
-    </h1>
-    <hr />
     {{ currentEditor }}
     <component :is="currentViewer" :element="target" />
   </div>

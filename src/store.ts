@@ -62,11 +62,11 @@ export const mutations = {
     put("_worlds_", state.worlds);
   },
   currentAdventureSet: function (state: any, adventure: Types.Adventure) {
-    console.log(`Current Adventure: ${adventure.title}`);
+    console.log(`Current Adventure: ${adventure.title}, ${adventure.type}`);
     state.currentAdventure = adventure;
   },
   currentWorldSet: function (state: any, world: Types.World) {
-    console.log(`Current World: ${world.title}`);
+    console.log(`Current World: ${world.title}, ${world.type}`);
     state.currentWorld = world;
   },
   viewingSet: function (state: any, target: Types.Element) {

@@ -1,5 +1,9 @@
 <template>
   <div class="element-workshop">
+    <h1 class="title">
+      {{ element.title }}
+    </h1>
+    <hr />
     <b-field label="Name" :label-position="labelpos">
       <b-input v-model="element.title" @input="update()" />
     </b-field>

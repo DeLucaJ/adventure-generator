@@ -2,11 +2,11 @@
   <div class="chapter-block">
     <element-block :element="element" />
     <!-- Graph -->
-    <h2 class="title is-2">Objectives</h2>
+    <h2 class="title">Objectives</h2>
     <ul>
       <li v-for="(objective, index) in element.objectives" :key="index">{{ objective }}</li>
     </ul>
-    <h2 class="title is-2">Encounters</h2>
+    <h2 class="title">Encounters</h2>
     <element-list :list.sync="element.encounters" :canEdit="false" :update:list="update()" />
   </div>
 </template>

@@ -1,15 +1,15 @@
 <template>
   <div class="world-block">
-    <h1 class="title is-1">{{ element.title }}</h1><hr/>
-    <h2 class="title is-2">Areas</h2>
+    <element-block :element="element" />
+    <h2 class="title">Areas</h2>
     <element-list :list.sync="element.areas"/>
-    <h2 class="title is-2">Factions</h2>
+    <h2 class="title">Factions</h2>
     <element-list :list.sync="element.factions"/>
-    <h2 class="title is-2">Characters</h2>
+    <h2 class="title">Characters</h2>
     <element-list :list.sync="element.characters"/>
-    <h2 class="title is-2">Extras</h2>
+    <h2 class="title">Extras</h2>
     <element-list :list.sync="element.extras"/>
-    <h2 class="title is-2">Items</h2>
+    <h2 class="title">Items</h2>
     <element-list :list.sync="element.items"/>
   </div>
 </template>
@@ -18,11 +18,13 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { World } from "@/types";
 import ElementList from "@/components/ElementList.vue";
+import { ElementBlock } from "@/components/blocks";
 
 @Component({
   name: "world-block",
   components: {
-    ElementList
+    ElementList,
+    ElementBlock
   }
 })
 export default class WorldBlock extends Vue {

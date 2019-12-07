@@ -1,15 +1,15 @@
 <template>
   <div class="encounter-block">
     <element-block :element="element" />
-    <h2 class="title is-2">Area</h2>
+    <h2 class="title">Area</h2>
     {{ element.area.title }}
-    <h2 class="title is-2">Cast</h2>
+    <h2 class="title">Cast</h2>
     <element-list :list.sync="element.cast" />
-    <h2 class="title is-2">Objectives</h2>
+    <h2 class="title">Objectives</h2>
     <ul v-if="(element.objectives.length > 0)">
       <li v-for="obj in element.objectives" :key="obj">{{ obj }}</li>
     </ul>
-    <h2 class="title is-2">Events</h2>
+    <h2 class="title">Events</h2>
     <ul v-if="(element.events.length > 0)">
       <li v-for="event in element.events" :key="event.condition">
         <span class="has-text-weight-bold">{{ event.condtion }}&nbsp;</span>
