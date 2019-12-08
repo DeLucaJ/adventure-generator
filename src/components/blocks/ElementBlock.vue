@@ -1,6 +1,10 @@
 <template>
   <div class="element-block">
-    <h1 class="title">{{ element.title }}</h1><hr />
+    <h1 class="title">
+      {{ element.title }}
+      <b-button class="is-pulled-right" type="is-warning" icon-left="pencil" @click="edit()" />
+    </h1>
+    <hr />
     <p>{{ element.description }}</p>
   </div>
 </template>
@@ -15,5 +19,11 @@ import { Element } from "@/types";
 export default class ElementBlock extends Vue {
   @Prop()
   element!: Element;
+
+  edit() {
+    this.$store
+      .dispatch("setEditing", this.element)
+      .then(() => this.$router.push("/editor"));
+  }
 }
 </script>

@@ -2,6 +2,7 @@
   <div class="element-workshop">
     <h1 class="title">
       {{ element.title }}
+      <b-button class="is-pulled-right" type="is-warning" icon-left="eye" @click="view()" />
     </h1>
     <hr />
     <b-field label="Name" :label-position="labelpos">
@@ -25,6 +26,12 @@ export default class ElementWorkshop extends Vue {
   element!: Element;
 
   labelpos: string = "on-border";
+
+  view() {
+    this.$store
+      .dispatch("setViewing", this.element)
+      .then(() => this.$router.push("/viewer"));
+  }
 
   update() {
     this.$emit("update:element", this.element);
