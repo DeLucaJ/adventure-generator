@@ -1,5 +1,5 @@
 import { EType, AdventureElement, Encounter } from "@/types";
-import Adventure from "./adventure";
+import { AdventureMeta } from "./meta";
 import { Graph } from "@/generators";
 
 export default class Chapter extends AdventureElement {
@@ -10,10 +10,10 @@ export default class Chapter extends AdventureElement {
   constructor(
     title: string = "New Quest",
     description: string = "This is a Quest that must be resolved in the Narrative.",
+    adventure: AdventureMeta,
     graph: Graph = new Graph(),
     encounters: Encounter[] = [],
-    objectives: string[] = [],
-    adventure: Adventure
+    objectives: string[] = []
   ) {
     super(EType.CHAPTER, title, description, adventure);
     this.graph = graph;

@@ -52,6 +52,7 @@ export const mutations = {
     put("_worlds_", state.worlds);
   },
   adventureUpdated: function (state: any, adventure: Types.AdventureMeta) {
+    console.log(adventure);
     console.log(`Adventure Updated: ${adventure.title}`);
     state.adventures = state.adventures.map((a: Types.AdventureMeta) => a.key === adventure.key ? adventure : a);
     put("_adventures_", state.adventures);
@@ -123,14 +124,14 @@ export const actions = {
     commit("currentWorldSet", world);
   },
   addAdventure: function ({ commit }: any, adventure: Types.Adventure) {
-    console.log(`Add Adventure: ${adventure.title}, ${adventure.key}`);
-    put(adventure.key, adventure);
-    commit("adventureAdded", adventure.meta);
+    console.log(`Add Adventure: ${adventure.title}, ${Types.Adventure.key(adventure)}`);
+    put(Types.Adventure.key(adventure), adventure);
+    commit("adventureAdded", Types.Adventure.meta(adventure));
   },
   addWorld: function ({ commit }: any, world: Types.World) {
-    console.log(`Add World: ${world.title}, ${world.key}`);
-    put(world.key, world);
-    commit("worldAdded", world.meta);
+    console.log(`Add World: ${world.title}, ${Types.World.key(world)}`);
+    put(Types.World.key(world), world);
+    commit("worldAdded", Types.World.meta(world));
   },
   removeAdventure: function ({ commit }: any, adventure: Types.AdventureMeta) {
     console.log(`Remove Adventure: ${adventure.title}, ${adventure.key}`);
@@ -144,14 +145,15 @@ export const actions = {
   },
   updateAdventure: function ({ commit }: any, adventure: Types.Adventure) {
     console.log(`Update Adventure: ${adventure.title}`);
-    localStorage.setItem(adventure.key, JSON.stringify(adventure));
-    commit("adventureUpdated", adventure.meta);
+    localStorage.setItem(Types.Adventure.key(adventure), JSON.stringify(adventure));
+    console.log(adventure);
+    commit("adventureUpdated", Types.Adventure.meta(adventure));
     // update current adventure?
   },
   updateWorld: function ({ commit }: any, world: Types.World) {
     console.log(`Update World: ${world.title}`);
-    put(world.key, world);
-    commit("worldUpdated", world.meta);
+    put(Types.World.key(world), world);
+    commit("worldUpdated", Types.World.meta(world));
   },
   setViewing: function ({ commit }: any, target: Types.Element) {
     console.log(`Set Viewing: ${target}`);

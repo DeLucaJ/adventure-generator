@@ -1,6 +1,5 @@
-import World from "./world";
-import Adventure from "./adventure";
 import Dated from "./dated";
+import { WorldMeta, AdventureMeta } from './meta';
 
 export abstract class Element extends Dated {
   _etype: EType;
@@ -20,18 +19,18 @@ export abstract class Element extends Dated {
 }
 
 export abstract class WorldElement extends Element {
-  world: World;
+  world: WorldMeta;
 
-  constructor(etype: EType, title: string, description: string, world: World) {
+  constructor(etype: EType, title: string, description: string, world: WorldMeta) {
     super(etype, title, description);
     this.world = world;
   }
 }
 
 export abstract class AdventureElement extends Element {
-  adventure: Adventure;
+  adventure: AdventureMeta;
   
-  constructor(etype: EType, title: string, description: string, adventure: Adventure) {
+  constructor(etype: EType, title: string, description: string, adventure: AdventureMeta) {
     super(etype, title, description);
     this.adventure = adventure;
   }

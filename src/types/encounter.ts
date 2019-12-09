@@ -1,5 +1,5 @@
 import { EType, Area, CastMember, AdventureElement } from '@/types';
-import Adventure from "./adventure";
+import { AdventureMeta } from "./meta";
 
 export default class Encounter extends AdventureElement {
   area: Area;
@@ -15,7 +15,7 @@ export default class Encounter extends AdventureElement {
   constructor(
     title: string = "New Encounter",
     description: string = "This is an encounter that takes place in the Narrative.",
-    adventure: Adventure,
+    adventure: AdventureMeta,
     area: Area,
     cast: CastMember[] = [],
     objectives: string[] = [],

@@ -1,5 +1,5 @@
 import { EType, WorldElement } from '@/types';
-import World from "./world";
+import { WorldMeta } from "./meta";
 
 export default class Area extends WorldElement{
   // type: AreaType;
@@ -8,7 +8,7 @@ export default class Area extends WorldElement{
   constructor(
     title: string = "New Area",
     description: string = "This is a location that can be travelled to in the Setting",
-    world: World
+    world: WorldMeta
   ) {
     super(EType.AREA, title, description, world);
   }

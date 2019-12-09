@@ -1,7 +1,7 @@
 <template>
   <div class="container element-editor">
     <br />
-    <component v-if="target" :is="currentEditor" :element="target" />
+    <component v-if="target" :is="currentEditor" :element.sync="target"/>
   </div>
 </template>
 

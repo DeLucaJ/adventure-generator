@@ -1,5 +1,5 @@
 import { EType, Actor } from '@/types';
-import World from "./world";
+import { WorldMeta } from "./meta";
 
 export default class Character extends Actor {
   mannerisms: string[] = [];
@@ -7,7 +7,7 @@ export default class Character extends Actor {
   constructor(
     title: string = "New Character",
     description: string = "This is a character that appears in the Setting. Will have more nuances in the future.",
-    world: World
+    world: WorldMeta
   ) {
     super(EType.CHARACTER, title, description, world);
   }

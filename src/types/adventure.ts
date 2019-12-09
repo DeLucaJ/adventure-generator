@@ -34,12 +34,12 @@ export default class Adventure extends Element {
 
   
 
-  get key(): string {
-    return `${this.title.toLowerCase().replace(/\s/, "_")}_adventure_${this.id}`;
+  static key(adventure: Adventure): string {
+    return `${adventure.title.toLowerCase().replace(/\s/, "_")}_adventure_${adventure.id}`;
   }
 
-  get meta(): AdventureMeta {
-    return new AdventureMeta(this);
+  static meta(adventure: Adventure): AdventureMeta {
+    return new AdventureMeta(adventure);
   }
 }
 /* 

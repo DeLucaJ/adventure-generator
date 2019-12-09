@@ -1,6 +1,5 @@
 <template>
   <div class="element-list">
-    <!-- Add Button -->
     <b-collapse
       class="card"
       v-for="(element, index) of list"
@@ -20,7 +19,7 @@
       <footer class="card-footer">
         <b-button @click="view(element)" icon-right="eye">View</b-button>
         <b-button v-if="canEdit" @click="edit(element, index)" icon-right="pencil">Edit</b-button>
-        <b-button v-if="canEdit" @click="remove(element, index)" icon-right="remove">Remove</b-button>
+        <b-button v-if="canEdit" @click="remove(index)" icon-right="remove">Remove</b-button>
       </footer>
     </b-collapse>
   </div>
@@ -52,7 +51,14 @@ export default class ElementList extends Vue {
       .then(() => this.$router.push("/editor"));
   }
 
-  remove(element: Element, index: number) {}
+  remove(index: number) {
+    this.list.splice(index, 1);
+    this.update();
+  }
   /* add function */
+
+  update() {
+    this.$emit("update:list", this.list);
+  }
 }
 </script>

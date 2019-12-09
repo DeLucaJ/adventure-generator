@@ -30,12 +30,12 @@ export default class World extends Element {
     this.title = title;
   }
 
-  get key(): string {
-    return `${this.title.toLowerCase().replace(/\s/, "_")}_world_${this.id}`;
+  static key(world: World): string {
+    return `${world.title.toLowerCase().replace(/\s/, "_")}_world_${world.id}`;
   }
 
-  get meta(): WorldMeta {
-    return new WorldMeta(this);
+  static meta(world: World): WorldMeta {
+    return new WorldMeta(world);
   }
 }
 

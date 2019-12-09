@@ -2,7 +2,7 @@
   <div class="container element-viewer">
     <br />
     {{ currentEditor }}
-    <component :is="currentViewer" :element="target" />
+    <component :is="currentViewer" :element.sync="target" />
   </div>
 </template>
 

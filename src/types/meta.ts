@@ -11,7 +11,7 @@ export class AdventureMeta {
   constructor(adventure: Adventure) {
     this.title = adventure.title;
     this.world_title = adventure.world.title;
-    this.key = adventure.key;
+    this.key = Adventure.key(adventure);
     this.world_key = adventure.world.key;
     this.created = adventure.created;
     this.edited = adventure.lastEdited;
@@ -26,7 +26,7 @@ export class WorldMeta {
 
   constructor(world: World) {
     this.title = world.title;
-    this.key = world.key;
+    this.key = World.key(world);
     this.created = world.created;
     this.edited = world.lastEdited;
   }

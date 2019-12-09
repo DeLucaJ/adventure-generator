@@ -1,12 +1,12 @@
 import { EType, CastMember } from "@/types";
-import World from "./world";
+import { WorldMeta } from "./meta";
 
 export default class Actor extends CastMember {
   secrets: string[] = [];
   goals: string[] = [];
   motivations: string[] = [];
   
-  constructor(etype: EType, title: string, description: string, world: World) {
+  constructor(etype: EType, title: string, description: string, world: WorldMeta) {
     super(etype, title, description, world);
   }
 }
