@@ -40,12 +40,19 @@ export default class ElementList extends Vue {
 
   isOpen: number = 0;
 
-  view(element: Element) {}
+  view(element: Element) {
+    this.$store
+      .dispatch("setViewing", element)
+      .then(() => this.$router.push("/viewer"));
+  }
 
-  edit(element: Element, index: number) {}
+  edit(element: Element, index: number) {
+    this.$store
+      .dispatch("setEditing", element)
+      .then(() => this.$router.push("/editor"));
+  }
 
   remove(element: Element, index: number) {}
-
   /* add function */
 }
 </script>
