@@ -20,7 +20,9 @@ export default class AreaWorkshop extends Vue {
   element!: Area;
 
   update() {
-    this.$emit("update:element", this.element);
+    this.$store.dispatch("saveElement", this.element).then(() => {
+      this.$emit("update:element", this.element);
+    })
   }
 }
 </script>

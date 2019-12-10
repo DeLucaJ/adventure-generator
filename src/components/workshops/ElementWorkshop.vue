@@ -28,7 +28,7 @@ export default class ElementWorkshop extends Vue {
   labelpos: string = "on-border";
 
   view() {
-    this.$store.dispatch("setViewing", this.element).then(() => {
+    this.$store.dispatch("setViewing", Element.meta(this.element)).then(() => {
       if (this.$route.path !== "/viewer") {
         this.$router.push("/viewer");
       }
@@ -36,7 +36,9 @@ export default class ElementWorkshop extends Vue {
   }
 
   update() {
-    this.$emit("update:element", this.element);
+    this.$store.dispatch("saveElement", this.element).then(() => {
+      this.$emit("update:element", this.element);
+    })
   }
 }
 </script>

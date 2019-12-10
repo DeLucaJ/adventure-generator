@@ -17,7 +17,7 @@
     </h2>
     <br />
     <element-list :canEdit="true" :list.sync="element.chapters" @update:list="update()" />
-    <hr />
+    <!-- <hr />
     <h2 class="has-text-weight-semibold">
       Events
       <b-button
@@ -42,7 +42,7 @@
       >Add Encounter</b-button>
     </h2>
     <br />
-    <element-list :canEdit="true" :list.sync="element.encounters" @update:list="update()" />
+    <element-list :canEdit="true" :list.sync="element.encounters" @update:list="update()" />-->
   </div>
 </template>
 
@@ -68,17 +68,18 @@ export default class AdventureWorkshop extends Vue {
   }
 
   addChapter() {
-    this.element.chapters.push(
-      new Chapter(
-        `Chapter ${this.element.chapters.length + 1}`,
-        "A Chapter of your epic adventure.",
-        Adventure.meta(this.element)
-      )
+    const chapter = new Chapter(
+      `Chapter ${this.element.chapters.length + 1}`,
+      "A Chapter of your epic adventure.",
+      Adventure.meta(this.element)
     );
-    this.update();
+    this.$store.dispatch("saveElement", chapter).then(() => {
+      this.element.chapters.push(Chapter.meta(chapter));
+      this.update();
+    });
   }
 
-  addEvent() {
+  /* addEvent() {
     this.element.plotevents.push(
       new PlotEvent(
         `New Event ${this.element.plotevents.length + 1}`,
@@ -98,6 +99,6 @@ export default class AdventureWorkshop extends Vue {
       )
     );
     this.update();
-  }
+  } */
 }
 </script>

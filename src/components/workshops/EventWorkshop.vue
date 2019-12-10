@@ -15,7 +15,9 @@ export default class EventWorkshop extends Vue {
   element!: PlotEvent;
 
   update() {
-    this.$emit("update:element", this.element);
+    this.$store.dispatch("saveElement", this.element).then(() => {
+      this.$emit("update:element", this.element);
+    })
   }
 }
 </script>

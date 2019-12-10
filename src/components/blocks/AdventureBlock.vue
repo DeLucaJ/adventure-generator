@@ -5,10 +5,10 @@
     <!-- a way to link to the world -->
     <h2 class="title">Chapters</h2>
     <element-list :list.sync="element.chapters"/>
-    <h2 class="title">Events</h2>
+    <!-- <h2 class="title">Events</h2>
     <element-list :list.sync="element.plotevents"/>
     <h2 class="title">Encounters</h2>
-    <element-list :list.sync="element.encounters"/>
+    <element-list :list.sync="element.encounters"/> -->
   </div>
 </template>
 

@@ -43,35 +43,25 @@ export default class Viewer extends Vue {
   get currentViewer() {
     if (this.target._etype === Types.EType.CHARACTER) {
       return "character-block";
-    }
-    else if (this.target._etype === Types.EType.EXTRA) {
+    } else if (this.target._etype === Types.EType.EXTRA) {
       return "extra-block";
-    }
-    else if (this.target._etype === Types.EType.FACTION) {
+    } else if (this.target._etype === Types.EType.FACTION) {
       return "faction-block";
-    }
-    else if (this.target._etype === Types.EType.ITEM) {
+    } else if (this.target._etype === Types.EType.ITEM) {
       return "item-block";
-    }
-    else if (this.target._etype === Types.EType.AREA) {
-      return "area-block"
-    }
-    else if (this.target._etype === Types.EType.ENCOUNTER) {
+    } else if (this.target._etype === Types.EType.AREA) {
+      return "area-block";
+    } else if (this.target._etype === Types.EType.ENCOUNTER) {
       return "encounter-block";
-    }
-    else if (this.target._etype === Types.EType.CHAPTER) {
+    } else if (this.target._etype === Types.EType.CHAPTER) {
       return "chapter-block";
-    }
-    else if (this.target._etype === Types.EType.EVENT) {
+    } else if (this.target._etype === Types.EType.EVENT) {
       return "event-block";
-    }
-    else if (this.target._etype === Types.EType.WORLD) {
+    } else if (this.target._etype === Types.EType.WORLD) {
       return "world-block";
-    }
-    else if (this.target._etype === Types.EType.ADVENTURE) {
+    } else if (this.target._etype === Types.EType.ADVENTURE) {
       return "adventure-block";
-    }
-    else {
+    } else {
       return undefined;
     }
   }

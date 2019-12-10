@@ -76,7 +76,9 @@ export default class EncounterWorkshop extends Vue {
   targetevent?: EncounterEvent = undefined; */
 
   update() {
-    this.$emit("update:element", this.element);
+    this.$store.dispatch("saveElement", this.element).then(() => {
+      this.$emit("update:element", this.element);
+    })
   }
 
   addEvent() {

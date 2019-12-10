@@ -28,7 +28,9 @@ export default class ActorWorkshop extends Vue {
   element!: Actor;
 
   update() {
-    this.$emit("update:element", this.element);
+    this.$store.dispatch("saveElement", this.element).then(() => {
+      this.$emit("update:element", this.element);
+    })
   }
 }
 </script>

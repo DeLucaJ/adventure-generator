@@ -20,7 +20,9 @@ export default class ItemWorkshop extends Vue {
   element!: Item;
 
   update() {
-    this.$emit("update:element", this.element);
+    this.$store.dispatch("saveElement", this.element).then(() => {
+      this.$emit("update:element", this.element);
+    })
   }
 }
 </script>

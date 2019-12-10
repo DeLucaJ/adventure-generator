@@ -169,7 +169,7 @@ export const actions = {
   },
   updateAdventure: function ({ commit }: any, adventure: Types.Adventure) {
     console.log(`Update Adventure: ${adventure.title}`);
-    localStorage.setItem(Types.Adventure.key(adventure), JSON.stringify(adventure));
+    put(Types.Adventure.key(adventure), adventure);
     commit("adventureUpdated", Types.Adventure.meta(adventure));
   },
   updateWorld: function ({ commit }: any, world: Types.World) {

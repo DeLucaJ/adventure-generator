@@ -28,7 +28,9 @@ export default class CastWorkshop extends Vue {
   element!: CastMember;
 
   update() {
-    this.$emit("update:element", this.element);
+    this.$store.dispatch("saveElement", this.element).then(() => {
+      this.$emit("update:element", this.element);
+    })
   }
 }
 </script>

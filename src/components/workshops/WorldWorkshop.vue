@@ -11,7 +11,8 @@
         @click="addArea()"
         icon-left="plus"
       >Add Area</b-button>
-    </h2><br />
+    </h2>
+    <br />
     <element-list :canEdit="true" :list.sync="element.areas" @update:list="update()" />
     <hr />
     <br />
@@ -24,7 +25,8 @@
         @click="addFaction()"
         icon-left="plus"
       >Add Faction</b-button>
-    </h2><br />
+    </h2>
+    <br />
     <element-list :canEdit="true" :list.sync="element.factions" @update:list="update()" />
     <hr />
     <br />
@@ -37,7 +39,8 @@
         @click="addCharacter()"
         icon-left="plus"
       >Add Character</b-button>
-    </h2><br />
+    </h2>
+    <br />
     <element-list :canEdit="true" :list.sync="element.characters" @update:list="update()" />
     <hr />
     <br />
@@ -50,7 +53,8 @@
         @click="addExtra()"
         icon-left="plus"
       >Add Extra</b-button>
-    </h2><br />
+    </h2>
+    <br />
     <element-list :canEdit="true" :list.sync="element.extras" @update:list="update()" />
     <hr />
     <br />
@@ -63,7 +67,8 @@
         @click="addItem()"
         icon-left="plus"
       >Add Item</b-button>
-    </h2><br />
+    </h2>
+    <br />
     <element-list :canEdit="true" :list.sync="element.items" @update:list="update()" />
     <br />
   </div>
@@ -91,58 +96,63 @@ export default class WorldWorkshop extends Vue {
   }
 
   addArea() {
-    this.element.areas.push(
-      new Area(
-        `Area ${this.element.areas.length + 1}`,
-        "An Area in your expansive world.",
-        World.meta(this.element)
-      )
+    const area = new Area(
+      `Area ${this.element.areas.length + 1}`,
+      "An Area in your expansive world.",
+      World.meta(this.element)
     );
-    this.update();
+    this.$store.dispatch("saveElement", area).then(() => {
+      this.element.areas.push(Area.meta(area));
+      this.update();
+    });
   }
 
   addFaction() {
-    this.element.factions.push(
-      new Faction(
-        `Faction ${this.element.factions.length + 1}`,
-        "A Faction in your world.",
-        World.meta(this.element)
-      )
+    const faction = new Faction(
+      `Faction ${this.element.factions.length + 1}`,
+      "A Faction in your world.",
+      World.meta(this.element)
     );
-    this.update();
+    this.$store.dispatch("saveElement", faction).then(() => {
+      this.element.factions.push(Faction.meta(faction));
+      this.update();
+    });
   }
 
   addCharacter() {
-    this.element.characters.push(
-      new Character(
-        `Character ${this.element.characters.length + 1}`,
-        "A Character in your world.",
-        World.meta(this.element)
-      )
+    const character = new Character(
+      `Character ${this.element.characters.length + 1}`,
+      "A Character in your world.",
+      World.meta(this.element)
     );
-    this.update();
+    this.$store.dispatch("saveElement", character).then(() => {
+      this.element.characters.push(Character.meta(character));
+      this.update();
+    });
   }
 
   addExtra() {
-    this.element.extras.push(
-      new Extra(
-        `Extra ${this.element.extras.length + 1}`,
-        "A type of extra in your world.",
-        World.meta(this.element)
-      )
+    const extra = new Extra(
+      `Extra ${this.element.extras.length + 1}`,
+      "A type of extra in your world.",
+      World.meta(this.element)
     );
-    this.update();
+    this.$store.dispatch("saveElement", extra).then(() => {
+      this.element.extras.push(Extra.meta(extra));
+      this.update();
+    });
   }
 
   addItem() {
-    this.element.items.push(
-      new Item(
-        `Item ${this.element.items.length + 1}`,
-        "An item or type of item in your world",
-        World.meta(this.element)
-      )
+    const item = new Item(
+      `Item ${this.element.items.length + 1}`,
+      "An item or type of item in your world",
+      World.meta(this.element)
     );
-    this.update();
+    this.$store.dispatch("saveElement", item).then(() => {
+      this.element.items.push(Item.meta(item));
+      this.update();
+    });
   }
 }
 </script>

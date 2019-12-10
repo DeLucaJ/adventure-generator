@@ -6,8 +6,8 @@ export default class Adventure extends Element {
   world: WorldMeta;
   graph: Graph;
   chapters: ChapterMeta[] = [];
-  encounters: EncounterMeta[] = [];
-  plotevents: PlotEventMeta[] = [];
+  // encounters: EncounterMeta[] = [];
+  // plotevents: PlotEventMeta[] = [];
 
   constructor(title: string, description: string, world: WorldMeta) {
     super(EType.ADVENTURE, title, description, Meta.newAdventure());

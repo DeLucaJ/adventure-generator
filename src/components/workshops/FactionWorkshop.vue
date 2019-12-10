@@ -30,7 +30,9 @@ export default class FactionWorkshop extends Vue {
   element!: Faction;
 
   update() {
-    this.$emit("update:element", this.element);
+    this.$store.dispatch("saveElement", this.element).then(() => {
+      this.$emit("update:element", this.element);
+    })
   }
 }
 </script>
