@@ -13,7 +13,12 @@
       >Add Area</b-button>
     </h2>
     <br />
-    <element-list :canEdit="true" :list.sync="element.areas" @update:list="update()" />
+    <element-list
+      v-if="renderLists"
+      :canEdit="true"
+      :list.sync="element.areas"
+      @update:list="update()"
+    />
     <hr />
     <br />
     <h2 class="has-text-weight-semibold">
@@ -27,7 +32,12 @@
       >Add Faction</b-button>
     </h2>
     <br />
-    <element-list :canEdit="true" :list.sync="element.factions" @update:list="update()" />
+    <element-list
+      v-if="renderLists"
+      :canEdit="true"
+      :list.sync="element.factions"
+      @update:list="update()"
+    />
     <hr />
     <br />
     <h2 class="has-text-weight-semibold">
@@ -41,7 +51,12 @@
       >Add Character</b-button>
     </h2>
     <br />
-    <element-list :canEdit="true" :list.sync="element.characters" @update:list="update()" />
+    <element-list
+      v-if="renderLists"
+      :canEdit="true"
+      :list.sync="element.characters"
+      @update:list="update()"
+    />
     <hr />
     <br />
     <h2 class="has-text-weight-semibold">
@@ -55,7 +70,12 @@
       >Add Extra</b-button>
     </h2>
     <br />
-    <element-list :canEdit="true" :list.sync="element.extras" @update:list="update()" />
+    <element-list
+      v-if="renderLists"
+      :canEdit="true"
+      :list.sync="element.extras"
+      @update:list="update()"
+    />
     <hr />
     <br />
     <h2 class="has-text-weight-semibold">
@@ -69,7 +89,12 @@
       >Add Item</b-button>
     </h2>
     <br />
-    <element-list :canEdit="true" :list.sync="element.items" @update:list="update()" />
+    <element-list
+      v-if="renderLists"
+      :canEdit="true"
+      :list.sync="element.items"
+      @update:list="update()"
+    />
     <br />
   </div>
 </template>
@@ -90,9 +115,19 @@ import ElementList from "@/components/ElementList.vue";
 export default class WorldWorkshop extends Vue {
   @Prop()
   element!: World;
+  renderLists = true;
+
+  refreshLists() {
+    this.renderLists = false;
+    this.$nextTick(() => {
+      this.renderLists = true;
+    });
+  }
 
   update() {
-    this.$store.dispatch("updateWorld", this.element);
+    this.$store.dispatch("updateWorld", this.element).then(() => {
+      this.refreshLists();
+    });
   }
 
   addArea() {

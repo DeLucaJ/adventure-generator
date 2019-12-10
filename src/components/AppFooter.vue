@@ -29,7 +29,13 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class AppFooter extends Vue {
   erase() {
-    this.$store.dispatch("eraseStorage");
+    this.$buefy.dialog.confirm({
+      message: "Are you sure you want to erase all of your data?",
+      cancelText: "No",
+      confirmText: "Yes",
+      type: "is-danger",
+      onConfirm: () => this.$store.dispatch("eraseStorage")
+    });
   }
 }
 </script>

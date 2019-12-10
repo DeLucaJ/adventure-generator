@@ -21,7 +21,7 @@ export default class ElementBlock extends Vue {
   element!: Element;
 
   edit() { 
-    this.$store.dispatch("setEditing", this.element).then(() => {
+    this.$store.dispatch("setEditing", Element.meta(this.element)).then(() => {
       if (this.$route.path !== "/editor") {
         this.$router.push("/editor");
       }

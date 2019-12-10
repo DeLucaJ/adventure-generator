@@ -16,7 +16,12 @@
       >Add Chapter</b-button>
     </h2>
     <br />
-    <element-list :canEdit="true" :list.sync="element.chapters" @update:list="update()" />
+    <element-list
+      v-if="renderChapters"
+      :canEdit="true"
+      :list.sync="element.chapters"
+      @update:list="update()"
+    />
     <!-- <hr />
     <h2 class="has-text-weight-semibold">
       Events
@@ -62,9 +67,12 @@ import ElementList from "@/components/ElementList.vue";
 export default class AdventureWorkshop extends Vue {
   @Prop()
   element!: Adventure;
+  renderChapters = true;
 
   update() {
-    this.$store.dispatch("updateAdventure", this.element);
+    this.$store.dispatch("updateAdventure", this.element).then(() => {
+      this.refreshChapters();
+    });
   }
 
   addChapter() {
@@ -76,6 +84,13 @@ export default class AdventureWorkshop extends Vue {
     this.$store.dispatch("saveElement", chapter).then(() => {
       this.element.chapters.push(Chapter.meta(chapter));
       this.update();
+    });
+  }
+
+  refreshChapters() {
+    this.renderChapters = false;
+    this.$nextTick(() => {
+      this.renderChapters = true;
     });
   }
 

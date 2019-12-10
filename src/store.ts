@@ -66,11 +66,11 @@ export const mutations = {
     put("_worlds_", state.worlds);
   },
   currentAdventureSet: function (state: any, adventure: Types.Adventure) {
-    console.log(`Current Adventure: ${adventure.title}, ${adventure.type}`);
+    console.log(`Current Adventure: ${adventure.title}, ${adventure._etype}`);
     state.currentAdventure = adventure;
   },
   currentWorldSet: function (state: any, world: Types.World) {
-    console.log(`Current World: ${world.title}, ${world.type}`);
+    console.log(`Current World: ${world.title}, ${world._etype}`);
     state.currentWorld = world;
   },
   viewingSet: function (state: any, target: Types.Element) {
@@ -178,12 +178,12 @@ export const actions = {
     commit("worldUpdated", Types.World.meta(world));
   },
   setViewing: function ({ commit }: any, target: Types.ElementMeta) {
-    console.log(`Set Viewing: ${target}`);
+    console.log(`Set Viewing: ${target.key}`);
     const element = grab(target.key);
     commit("viewingSet", element);
   },
   setEditing: function ({ commit }: any, target: Types.ElementMeta) {
-    console.log(`Set Editing: ${target}`);
+    console.log(`Set Editing: ${target.key}`);
     const element = grab(target.key);
     commit("editingSet", element);
   },

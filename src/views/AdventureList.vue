@@ -94,7 +94,7 @@ export default class AdventureList extends Vue {
   view(adventure: AdventureMeta) {
     this.$store.dispatch("loadAdventure", adventure.key).then(() => {
       this.$store
-        .dispatch("setViewing", this.$store.state.currentAdventure)
+        .dispatch("setViewing", adventure)
         .then(() => this.$store.dispatch("loadWorld", adventure.world_key))
         .then(() => this.$router.push('/viewer'))
     });
@@ -103,7 +103,7 @@ export default class AdventureList extends Vue {
   edit(adventure: AdventureMeta) {
     this.$store.dispatch("loadAdventure", adventure.key).then(() => {
       this.$store
-      .dispatch("setEditing", this.$store.state.currentAdventure)
+      .dispatch("setEditing", adventure)
       .then(() => this.$store.dispatch("loadWorld", adventure.world_key))
       .then(() => this.$router.push('/editor'))
     });

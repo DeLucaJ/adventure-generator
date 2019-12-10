@@ -90,7 +90,7 @@ export default class WorldList extends Vue {
   view(world: WorldMeta) {
     this.$store.dispatch("loadWorld", world.key).then(() => {
       this.$store
-        .dispatch("setViewing", this.$store.state.currentWorld)
+        .dispatch("setViewing", world)
         .then(() => this.$router.push("/viewer"));
     });
   }
@@ -98,7 +98,7 @@ export default class WorldList extends Vue {
   edit(world: WorldMeta) {
     this.$store.dispatch("loadWorld", world.key).then(() => {
       this.$store
-        .dispatch("setEditing", this.$store.state.currentWorld)
+        .dispatch("setEditing", world)
         .then(() => this.$router.push("/editor"));
     });
   }

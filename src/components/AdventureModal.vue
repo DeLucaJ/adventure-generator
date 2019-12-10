@@ -2,7 +2,7 @@
   <div class="modal-card" style="width: auto">
     <header class="modal-card-head">
       <p class="modal-card-title">Create Adventure</p>
-      <b-icon icon="book" size="is-large"/>
+      <b-icon icon="book" size="is-large" />
     </header>
     <section class="modal-card-body">
       <b-field label="Name" :label-position="labelpos">
@@ -49,8 +49,9 @@ export default class AdventureModal extends Vue {
         this.description,
         this.world
       );
-      this.$store.dispatch("addAdventure", na);
-      this.$store.dispatch("loadAdventure", Adventure.key(na));
+      this.$store.dispatch("addAdventure", na).then(() => {
+        this.$store.dispatch("loadAdventure", Adventure.key(na));
+      });
     } else {
       this.worldWarning();
     }
@@ -67,8 +68,7 @@ export default class AdventureModal extends Vue {
   mounted() {
     if (this.$store.state.worlds.length == 0) {
       this.worldWarning();
-    }
-    else {
+    } else {
       this.world = this.$store.state.worlds[0];
     }
   }

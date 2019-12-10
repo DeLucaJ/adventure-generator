@@ -2,7 +2,7 @@
   <div class="modal-card" style="width: auto">
     <header class="modal-card-head">
       <p class="modal-card-title">Create World</p>
-      <b-icon icon="earth" size="is-large"/>
+      <b-icon icon="earth" size="is-large" />
     </header>
     <section class="modal-card-body">
       <b-field label="Name" :label-position="labelpos">
@@ -28,14 +28,15 @@ import { World } from "@/types";
   components: {}
 })
 export default class WorldModal extends Vue {
-  labelpos="on-border";
+  labelpos = "on-border";
   title = "New World";
-  description = "A vast world with boundless wonders."; 
+  description = "A vast world with boundless wonders.";
 
   create() {
     let nw = new World(this.title, this.description);
-    this.$store.dispatch("addWorld", nw);
-    this.$store.dispatch("loadWorld", World.key(nw)); 
+    this.$store.dispatch("addWorld", nw).then(() => {
+      this.$store.dispatch("loadWorld", World.key(nw));
+    });
   }
 }
 </script>

@@ -4,8 +4,8 @@
     <h2 class="has-text-weight-semibold">Areas</h2>
     <!-- Needs Single Element Viewer/Editor -->
     {{ element.are.title }}
-    <h2 class="has-text-weight-semibold">Cast</h2>
-    <element-list :canEdit="true" :list.sync="element.cast" @update:list="update()" />
+    <!-- <h2 class="has-text-weight-semibold">Cast</h2>
+    <element-list :canEdit="true" :list.sync="element.cast" @update:list="update()" /> -->
     <string-list-workshop :list.sync="element.objectives" @update:list="update()" />
     <div class="encounter-event-workshop">
       <h2 class="has-text-weight-semibold">Events</h2>
