@@ -7,7 +7,7 @@
     />
     <br />
     <div :class="{ active: itemedit }">
-      <b-field>
+      <b-field v-if="newitem">
         <b-input v-model="newitem" />
         <b-button class="is-text" icon-left="plus" @click="add()" />
       </b-field>
@@ -36,7 +36,7 @@ export default class StringListWorkshop extends Vue {
   @Prop()
   list!: string[];
 
-  newitem: string | undefined = undefined;
+  newitem: string = "";
   itemedit: boolean = false;
 
   update() {
@@ -51,7 +51,7 @@ export default class StringListWorkshop extends Vue {
   add() {
     if (typeof this.newitem !== typeof undefined) {
       this.list.push(this.newitem as string);
-      this.newitem = undefined;
+      this.newitem = "";
       this.update();
     }
   }

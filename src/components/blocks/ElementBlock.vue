@@ -20,10 +20,12 @@ export default class ElementBlock extends Vue {
   @Prop()
   element!: Element;
 
-  edit() {
-    this.$store
-      .dispatch("setEditing", this.element)
-      .then(() => this.$router.push("/editor"));
+  edit() { 
+    this.$store.dispatch("setEditing", this.element).then(() => {
+      if (this.$route.path !== "/editor") {
+        this.$router.push("/editor");
+      }
+    });
   }
 }
 </script>

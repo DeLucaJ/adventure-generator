@@ -56,7 +56,7 @@ export default class AdventureModal extends Vue {
         this.world
       );
       this.$store.dispatch("addAdventure", na);
-      this.$store.dispatch("loadAdventure", Adventure.meta(na));
+      this.$store.dispatch("loadAdventure", Adventure.key(na));
     } else {
       this.worldWarning();
     }

@@ -6,6 +6,7 @@ export { default as CharacterWorkshop } from "./CharacterWorkshop.vue";
 export { default as ExtraWorkshop } from "./ExtraWorkshop.vue";
 export { default as FactionWorkshop } from "./FactionWorkshop.vue";
 export { default as ItemWorkshop } from "./ItemWorkshop.vue";
+export { default as AreaWorkshop } from "./AreaWorkshop.vue";
 export { default as EncounterWorkshop } from "./EncounterWorkshop.vue";
 export { default as ChapterWorkshop } from "./ChapterWorkshop.vue";
 export { default as EventWorkshop } from "./EventWorkshop.vue";

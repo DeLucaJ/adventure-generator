@@ -3,20 +3,6 @@ import { Graph } from '@/generators';
 import { AdventureMeta, WorldMeta } from "./meta";
 
 export default class Adventure extends Element {
-  /* static nextID = 0;
-
-  static get meta(): AdventureGenMeta {
-    return new AdventureGenMeta(this.nextID);
-  }
-
-  static set meta(meta: AdventureGenMeta) {
-    this.nextID = meta.nextID;
-  }
-
-  static emptyAdventure(world: World): Adventure {
-    return new Adventure(`New Adventure ${++this.nextID}`, this.nextID, world);
-  } */
-  
   id: number;
   world: WorldMeta;
   graph: Graph;
@@ -35,18 +21,10 @@ export default class Adventure extends Element {
   
 
   static key(adventure: Adventure): string {
-    return `${adventure.title.toLowerCase().replace(/\s/, "_")}_adventure_${adventure.id}`;
+    return `${adventure.title.toLowerCase().replace(/\s/g, "_")}_adventure_${adventure.id}`;
   }
 
   static meta(adventure: Adventure): AdventureMeta {
     return new AdventureMeta(adventure);
   }
 }
-/* 
-export class AdventureGenMeta {
-  nextID: number;
-  
-  constructor(nextID: number) {
-    this.nextID = nextID;
-  }
-} */

@@ -13,6 +13,7 @@ import {
   ExtraWorkshop,
   FactionWorkshop,
   ItemWorkshop,
+  AreaWorkshop,
   EncounterWorkshop,
   ChapterWorkshop,
   EventWorkshop,
@@ -26,6 +27,7 @@ import {
     ExtraWorkshop,
     FactionWorkshop,
     ItemWorkshop,
+    AreaWorkshop,
     EncounterWorkshop,
     ChapterWorkshop,
     EventWorkshop,
@@ -51,11 +53,14 @@ export default class Editor extends Vue {
     else if (this.target._etype === Types.EType.ITEM) {
       return "item-workshop";
     }
+    else if (this.target._etype === Types.EType.AREA) {
+      return "area-workshop"
+    }
     else if (this.target._etype === Types.EType.ENCOUNTER) {
       return "encounter-workshop";
     }
     else if (this.target._etype === Types.EType.CHAPTER) {
-      return "character-workshop";
+      return "chapter-workshop";
     }
     else if (this.target._etype === Types.EType.EVENT) {
       return "event-workshop";

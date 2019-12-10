@@ -1,7 +1,6 @@
 <template>
   <div class="container element-viewer">
     <br />
-    {{ currentEditor }}
     <component :is="currentViewer" :element.sync="target" />
   </div>
 </template>
@@ -14,6 +13,7 @@ import {
   ExtraBlock,
   FactionBlock,
   ItemBlock,
+  AreaBlock,
   EncounterBlock,
   ChapterBlock,
   EventBlock,
@@ -27,6 +27,7 @@ import {
     ExtraBlock,
     FactionBlock,
     ItemBlock,
+    AreaBlock,
     EncounterBlock,
     ChapterBlock,
     EventBlock,
@@ -40,36 +41,38 @@ export default class Viewer extends Vue {
   }
 
   get currentViewer() {
-    switch(this.target.type) {
-      case Types.EType.CHARACTER:
-        return "character-block";
-        break;
-      case Types.EType.EXTRA:
-        return "extra-block";
-        break;
-      case Types.EType.FACTION:
-        return "faction-block";
-        break;
-      case Types.EType.ITEM:
-        return "item-block";
-        break;
-      case Types.EType.ENCOUNTER:
-        return "encounter-block";
-        break;
-      case Types.EType.CHAPTER:
-        return "chapter-block";
-        break;
-      case Types.EType.EVENT:
-        return "event-block";
-        break;
-      case Types.EType.WORLD:
-        return "world-block";
-        break;
-      case Types.EType.ADVENTURE:
-        return "adventure-block";
-        break;
-      default:
-        return "world-block"
+    if (this.target._etype === Types.EType.CHARACTER) {
+      return "character-block";
+    }
+    else if (this.target._etype === Types.EType.EXTRA) {
+      return "extra-block";
+    }
+    else if (this.target._etype === Types.EType.FACTION) {
+      return "faction-block";
+    }
+    else if (this.target._etype === Types.EType.ITEM) {
+      return "item-block";
+    }
+    else if (this.target._etype === Types.EType.AREA) {
+      return "area-block"
+    }
+    else if (this.target._etype === Types.EType.ENCOUNTER) {
+      return "encounter-block";
+    }
+    else if (this.target._etype === Types.EType.CHAPTER) {
+      return "chapter-block";
+    }
+    else if (this.target._etype === Types.EType.EVENT) {
+      return "event-block";
+    }
+    else if (this.target._etype === Types.EType.WORLD) {
+      return "world-block";
+    }
+    else if (this.target._etype === Types.EType.ADVENTURE) {
+      return "adventure-block";
+    }
+    else {
+      return undefined;
     }
   }
 }

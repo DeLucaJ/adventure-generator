@@ -52,7 +52,6 @@ export const mutations = {
     put("_worlds_", state.worlds);
   },
   adventureUpdated: function (state: any, adventure: Types.AdventureMeta) {
-    console.log(adventure);
     console.log(`Adventure Updated: ${adventure.title}`);
     state.adventures = state.adventures.map((a: Types.AdventureMeta) => a.key === adventure.key ? adventure : a);
     put("_adventures_", state.adventures);
@@ -146,8 +145,8 @@ export const actions = {
   updateAdventure: function ({ commit }: any, adventure: Types.Adventure) {
     console.log(`Update Adventure: ${adventure.title}`);
     localStorage.setItem(Types.Adventure.key(adventure), JSON.stringify(adventure));
-    console.log(adventure);
     commit("adventureUpdated", Types.Adventure.meta(adventure));
+    // commit("adventureLoaded")
     // update current adventure?
   },
   updateWorld: function ({ commit }: any, world: Types.World) {

@@ -40,7 +40,7 @@ export default class WorldModal extends Vue {
   create() {
     let nw = new World(this.title, this.description, this.newID);
     this.$store.dispatch("addWorld", nw);
-    this.$store.dispatch("loadWorld", World.meta(nw)); 
+    this.$store.dispatch("loadWorld", World.key(nw)); 
   }
 }
 </script>

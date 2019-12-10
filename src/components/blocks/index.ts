@@ -5,6 +5,7 @@ export { default as CharacterBlock } from "./CharacterBlock.vue";
 export { default as ExtraBlock } from "./ExtraBlock.vue";
 export { default as FactionBlock } from "./FactionBlock.vue";
 export { default as ItemBlock } from "./ItemBlock.vue";
+export { default as AreaBlock } from "./AreaBlock.vue";
 export { default as EncounterBlock } from "./EncounterBlock.vue";
 export { default as ChapterBlock } from "./ChapterBlock.vue";
 export { default as EventBlock } from "./EventBlock.vue";
