@@ -2,14 +2,14 @@ import {
   Element,
   Adventure,
   World,
-  Area, 
+  Area,
   CastMember,
-  Character, 
-  Extra, 
-  Faction, 
-  Item, 
-  Encounter, 
-  PlotEvent, 
+  Character,
+  Extra,
+  Faction,
+  Item,
+  Encounter,
+  PlotEvent,
   Chapter,
   EType
 } from "@/types";
@@ -98,106 +98,92 @@ export abstract class ElementMeta {
   title: string;
   created: Date;
   edited: Date;
+  key: string
 
-  constructor(element: Element) {
+  constructor(element: Element, key: string) {
     this.title = element.title;
     this.created = element.created;
     this.edited = element.lastEdited;
-  }
-}
-
-export abstract class CastMemberMeta extends ElementMeta {
-  key: string;
-  
-  constructor(castMember: CastMember, key: string) {
-    super(castMember);
     this.key = key;
   }
 }
 
-export class AdventureMeta extends ElementMeta{
+export abstract class CastMemberMeta extends ElementMeta {
+
+  constructor(castMember: CastMember, key: string) {
+    super(castMember, key);
+  }
+}
+
+export class AdventureMeta extends ElementMeta {
   world_title: string;
-  key: string;
   world_key: string;
 
   constructor(adventure: Adventure) {
-    super(adventure);
+    super(adventure, Adventure.key(adventure));
     this.world_title = adventure.world.title;
-    this.key = Adventure.key(adventure);
     this.world_key = adventure.world.key;
   }
 }
 
 export class WorldMeta extends ElementMeta {
-  key: string;
 
   constructor(world: World) {
-    super(world);
-    this.key = World.key(world);
+    super(world, World.key(world));
   }
 }
 
 export class AreaMeta extends ElementMeta {
-  key: string;
 
   constructor(area: Area) {
-    super(area);
-    this.key = Area.key(area);
-  }  
+    super(area, Area.key(area));
+  }
 }
 export class CharacterMeta extends CastMemberMeta {
 
   constructor(character: Character) {
     super(character, Character.key(character));
-  }  
+  }
 }
 
 export class ExtraMeta extends CastMemberMeta {
 
   constructor(extra: Extra) {
     super(extra, Extra.key(extra));
-  }  
+  }
 }
 
 export class FactionMeta extends CastMemberMeta {
 
   constructor(faction: Faction) {
     super(faction, Faction.key(faction));
-  }  
+  }
 }
 
 export class ItemMeta extends ElementMeta {
-  key: string;
 
   constructor(item: Item) {
-    super(item);
-    this.key = Item.key(item);
-  }  
+    super(item, Item.key(item));
+  }
 }
 
 export class EncounterMeta extends ElementMeta {
-  key: string;
 
   constructor(encounter: Encounter) {
-    super(encounter);
-    this.key = Encounter.key(encounter);
-  }  
+    super(encounter, Encounter.key(encounter));
+  }
 }
 
 export class PlotEventMeta extends ElementMeta {
-  key: string;
 
   constructor(plotevent: PlotEvent) {
-    super(plotevent);
-    this.key = PlotEvent.key(plotevent);
-  }  
+    super(plotevent, PlotEvent.key(plotevent));
+  }
 }
 
 export class ChapterMeta extends ElementMeta {
-  key: string;
 
   constructor(chapter: Chapter) {
-    super(chapter)
-    this.key = Chapter.key(chapter);
-  }  
+    super(chapter, Chapter.key(chapter))
+  }
 }

@@ -179,11 +179,13 @@ export const actions = {
   },
   setViewing: function ({ commit }: any, target: Types.ElementMeta) {
     console.log(`Set Viewing: ${target}`);
-    commit("viewingSet", target);
+    const element = grab(target.key);
+    commit("viewingSet", element);
   },
   setEditing: function ({ commit }: any, target: Types.ElementMeta) {
     console.log(`Set Editing: ${target}`);
-    commit("editingSet", target);
+    const element = grab(target.key);
+    commit("editingSet", element);
   },
   clear: function ({ commit }: any) {
     console.log("Clear State");
