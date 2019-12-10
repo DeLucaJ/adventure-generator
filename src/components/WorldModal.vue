@@ -28,17 +28,12 @@ import { World } from "@/types";
   components: {}
 })
 export default class WorldModal extends Vue {
-  private static _id = 0;
   labelpos="on-border";
   title = "New World";
-  description = "A vast world with boundless wonders.";
-
-  get newID(): number {
-    return WorldModal._id++;
-  } 
+  description = "A vast world with boundless wonders."; 
 
   create() {
-    let nw = new World(this.title, this.description, this.newID);
+    let nw = new World(this.title, this.description);
     this.$store.dispatch("addWorld", nw);
     this.$store.dispatch("loadWorld", World.key(nw)); 
   }

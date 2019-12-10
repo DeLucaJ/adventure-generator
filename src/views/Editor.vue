@@ -1,7 +1,7 @@
 <template>
   <div class="container element-editor">
     <br />
-    <component v-if="target" :is="currentEditor" :element.sync="target"/>
+    <component v-if="target" :is="currentEditor" :element="target" @update:element="update()">
   </div>
 </template>
 
@@ -38,6 +38,10 @@ import {
 export default class Editor extends Vue {
   get target() {
     return this.$store.state.editing;
+  }
+
+  update() {
+    
   }
 
   get currentEditor() {

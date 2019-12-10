@@ -1,5 +1,5 @@
 import { EType, WorldElement } from '@/types';
-import { WorldMeta } from "./meta";
+import { default as Meta, AreaMeta, WorldMeta } from "./meta";
 
 export default class Area extends WorldElement{
   // type: AreaType;
@@ -10,6 +10,14 @@ export default class Area extends WorldElement{
     description: string = "This is a location that can be travelled to in the Setting",
     world: WorldMeta
   ) {
-    super(EType.AREA, title, description, world);
+    super(EType.AREA, title, description, Meta.newArea(), world);
+  }
+
+  static key(area: Area): string {
+    return `_area_${area.id}`;
+  }
+
+  static meta(area: Area): AreaMeta {
+    return new AreaMeta(area);
   }
 }

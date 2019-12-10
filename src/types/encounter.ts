@@ -1,5 +1,5 @@
 import { EType, Area, CastMember, AdventureElement } from '@/types';
-import { AdventureMeta } from "./meta";
+import { default as Meta, AdventureMeta, EncounterMeta } from "./meta";
 
 export default class Encounter extends AdventureElement {
   area?: Area;
@@ -14,18 +14,26 @@ export default class Encounter extends AdventureElement {
 
   constructor(
     title: string = "New Encounter",
-    description: string = "This is an encounter that takes place in the Narrative.",
+    description: string = "This is an encounter that takes place in the Narrative.", 
     adventure: AdventureMeta,
     area: Area | undefined = undefined,
     cast: CastMember[] = [],
     objectives: string[] = [],
     events: EncounterEvent[] = []
   ) {
-    super(EType.ENCOUNTER, title, description, adventure);
+    super(EType.ENCOUNTER, title, description, Meta.newEncounter(), adventure);
     this.area = area;
     this.cast = cast;
     this.objectives = objectives;
     this.events = events;
+  }
+
+  static key(encounter: Encounter): string {
+    return `_encounter_${encounter.id}`;
+  }
+
+  static meta(encounter: Encounter): EncounterMeta {
+    return new EncounterMeta(encounter);
   }
 }
 

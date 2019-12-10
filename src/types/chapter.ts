@@ -1,5 +1,5 @@
 import { EType, AdventureElement, Encounter } from "@/types";
-import { AdventureMeta } from "./meta";
+import { default as Meta, ChapterMeta, EncounterMeta, AdventureMeta } from "./meta";
 import { Graph } from "@/generators";
 
 export default class Chapter extends AdventureElement {
@@ -15,9 +15,17 @@ export default class Chapter extends AdventureElement {
     encounters: Encounter[] = [],
     objectives: string[] = []
   ) {
-    super(EType.CHAPTER, title, description, adventure);
+    super(EType.CHAPTER, title, description, Meta.newChapter(), adventure);
     this.graph = graph;
     this.encounters = encounters;
     this.objectives = objectives;
+  }
+
+  static key(chapter: Chapter): string {
+    return `_chapter_${chapter.id}`;
+  }
+
+  static meta(chapter: Chapter): ChapterMeta {
+    return new ChapterMeta(chapter);
   }
 }

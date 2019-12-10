@@ -1,8 +1,7 @@
 import { EType, Element, Relation, Character, Extra, Faction, Area, Item } from "@/types";
-import { WorldMeta } from "./meta";
+import { default as Meta, WorldMeta } from "./meta";
 
 export default class World extends Element {
-  id: number;
   relations: Relation[] = [];
   characters: Character[] = [];
   extras: Extra[] = [];
@@ -10,14 +9,12 @@ export default class World extends Element {
   areas: Area[] = [];
   items: Item[] = [];
   
-  constructor(title: string, description: string, id: number) {
-    super(EType.WORLD, title, description);
-    this.id = id;
-    this.title = title;
+  constructor(title: string, description: string) {
+    super(EType.WORLD, title, description, Meta.newWorld());
   }
 
   static key(world: World): string {
-    return `${world.title.toLowerCase().replace(/\s/g, "_")}_world_${world.id}`;
+    return `_world_${world.id}`;
   }
 
   static meta(world: World): WorldMeta {

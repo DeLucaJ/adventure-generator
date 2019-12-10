@@ -32,15 +32,10 @@ import { Adventure, WorldMeta } from "@/types";
   name: "adventure-modal"
 })
 export default class AdventureModal extends Vue {
-  private static _id = 0;
   labelpos = "on-border";
   title = "New Adventure";
   description = "A grand adventure for all to enjoy.";
   world?: WorldMeta;
-
-  get newID(): number {
-    return AdventureModal._id++;
-  }
 
   get worlds() {
     return this.$store.state.worlds;
@@ -52,7 +47,6 @@ export default class AdventureModal extends Vue {
       let na: Adventure = new Adventure(
         this.title,
         this.description,
-        this.newID,
         this.world
       );
       this.$store.dispatch("addAdventure", na);

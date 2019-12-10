@@ -5,12 +5,14 @@ export abstract class Element extends Dated {
   _etype: EType;
   title: string;
   description: string;
+  id: number;
 
-  constructor(etype: EType, title: string, description: string) {
+  constructor(etype: EType, title: string, description: string, id: number) {
     super();
     this._etype = etype;
     this.title = title;
     this.description = description;
+    this.id = id;
   }
 
   get type(): EType {
@@ -21,8 +23,8 @@ export abstract class Element extends Dated {
 export abstract class WorldElement extends Element {
   world: WorldMeta;
 
-  constructor(etype: EType, title: string, description: string, world: WorldMeta) {
-    super(etype, title, description);
+  constructor(etype: EType, title: string, description: string, id: number, world: WorldMeta) {
+    super(etype, title, description, id);
     this.world = world;
   }
 }
@@ -30,8 +32,8 @@ export abstract class WorldElement extends Element {
 export abstract class AdventureElement extends Element {
   adventure: AdventureMeta;
   
-  constructor(etype: EType, title: string, description: string, adventure: AdventureMeta) {
-    super(etype, title, description);
+  constructor(etype: EType, title: string, description: string, id: number, adventure: AdventureMeta) {
+    super(etype, title, description, id);
     this.adventure = adventure;
   }
 }

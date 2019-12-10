@@ -6,7 +6,7 @@ export default class Actor extends CastMember {
   goals: string[] = [];
   motivations: string[] = [];
   
-  constructor(etype: EType, title: string, description: string, world: WorldMeta) {
-    super(etype, title, description, world);
+  constructor(etype: EType, title: string, description: string, id: number, world: WorldMeta) {
+    super(etype, title, description, id, world);
   }
 }

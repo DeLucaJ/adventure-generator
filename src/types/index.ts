@@ -13,4 +13,16 @@ export { default as PlotEvent } from "./plot-event";
 export { default as Chapter } from "./chapter";
 export { default as World/* , WorldGenMeta */ } from "./world";
 export { default as Adventure/* , AdventureGenMeta */ } from "./adventure";
-export { AdventureMeta, WorldMeta } from "./meta";
+export { 
+  default as Meta,
+  AdventureMeta, 
+  WorldMeta,
+  AreaMeta,
+  CharacterMeta,
+  ExtraMeta,
+  FactionMeta,
+  ItemMeta,
+  EncounterMeta,
+  PlotEventMeta,
+  ChapterMeta 
+} from "./meta";

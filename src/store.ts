@@ -17,6 +17,10 @@ function put(key: string, value: any) {
 }
 // These change the state
 export const mutations = {
+  metaRestored: function (state: any, meta: Types.Meta) {
+    console.log("Metadata Restored");
+    new Types.Meta(meta);
+  },
   adventuresLoaded: function (state: any, adventures: Types.AdventureMeta[]) {
     console.log(`Adventures Loaded: ${adventures.length}`)
     state.adventures = adventures;
@@ -87,13 +91,19 @@ export const mutations = {
 // These access the information in store/database and then commit them to state
 // probably need some validation for local storage
 export const actions = {
-  /* loadAdvGenMeta: function ({ commit }: any) {
-    console.log("Loading Adventre Generator Meta");
-    let 
+  restoreMeta: function({ commit }: any) {
+    console.log("Restoring Metadata");
+    let meta = grab("__meta__");
+    if (meta === null) {
+      meta = new Types.Meta();
+    }
+    commit("metaRestored", meta);
   },
-  loadWorldGenMeta: function ({ commit }: any){
-
-  }, */
+  updateMeta: function({ commit }: any) {
+    console.log("Updating Metadata");
+    put("__meta__", Types.Meta.instance);
+    commit("updatedMeta");
+  },
   loadAdventures: function ({ commit }: any) {
     console.log("Loading Adventures")
     let adventures: Types.AdventureMeta[] = grab("_adventures_");
@@ -187,6 +197,6 @@ export default new Vuex.Store({
   getters: {
   },
   modules: {
-  }
+  },
 })
 
