@@ -1,13 +1,13 @@
 import { EType, Element, Chapter, Encounter, PlotEvent } from './index';
 import { Graph } from '@/generators';
-import { default as Meta, AdventureMeta, WorldMeta } from "./meta";
+import { default as Meta, AdventureMeta, WorldMeta, ChapterMeta, EncounterMeta, PlotEventMeta } from "./meta";
 
 export default class Adventure extends Element {
   world: WorldMeta;
   graph: Graph;
-  chapters: Chapter[] = [];
-  encounters: Encounter[] = [];
-  plotevents: PlotEvent[] = [];
+  chapters: ChapterMeta[] = [];
+  encounters: EncounterMeta[] = [];
+  plotevents: PlotEventMeta[] = [];
 
   constructor(title: string, description: string, world: WorldMeta) {
     super(EType.ADVENTURE, title, description, Meta.newAdventure());

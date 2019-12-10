@@ -3,6 +3,7 @@ import {
   Adventure,
   World,
   Area, 
+  CastMember,
   Character, 
   Extra, 
   Faction, 
@@ -105,6 +106,15 @@ abstract class ElementMeta {
   }
 }
 
+export abstract class CastMemberMeta extends ElementMeta {
+  key: string;
+  
+  constructor(castMember: CastMember, key: string) {
+    super(castMember);
+    this.key = key;
+  }
+}
+
 export class AdventureMeta extends ElementMeta{
   world_title: string;
   key: string;
@@ -135,30 +145,24 @@ export class AreaMeta extends ElementMeta {
     this.key = Area.key(area);
   }  
 }
-export class CharacterMeta extends ElementMeta {
-  key: string;
+export class CharacterMeta extends CastMemberMeta {
 
   constructor(character: Character) {
-    super(character);
-    this.key = Character.key(character);
+    super(character, Character.key(character));
   }  
 }
 
-export class ExtraMeta extends ElementMeta {
-  key: string;
+export class ExtraMeta extends CastMemberMeta {
 
   constructor(extra: Extra) {
-    super(extra);
-    this.key = Extra.key(extra);
+    super(extra, Extra.key(extra));
   }  
 }
 
-export class FactionMeta extends ElementMeta {
-  key: string;
+export class FactionMeta extends CastMemberMeta {
 
   constructor(faction: Faction) {
-    super(faction);
-    this.key = Faction.key(faction);
+    super(faction, Faction.key(faction));
   }  
 }
 

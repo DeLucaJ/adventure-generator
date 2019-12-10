@@ -4,7 +4,7 @@ import { Graph } from "@/generators";
 
 export default class Chapter extends AdventureElement {
   graph: Graph;
-  encounters: Encounter[];
+  encounters: EncounterMeta[];
   objectives: string[]
 
   constructor(
@@ -12,7 +12,7 @@ export default class Chapter extends AdventureElement {
     description: string = "This is a Quest that must be resolved in the Narrative.",
     adventure: AdventureMeta,
     graph: Graph = new Graph(),
-    encounters: Encounter[] = [],
+    encounters: EncounterMeta[] = [],
     objectives: string[] = []
   ) {
     super(EType.CHAPTER, title, description, Meta.newChapter(), adventure);

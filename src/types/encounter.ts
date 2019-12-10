@@ -1,9 +1,9 @@
 import { EType, Area, CastMember, AdventureElement } from '@/types';
-import { default as Meta, AdventureMeta, EncounterMeta } from "./meta";
+import { default as Meta, AdventureMeta, EncounterMeta, CastMemberMeta } from "./meta";
 
 export default class Encounter extends AdventureElement {
   area?: Area;
-  cast: CastMember[];
+  cast: CastMemberMeta[];
   objectives: string[];
   events: EncounterEvent[];
   // goals - one sentence that exemplifies the goal of the adventure
@@ -17,7 +17,7 @@ export default class Encounter extends AdventureElement {
     description: string = "This is an encounter that takes place in the Narrative.", 
     adventure: AdventureMeta,
     area: Area | undefined = undefined,
-    cast: CastMember[] = [],
+    cast: CastMemberMeta[] = [],
     objectives: string[] = [],
     events: EncounterEvent[] = []
   ) {
