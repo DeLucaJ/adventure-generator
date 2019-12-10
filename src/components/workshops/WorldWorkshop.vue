@@ -2,7 +2,7 @@
   <div class="world-workshop">
     <element-workshop :element.sync="element" @update:element="update()" />
     <br />
-    <h2 class="has-text-weight-semibold">
+    <h2 class="title is-2">
       Areas
       <b-button
         class="is-pulled-right"
@@ -21,7 +21,7 @@
     />
     <hr />
     <br />
-    <h2 class="has-text-weight-semibold">
+    <h2 class="title is-2">
       Factions
       <b-button
         class="is-pulled-right"
@@ -40,7 +40,7 @@
     />
     <hr />
     <br />
-    <h2 class="has-text-weight-semibold">
+    <h2 class="title is-2">
       Characters
       <b-button
         class="is-pulled-right"
@@ -59,7 +59,7 @@
     />
     <hr />
     <br />
-    <h2 class="has-text-weight-semibold">
+    <h2 class="title is-2">
       Extras
       <b-button
         class="is-pulled-right"
@@ -78,7 +78,7 @@
     />
     <hr />
     <br />
-    <h2 class="has-text-weight-semibold">
+    <h2 class="title is-2">
       Items
       <b-button
         class="is-pulled-right"

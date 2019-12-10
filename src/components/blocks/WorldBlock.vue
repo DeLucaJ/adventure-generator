@@ -1,16 +1,27 @@
 <template>
   <div class="world-block">
     <element-block :element="element" />
+    <hr />
     <h2 class="title">Areas</h2>
-    <element-list :list.sync="element.areas"/>
+    <br />
+    <element-list :list.sync="element.areas" />
+    <hr />
     <h2 class="title">Factions</h2>
-    <element-list :list.sync="element.factions"/>
+    <br />
+    <element-list :list.sync="element.factions" />
+    <hr />
     <h2 class="title">Characters</h2>
-    <element-list :list.sync="element.characters"/>
+    <br />
+    <element-list :list.sync="element.characters" />
+    <hr />
     <h2 class="title">Extras</h2>
-    <element-list :list.sync="element.extras"/>
+    <br />
+    <element-list :list.sync="element.extras" />
+    <hr />
     <h2 class="title">Items</h2>
-    <element-list :list.sync="element.items"/>
+    <br />
+    <element-list :list.sync="element.items" />
+    <hr />
   </div>
 </template>
 

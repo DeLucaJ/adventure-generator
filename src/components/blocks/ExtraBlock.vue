@@ -1,6 +1,6 @@
 <template>
   <div class="extra-block">
-    <element-block :element="element" />
+    <element-block :element="element" /><hr/>
     <cast-block :element="element" />
   </div>
 </template>

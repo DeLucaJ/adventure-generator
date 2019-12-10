@@ -1,14 +1,17 @@
 <template>
   <div class="actor-workshop">
     <!-- Secrets-->
-    <h2 class="has-text-weight-semibold">Secrets</h2>
-    <string-list-workshop :list.sync="element.secrets" @update:list="update()"/>
+    <string-list-workshop title="Secrets" :list.sync="element.secrets" @update:list="update()" />
+    <hr />
     <!-- Goals -->
-    <h2 class="has-text-weight-semibold">Goals</h2>
-    <string-list-workshop :list.sync="element.goals" @update:list="update()"/>
+    <string-list-workshop title="Goals" :list.sync="element.goals" @update:list="update()" />
+    <hr />
     <!-- Motivations -->
-    <h2 class="has-text-weight-semibold">Motivations</h2>
-    <string-list-workshop :list.sync="element.motivations" @update:list="update()"/>
+    <string-list-workshop
+      title="Motivations"
+      :list.sync="element.motivations"
+      @update:list="update()"
+    />
   </div>
 </template>
 
@@ -30,7 +33,7 @@ export default class ActorWorkshop extends Vue {
   update() {
     this.$store.dispatch("saveElement", this.element).then(() => {
       this.$emit("update:element", this.element);
-    })
+    });
   }
 }
 </script>

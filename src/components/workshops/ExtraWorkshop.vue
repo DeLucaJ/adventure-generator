@@ -1,7 +1,7 @@
 <template>
   <div class="extra-workshop">
-    <element-workshop :element.sync="element" @update:element="update()"/>
-    <cast-workshop :element.sync="element" @update:element="update()"/>
+    <element-workshop :element.sync="element" @update:element="update()"/><hr/>
+    <cast-workshop :element.sync="element" @update:element="update()"/><hr/>
   </div>
 </template>
 

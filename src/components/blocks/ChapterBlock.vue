@@ -1,12 +1,16 @@
 <template>
   <div class="chapter-block">
     <element-block :element="element" />
+    <hr />
     <!-- Graph -->
     <h2 class="title">Objectives</h2>
-    <ul>
+    <br />
+    <dl>
       <li v-for="(objective, index) in element.objectives" :key="index">{{ objective }}</li>
-    </ul>
+    </dl>
+    <hr />
     <h2 class="title">Encounters</h2>
+    <br />
     <element-list :list.sync="element.encounters" :canEdit="false" :update:list="update()" />
   </div>
 </template>

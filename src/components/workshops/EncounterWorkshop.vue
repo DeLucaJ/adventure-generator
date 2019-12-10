@@ -1,36 +1,53 @@
 <template>
   <div class="encounter-workshop">
     <element-workshop :element.sync="element" @update:element="update()" />
-    <h2 class="has-text-weight-semibold">Areas</h2>
-    <!-- Needs Single Element Viewer/Editor -->
-    {{ element.are.title }}
-    <!-- <h2 class="has-text-weight-semibold">Cast</h2>
-    <element-list :canEdit="true" :list.sync="element.cast" @update:list="update()" /> -->
-    <string-list-workshop :list.sync="element.objectives" @update:list="update()" />
+    <div v-if="element.area">
+      <h2 class="title is-2">Areas</h2>
+      <!-- Needs Single Element Viewer/Editor -->
+      <br />
+      <p>{{ element.area.title }}</p>
+      <hr />
+    </div>
+    <!-- <h2 class="title is-2">Cast</h2>
+    <br/>
+    <element-list :canEdit="true" :list.sync="element.cast" @update:list="update()" />-->
+    <hr />
+    <string-list-workshop title="Objectives" :list.sync="element.objectives" @update:list="update()" />
+    <hr />
     <div class="encounter-event-workshop">
-      <h2 class="has-text-weight-semibold">Events</h2>
-      <b-button
-        class="is-text"
-        :icon-left="eventedit ? 'cancel' : 'pencil'"
-        @click="eventedit = !eventedit"
-      />
-      <b-field :class="{ active: eventedit }">
+      <h2 class="title is-2">
+        Events
+        <b-button
+          class="is-text is-pulled-right"
+          :icon-left="eventedit ? 'cancel' : 'pencil'"
+          @click="canEditEvents()"
+        />
+      </h2>
+
+      <b-field v-if="eventedit">
         <b-input v-model="newcondition" />
         <b-icon icon="arrow-right-bold" />
         <b-input v-model="newevent" />
         <b-button class="is-text" icon-left="plus" @click="addEvent()" />
       </b-field>
-      <ul class="encounter-events">
-        <li v-for="event in element.events" :key="event.condition">
-          <span class="has-text-weight-bold">{{ event.condtion }}&nbsp;</span>
+      <dl class="encounter-events">
+        <li v-for="(event, index) in element.events" :key="index">
+          <span class="has-text-weight-bold">{{ event.condition }}&nbsp;</span>
           <b-icon icon="arrow-right-bold" />
           <span class="is-italic">&nbsp;{{ event.event }}</span>
-          <div class="buttons has-addons" :class="{ active: eventedit }">
+          <div class="buttons has-addons is-pulled-right" :class="{ active: eventedit }">
             <!-- <b-button icon-left="pencil" @click="editEvent(event)" /> -->
-            <b-button icon-left="minus" @click="deleteEvent(event)" />
+            <b-button
+              v-if="eventedit"
+              outlined
+              size="is-small"
+              type="is-danger"
+              icon-left="minus"
+              @click="deleteEvent(event)"
+            />
           </div>
         </li>
-      </ul>
+      </dl>
       <!-- Edit Event -->
       <!-- <b-modal :active.sync="targeventedit"
         has-modal-card
@@ -65,8 +82,8 @@ export default class EncounterWorkshop extends Vue {
   @Prop()
   element!: Encounter;
 
-  newcondition?: string = undefined;
-  newevent?: string = undefined;
+  newcondition: string = "";
+  newevent: string = "";
 
   eventedit: boolean = false;
   areaedit: boolean = false;
@@ -78,14 +95,20 @@ export default class EncounterWorkshop extends Vue {
   update() {
     this.$store.dispatch("saveElement", this.element).then(() => {
       this.$emit("update:element", this.element);
-    })
+    });
+  }
+
+  canEditEvents() {
+    this.eventedit = !this.eventedit;
   }
 
   addEvent() {
-    if (this.newcondition && this.newevent) {
-      this.element.events.push(
-        new EncounterEvent(this.newcondition, this.newevent)
-      );
+    if (this.newcondition !== "" && this.newevent !== "") {
+      const event = new EncounterEvent(this.newcondition, this.newevent);
+      // console.log(event);
+      this.element.events.push(event);
+      this.newcondition = "";
+      this.newevent = "";
       this.update();
     }
   }
@@ -99,9 +122,7 @@ export default class EncounterWorkshop extends Vue {
   editEvent(event: EncounterEvent) {}
 
   deleteEvent(event: EncounterEvent) {
-    this.element.events = this.element.events.filter(
-      e => e.id !== event.id
-    );
+    this.element.events = this.element.events.filter(e => e.id !== event.id);
   }
 }
 </script>

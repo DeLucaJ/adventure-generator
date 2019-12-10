@@ -1,28 +1,32 @@
 <template>
   <div class="string-list-workshop">
-    <b-button
-      class="is-text"
-      :icon-left="itemedit ? 'cancel' : 'pencil'"
-      @click="itemedit = !itemedit"
-    />
+    <h2 class="title is-2">
+      {{ title }}
+      <b-button
+        class="is-text is-pulled-right"
+        :icon-left="itemedit ? 'cancel' : 'pencil'"
+        @click="itemedit = !itemedit"
+      />
+    </h2>
     <br />
-    <div :class="{ active: itemedit }">
-      <b-field v-if="newitem">
+    <div v-if="itemedit">
+      <b-field>
         <b-input v-model="newitem" />
         <b-button class="is-text" icon-left="plus" @click="add()" />
       </b-field>
     </div>
-    <ul class="items">
-      <li v-for="item in list" :key="item">
+    <dl class="items">
+      <li class="title is-2" v-for="(item, index) in list" :key="index">
         {{ item }}
         <b-button
-          class="is-text"
-          :class="{ active: itemedit }"
+        outlined
+          class="is-danger is-small is-pulled-right"
+          v-if="itemedit"
           icon-left="minus"
-          @click="remove(item)"
+          @click="remove(index)"
         />
       </li>
-    </ul>
+    </dl>
   </div>
 </template>
 
@@ -34,6 +38,8 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 })
 export default class StringListWorkshop extends Vue {
   @Prop()
+  title!: string;
+  @Prop()
   list!: string[];
 
   newitem: string = "";
@@ -43,14 +49,14 @@ export default class StringListWorkshop extends Vue {
     this.$emit("update:list", this.list);
   }
 
-  remove(item: string) {
-    this.list = this.list.filter(s => s !== item);
+  remove(index: number) {
+    this.list.splice(index, 1);
     this.update();
   }
 
   add() {
-    if (typeof this.newitem !== typeof undefined) {
-      this.list.push(this.newitem as string);
+    if (this.newitem !== "") {
+      this.list.push(this.newitem);
       this.newitem = "";
       this.update();
     }

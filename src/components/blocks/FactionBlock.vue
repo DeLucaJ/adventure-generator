@@ -1,8 +1,8 @@
 <template>
   <div class="faction-block">
-    <element-block :element="element" />
-    <cast-block :element="element" />
-    <actor-block :actor="element" />
+    <element-block :element="element" /><hr/>
+    <cast-block :element="element" /><hr/>
+    <actor-block :element="element" />
   </div>
 </template>
 

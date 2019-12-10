@@ -1,11 +1,17 @@
 <template>
   <div class="character-workshop">
-    <element-workshop :element.sync="element" @update:element="update()"/>
-    <cast-workshop :element.sync="element" @update:element="update()"/>
-    <actor-workshop :element.sync="element" @update:element="update()"/>
+    <element-workshop :element.sync="element" @update:element="update()" />
+    <hr />
+    <cast-workshop :element.sync="element" @update:element="update()" />
+    <hr />
+    <actor-workshop :element.sync="element" @update:element="update()" />
+    <hr />
     <!-- Mannerisms-->
-    <h2 class="has-text-weight-semibold">Mannerisms</h2>
-    <string-list-workshop :list.sync="element.mannerisms" @update:list="update()" />
+    <string-list-workshop
+      title="Mannerisms"
+      :list.sync="element.mannerisms"
+      @update:list="update()"
+    />
   </div>
 </template>
 
@@ -35,7 +41,7 @@ export default class CharacterWorkshop extends Vue {
   update() {
     this.$store.dispatch("saveElement", this.element).then(() => {
       this.$emit("update:element", this.element);
-    })
+    });
   }
 }
 </script>

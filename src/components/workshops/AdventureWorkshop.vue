@@ -1,11 +1,11 @@
 <template>
   <div class="adventure-workshop">
     <element-workshop :element.sync="element" @update:element="update()" />
-    <h2 class="has-text-weight-semibold">The World</h2>
+    <h2 class="title is-2">The World</h2>
     {{ element.world.title }}
     <hr />
     <!-- a way to link to the world -->
-    <h2 class="has-text-weight-semibold">
+    <h2 class="title is-2">
       Chapters
       <b-button
         class="is-pulled-right"
@@ -23,7 +23,7 @@
       @update:list="update()"
     />
     <!-- <hr />
-    <h2 class="has-text-weight-semibold">
+    <h2 class="title is-2">
       Events
       <b-button
         class="is-pulled-right"
@@ -36,7 +36,7 @@
     <br />
     <element-list :canEdit="true" :list.sync="element.plotevents" @update:list="update()" />
     <hr />
-    <h2 class="has-text-weight-semibold">
+    <h2 class="title is-2">
       Encounters
       <b-button
         class="is-pulled-right"

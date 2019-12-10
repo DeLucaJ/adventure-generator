@@ -1,12 +1,12 @@
 <template>
   <div class="character-block">
-    <element-block :element="element" />
-    <cast-block :element="element" />
-    <actor-block :element="element" />
-    <h2 class="title">Mannerisms</h2>
-    <ul v-if="(element.mannerisms.length > 0)">
+    <element-block :element="element" /><hr/>
+    <cast-block :element="element" /><hr/>
+    <actor-block :element="element" /><hr/>
+    <h2 class="title">Mannerisms</h2><br/>
+    <dl v-if="(element.mannerisms.length > 0)">
       <li v-for="m in element.mannerisms" :key="m">{{ m }}</li>
-    </ul>
+    </dl>
   </div>
 </template>
 

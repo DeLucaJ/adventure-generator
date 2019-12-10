@@ -1,8 +1,10 @@
 <template>
   <div class="chapter-workshop">
     <element-workshop :element.sync="element" @update:element="update()" />
-    <string-list-workshop :list.sync="element.objectives" @update:list="update()" />
-    <h2 class="has-text-weight-semibold">
+    <hr/>
+    <string-list-workshop title="Objectives" :list.sync="element.objectives" @update:list="update()" />
+    <hr/>
+    <h2 class="title is-2">
       Encounters
       <b-button
         class="is-pulled-right"

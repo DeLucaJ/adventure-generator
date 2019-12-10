@@ -1,14 +1,13 @@
 <template>
   <div class="cast-member-workshop">
     <!-- Traits -->
-    <h2 class="has-text-weight-semibold">Traits</h2>
-    <string-list-workshop :list.sync="element.traits" @update:list="update()"/>
+    <string-list-workshop title="Traits" :list.sync="element.traits" @update:list="update()" />
+    <hr />
     <!-- Ideals -->
-    <h2 class="has-text-weight-semibold">Ideals</h2>
-    <string-list-workshop :list.sync="element.ideals" @update:list="update()"/>
+    <string-list-workshop title="Ideals" :list.sync="element.ideals" @update:list="update()" />
+    <hr />
     <!-- Flaws -->
-    <h2 class="has-text-weight-semibold">Flaws</h2>
-    <string-list-workshop :list.sync="element.flaws" @update:list="update()"/>
+    <string-list-workshop title="Flaws" :list.sync="element.flaws" @update:list="update()" />
   </div>
 </template>
 
@@ -30,7 +29,7 @@ export default class CastWorkshop extends Vue {
   update() {
     this.$store.dispatch("saveElement", this.element).then(() => {
       this.$emit("update:element", this.element);
-    })
+    });
   }
 }
 </script>

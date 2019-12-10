@@ -1,14 +1,20 @@
 <template>
   <div class="adventure-block">
-    <element-block :element="element"/>
-    <h2 class="title">The World: {{ element.world.title }}</h2>
+    <element-block :element="element" />
+    <hr />
+    <h2 class="title">
+      The World:
+      <span class="is-info">{{ element.world.title }}</span>
+    </h2>
     <!-- a way to link to the world -->
+    <hr />
     <h2 class="title">Chapters</h2>
-    <element-list :list.sync="element.chapters"/>
+    <br />
+    <element-list :list.sync="element.chapters" />
     <!-- <h2 class="title">Events</h2>
     <element-list :list.sync="element.plotevents"/>
     <h2 class="title">Encounters</h2>
-    <element-list :list.sync="element.encounters"/> -->
+    <element-list :list.sync="element.encounters"/>-->
   </div>
 </template>
 

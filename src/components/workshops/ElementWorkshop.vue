@@ -3,8 +3,8 @@
     <h1 class="title">
       {{ element.title }}
       <div class="buttons has-addons is-pulled-right">
-        <b-button type="is-warning" icon-left="eye" @click="view()" />
         <b-button type="is-warning" icon-left="content-save" @click="update()" />
+        <b-button type="is-warning" icon-left="eye" @click="view()" />
       </div>
     </h1>
     <hr />
@@ -45,10 +45,12 @@ export default class ElementWorkshop extends Vue {
   }
 
   delete() {
-    this.$store.dispatch("removeElement", Element.key(this.element)).then(() => {
-      this.$emit("delete:element", Element.meta(this.element));
-      this.$router.push("/about");
-    })
+    this.$store
+      .dispatch("removeElement", Element.key(this.element))
+      .then(() => {
+        this.$emit("delete:element", Element.meta(this.element));
+        this.$router.push("/about");
+      });
   }
 }
 </script>
