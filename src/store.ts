@@ -104,6 +104,21 @@ export const actions = {
     put("__meta__", Types.Meta.instance);
     commit("updatedMeta");
   },
+  loadElement: function({ commit }: any, key: string) {
+    console.log(`Loading Element: ${key}`)
+    // commit
+    return grab(key);
+  },
+  saveElement: function({ commit }: any, element: Types.Element) {
+    console.log(`Saving Element: ${element.title}`)
+    put(Types.Element.key(element) as string, element);
+    // commit
+  },
+  removeElement: function({ commit }: any, key: string) {
+    console.log(`Removing element: ${key}`);
+    localStorage.removeItem(key);
+    // commit("adventureRemoved", adventure);
+  },
   loadAdventures: function ({ commit }: any) {
     console.log("Loading Adventures")
     let adventures: Types.AdventureMeta[] = grab("_adventures_");
@@ -156,19 +171,17 @@ export const actions = {
     console.log(`Update Adventure: ${adventure.title}`);
     localStorage.setItem(Types.Adventure.key(adventure), JSON.stringify(adventure));
     commit("adventureUpdated", Types.Adventure.meta(adventure));
-    // commit("adventureLoaded")
-    // update current adventure?
   },
   updateWorld: function ({ commit }: any, world: Types.World) {
     console.log(`Update World: ${world.title}`);
     put(Types.World.key(world), world);
     commit("worldUpdated", Types.World.meta(world));
   },
-  setViewing: function ({ commit }: any, target: Types.Element) {
+  setViewing: function ({ commit }: any, target: Types.ElementMeta) {
     console.log(`Set Viewing: ${target}`);
     commit("viewingSet", target);
   },
-  setEditing: function ({ commit }: any, target: Types.Element) {
+  setEditing: function ({ commit }: any, target: Types.ElementMeta) {
     console.log(`Set Editing: ${target}`);
     commit("editingSet", target);
   },

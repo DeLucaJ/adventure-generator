@@ -94,7 +94,7 @@ export default class Meta {
   }
 }
 
-abstract class ElementMeta {
+export abstract class ElementMeta {
   title: string;
   created: Date;
   edited: Date;
