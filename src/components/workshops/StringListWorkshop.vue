@@ -16,7 +16,7 @@
       </b-field>
     </div>
     <dl class="items">
-      <li class="title is-2" v-for="(item, index) in list" :key="index">
+      <li class="has-text-weight-bold" v-for="(item, index) in list" :key="index">
         {{ item }}
         <b-button
         outlined
