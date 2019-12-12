@@ -2,6 +2,8 @@
   <div class="character-workshop">
     <element-workshop :element.sync="element" @update:element="update()" />
     <hr />
+    <relation-list :canedit="true" :element="element" />
+    <hr />
     <cast-workshop :element.sync="element" @update:element="update()" />
     <hr />
     <actor-workshop :element.sync="element" @update:element="update()" />
@@ -24,6 +26,7 @@ import {
   CastWorkshop,
   ActorWorkshop
 } from "@/components/workshops";
+import RelationList from "@/components/RelationList.vue";
 
 @Component({
   name: "character-workshop",
@@ -31,7 +34,8 @@ import {
     StringListWorkshop,
     ElementWorkshop,
     CastWorkshop,
-    ActorWorkshop
+    ActorWorkshop,
+    RelationList
   }
 })
 export default class CharacterWorkshop extends Vue {

@@ -1,6 +1,7 @@
 <template>
   <div class="extra-workshop">
     <element-workshop :element.sync="element" @update:element="update()"/><hr/>
+    <relation-list :canedit="true" :element="element" /><hr/>
     <cast-workshop :element.sync="element" @update:element="update()"/><hr/>
   </div>
 </template>
@@ -13,13 +14,15 @@ import {
   ElementWorkshop,
   CastWorkshop
 } from "@/components/workshops";
+import RelationList from "@/components/RelationList.vue";
 
 @Component({
   name: "extra-workshop",
   components: {
     StringListWorkshop,
     ElementWorkshop,
-    CastWorkshop
+    CastWorkshop,
+    RelationList
   }
 })
 export default class ExtraWorkshop extends Vue {

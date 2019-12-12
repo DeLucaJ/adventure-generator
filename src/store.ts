@@ -111,6 +111,7 @@ export const actions = {
   },
   saveElement: function({ commit }: any, element: Types.Element) {
     // console.log(`Saving Element: ${element.title}`)
+    // element.edited();
     put(Types.Element.key(element) as string, element);
     // commit
   },
@@ -169,12 +170,13 @@ export const actions = {
   },
   updateAdventure: function ({ commit }: any, adventure: Types.Adventure) {
     console.log(`Update Adventure: ${adventure.title}`);
+    // adventure.edited();
     put(Types.Adventure.key(adventure), adventure);
     commit("adventureUpdated", Types.Adventure.meta(adventure));
   },
   updateWorld: function ({ commit }: any, world: Types.World) {
     console.log(`Update World: ${world.title}`);
-    console.log(world);
+    // world.edited();
     put(Types.World.key(world), world);
     commit("worldUpdated", Types.World.meta(world));
   },

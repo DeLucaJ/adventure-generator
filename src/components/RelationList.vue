@@ -1,90 +1,41 @@
 <template>
   <div class="relation-list">
+    <h2 class="title is-2">Relations</h2>
     <div v-if="world">
-      <div v-if="canedit">
-        <b-field label="Source" :label-position="labelpos">
-          <b-select v-model="newsource" placeholder="Select a World Element" icon="account">
-            <optgroup label="Areas">
-              <option
-                v-for="(area, index) of world.areas"
-                :key="index"
-                :value="area"
-              >{{ area.title }}</option>
-            </optgroup>
-            <optgroup label="Factions">
-              <option
-                v-for="(faction, index) of world.factions"
-                :key="index"
-                :value="faction"
-              >{{ faction.title }}</option>
-            </optgroup>
-            <optgroup label="Characters">
-              <option
-                v-for="(character, index) of world.characters"
-                :key="index"
-                :value="character"
-              >{{ character.title }}</option>
-            </optgroup>
-            <optgroup label="Extras">
-              <option
-                v-for="(extra, index) of world.extras"
-                :key="index"
-                :value="extra"
-              >{{ extra.title }}</option>
-            </optgroup>
-            <optgroup label="Items">
-              <option
-                v-for="(item, index) of world.items"
-                :key="index"
-                :value="item"
-              >{{ item.title }}</option>
-            </optgroup>
-          </b-select>
-        </b-field>
-        <b-field v-model="newtype" label="Type" :label-position="labelpos">
-          <b-input placeholder="is related to"></b-input>
-        </b-field>
-        <b-field v-model="newtarget" label="Target" :label-position="labelpos">
-          <b-select placeholder="Select a World Element" icon="account">
-            <optgroup label="Areas">
-              <option
-                v-for="(area, index) of world.areas"
-                :key="index"
-                :value="area"
-              >{{ area.title }}</option>
-            </optgroup>
-            <optgroup label="Factions">
-              <option
-                v-for="(faction, index) of world.factions"
-                :key="index"
-                :value="faction"
-              >{{ faction.title }}</option>
-            </optgroup>
-            <optgroup label="Characters">
-              <option
-                v-for="(character, index) of world.characters"
-                :key="index"
-                :value="character"
-              >{{ character.title }}</option>
-            </optgroup>
-            <optgroup label="Extras">
-              <option
-                v-for="(extra, index) of world.extras"
-                :key="index"
-                :value="extra"
-              >{{ extra.title }}</option>
-            </optgroup>
-            <optgroup label="Items">
-              <option
-                v-for="(item, index) of world.items"
-                :key="index"
-                :value="item"
-              >{{ item.title }}</option>
-            </optgroup>
-          </b-select>
-        </b-field>
-        <b-button class="is-text" icon-left="plus" @click="add()" />
-      </div>
+      <b-field v-if="canedit" label="New Relation" :label-position="labelpos">
+        <b-input disabled :value="element.title" />
+        <b-input v-model="newtype" placeholder="Relation Type"></b-input>
+        <b-select v-model="newtarget" placeholder="Select a World Element" icon="account">
+          <optgroup label="Areas">
+            <option v-for="(area, index) of world.areas" :key="index" :value="area">{{ area.title }}</option>
+          </optgroup>
+          <optgroup label="Factions">
+            <option
+              v-for="(faction, index) of world.factions"
+              :key="index"
+              :value="faction"
+            >{{ faction.title }}</option>
+          </optgroup>
+          <optgroup label="Characters">
+            <option
+              v-for="(character, index) of world.characters"
+              :key="index"
+              :value="character"
+            >{{ character.title }}</option>
+          </optgroup>
+          <optgroup label="Extras">
+            <option
+              v-for="(extra, index) of world.extras"
+              :key="index"
+              :value="extra"
+            >{{ extra.title }}</option>
+          </optgroup>
+          <optgroup label="Items">
+            <option v-for="(item, index) of world.items" :key="index" :value="item">{{ item.title }}</option>
+          </optgroup>
+        </b-select>
+        <b-button class="is-text is-pulled-right" icon-left="plus" @click="add()" />
+      </b-field>
       <dl>
         <div v-for="(relation, index) of list" :key="index">
           <u>
@@ -94,7 +45,7 @@
           <u>
             <b>{{ relation.target.title }}</b>
           </u>
-           <b-button v-if="canedit" @click="remove(index)" icon-right="remove" />
+          <b-button v-if="canedit" @click="remove()" icon-right="remove" />
         </div>
       </dl>
     </div>
@@ -113,16 +64,45 @@ export default class RelationList extends Vue {
   canedit!: boolean;
 
   @Prop()
-  list!: Relation[];
+  element!: WorldElementMeta;
+
+  list: Relation[] = [];
 
   labelpos = "on-border";
 
-  newsource: WorldElementMeta | null = null;
   newtarget: WorldElementMeta | null = null;
-  newtype: string = ""
+  newtype: string = "";
 
   get world(): World {
     return this.$store.state.currentWorld;
+  }
+
+  mounted() {
+    // load all relations w/ this element as the source
+    if (this.world) {
+      this.list = this.world.relations.filter(relation => {
+        relation.source.key === this.element.key;
+      });
+    }
+  }
+
+  add() {
+    // adds a new relation to the world
+    console.log(this.newtype, this.newtarget);
+    if (this.newtype !== "" && this.newtarget !== null) {
+      console.log("adding");
+      let nr = new Relation(this.newtype, this.element, this
+        .newtarget as WorldElementMeta);
+      this.world.relations.push(nr); // might need to be a store
+      // this.$store.dispatch("updateWorld", this.world);
+      this.$store.dispatch("saveElement", this.world);
+    }
+  }
+
+  remove() {
+    // removes a relation from the world?
+    // not totally certain on this
+    // should probably be some sort of store function
   }
 }
 </script>
