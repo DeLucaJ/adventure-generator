@@ -127,6 +127,7 @@ export default class WorldWorkshop extends Vue {
   update() {
     this.$store.dispatch("updateWorld", this.element).then(() => {
       this.refreshLists();
+      this.$emit("update");
     });
   }
 

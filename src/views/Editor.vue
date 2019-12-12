@@ -1,12 +1,12 @@
 <template>
   <div class="container element-editor">
-    <br/>
+    <br />
     <div class="columns">
       <div class="column is-one-fifth">
-        <nav-menu />
+        <nav-menu v-if="refresh" />
       </div>
       <div class="column">
-        <component v-if="target" :is="currentEditor" :element="target" @update:element="update()" />
+        <component v-if="target" :is="currentEditor" :element="target" @update="update()" />
       </div>
     </div>
   </div>
@@ -45,18 +45,27 @@ import {
   }
 })
 export default class Editor extends Vue {
+  refresh = true;
+
   get target() {
     return this.$store.state.editing;
   }
 
   update() {
+    let call: string;
     if (this.target._etype === Types.EType.ADVENTURE) {
-      this.$store.dispatch("updateAdventure", this.target);
+      call = "updateAdventure";
     } else if (this.target._etype === Types.EType.WORLD) {
-      this.$store.dispatch("updateWorld", this.target);
+      call = "updateWorld";
     } else {
-      this.$store.dispatch("saveElement", this.target);
+      call = "saveElement";
     }
+    this.$store.dispatch(call, this.target)/* .then(() => {
+      this.refresh = false;
+      this.$nextTick(() => {
+        this.refresh = true;
+      })
+    }) */;
   }
 
   get currentEditor() {

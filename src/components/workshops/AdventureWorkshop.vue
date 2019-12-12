@@ -72,6 +72,8 @@ export default class AdventureWorkshop extends Vue {
   update() {
     this.$store.dispatch("updateAdventure", this.element).then(() => {
       this.refreshChapters();
+      console.log("in workshop update");
+      this.$emit("update");
     });
   }
 

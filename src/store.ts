@@ -61,7 +61,7 @@ export const mutations = {
     put("_adventures_", state.adventures);
   },
   worldUpdated: function (state: any, world: Types.WorldMeta) {
-    console.log(`World Removed: ${world.title}`);
+    console.log(`World Updated: ${world.title}`);
     state.worlds = state.worlds.map((w: Types.WorldMeta) => w.key === world.key ? world : w);
     put("_worlds_", state.worlds);
   },
@@ -105,17 +105,17 @@ export const actions = {
     commit("updatedMeta");
   },
   loadElement: function({ commit }: any, key: string) {
-    console.log(`Loading Element: ${key}`)
+    // console.log(`Loading Element: ${key}`)
     // commit
     return grab(key);
   },
   saveElement: function({ commit }: any, element: Types.Element) {
-    console.log(`Saving Element: ${element.title}`)
+    // console.log(`Saving Element: ${element.title}`)
     put(Types.Element.key(element) as string, element);
     // commit
   },
   removeElement: function({ commit }: any, key: string) {
-    console.log(`Removing element: ${key}`);
+    // console.log(`Removing element: ${key}`);
     localStorage.removeItem(key);
     // commit("adventureRemoved", adventure);
   },
@@ -174,16 +174,17 @@ export const actions = {
   },
   updateWorld: function ({ commit }: any, world: Types.World) {
     console.log(`Update World: ${world.title}`);
+    console.log(world);
     put(Types.World.key(world), world);
     commit("worldUpdated", Types.World.meta(world));
   },
   setViewing: function ({ commit }: any, target: Types.ElementMeta) {
-    console.log(`Set Viewing: ${target.key}`);
+    // console.log(`Set Viewing: ${target.key}`);
     const element = grab(target.key);
     commit("viewingSet", element);
   },
   setEditing: function ({ commit }: any, target: Types.ElementMeta) {
-    console.log(`Set Editing: ${target.key}`);
+    // console.log(`Set Editing: ${target.key}`);
     const element = grab(target.key);
     commit("editingSet", element);
   },
