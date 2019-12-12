@@ -26,5 +26,7 @@ export {
   PlotEventMeta,
   ChapterMeta,
   CastMemberMeta,
-  ElementMeta 
+  ElementMeta,
+  WorldElementMeta,
+  AdventureElementMeta 
 } from "./meta";

@@ -1,5 +1,7 @@
 import {
   Element,
+  WorldElement,
+  AdventureElement,
   Adventure,
   World,
   Area,
@@ -108,7 +110,19 @@ export abstract class ElementMeta {
   }
 }
 
-export abstract class CastMemberMeta extends ElementMeta {
+export abstract class WorldElementMeta extends ElementMeta {
+  constructor(worldElement: WorldElement, key: string) {
+    super(worldElement, key);
+  }
+}
+
+export abstract class AdventureElementMeta extends ElementMeta {
+  constructor(worldElement: AdventureElement, key: string) {
+    super(worldElement, key);
+  }
+}
+
+export abstract class CastMemberMeta extends WorldElementMeta {
 
   constructor(castMember: CastMember, key: string) {
     super(castMember, key);
@@ -133,7 +147,7 @@ export class WorldMeta extends ElementMeta {
   }
 }
 
-export class AreaMeta extends ElementMeta {
+export class AreaMeta extends WorldElementMeta {
 
   constructor(area: Area) {
     super(area, Area.key(area));
@@ -160,28 +174,28 @@ export class FactionMeta extends CastMemberMeta {
   }
 }
 
-export class ItemMeta extends ElementMeta {
+export class ItemMeta extends WorldElementMeta {
 
   constructor(item: Item) {
     super(item, Item.key(item));
   }
 }
 
-export class EncounterMeta extends ElementMeta {
+export class EncounterMeta extends AdventureElementMeta {
 
   constructor(encounter: Encounter) {
     super(encounter, Encounter.key(encounter));
   }
 }
 
-export class PlotEventMeta extends ElementMeta {
+export class PlotEventMeta extends AdventureElementMeta {
 
   constructor(plotevent: PlotEvent) {
     super(plotevent, PlotEvent.key(plotevent));
   }
 }
 
-export class ChapterMeta extends ElementMeta {
+export class ChapterMeta extends AdventureElementMeta {
 
   constructor(chapter: Chapter) {
     super(chapter, Chapter.key(chapter))
