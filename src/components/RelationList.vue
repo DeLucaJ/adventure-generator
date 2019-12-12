@@ -34,7 +34,7 @@
             <option v-for="(item, index) of world.items" :key="index" :value="item">{{ item.title }}</option>
           </optgroup>
         </b-select>
-        <b-button class="is-text is-pulled-right" icon-left="plus" @click="add()" />
+        <b-button class="is-pulled-right" icon-left="plus" @click="add()" />
       </b-field>
       <dl>
         <div v-for="(relation, index) of list" :key="index">
@@ -80,19 +80,20 @@ export default class RelationList extends Vue {
   mounted() {
     // load all relations w/ this element as the source
     if (this.world) {
+      console.log(this.world.relations);
       this.list = this.world.relations.filter(relation => {
         relation.source.key === this.element.key;
       });
+      console.log(this.list);
     }
   }
 
   add() {
     // adds a new relation to the world
-    console.log(this.newtype, this.newtarget);
     if (this.newtype !== "" && this.newtarget !== null) {
-      console.log("adding");
-      let nr = new Relation(this.newtype, this.element, this
-        .newtarget as WorldElementMeta);
+      let nr = new Relation(this.newtype, this.element, this.newtarget as WorldElementMeta);
+      this.newtarget = null;
+      this.newtype = "";
       this.world.relations.push(nr); // might need to be a store
       // this.$store.dispatch("updateWorld", this.world);
       this.$store.dispatch("saveElement", this.world);
