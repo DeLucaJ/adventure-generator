@@ -1,13 +1,21 @@
 <template>
   <div class="container element-viewer">
     <br />
-    <component :is="currentViewer" :element.sync="target" />
+    <div class="columns">
+      <div class="column is-one-fifth">
+        <nav-menu />
+      </div>
+      <div class="column">
+        <component v-if="target" :is="currentViewer" :element="target" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import * as Types from "@/types";
+import NavMenu from "@/components/NavMenu.vue";
 import {
   CharacterBlock,
   ExtraBlock,
@@ -23,6 +31,7 @@ import {
 
 @Component({
   components: {
+    NavMenu,
     CharacterBlock,
     ExtraBlock,
     FactionBlock,

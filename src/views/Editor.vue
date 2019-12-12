@@ -1,13 +1,21 @@
 <template>
   <div class="container element-editor">
-    <br />
-    <component v-if="target" :is="currentEditor" :element="target" @update:element="update()" />
+    <br/>
+    <div class="columns">
+      <div class="column is-one-fifth">
+        <nav-menu />
+      </div>
+      <div class="column">
+        <component v-if="target" :is="currentEditor" :element="target" @update:element="update()" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import * as Types from "@/types";
+import NavMenu from "@/components/NavMenu.vue";
 import {
   CharacterWorkshop,
   ExtraWorkshop,
@@ -23,6 +31,7 @@ import {
 
 @Component({
   components: {
+    NavMenu,
     CharacterWorkshop,
     ExtraWorkshop,
     FactionWorkshop,
