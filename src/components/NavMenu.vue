@@ -2,7 +2,7 @@
   <aside class="menu">
     <div v-if="adventure">
       <p class="menu-label">
-        <a @click="select(adventure)">{{ adventure.title }}</a>
+        <a @click="select(advmeta)">{{ adventure.title }}</a>
       </p>
       <ul class="menu-list">
         <li v-for="(chapter, index) in adventure.chapters" :key="index">
@@ -13,7 +13,7 @@
     <br />
     <div v-if="world">
       <p class="menu-label">
-        <a @click="select(world)">{{ world.title }}</a>
+        <a @click="select(worldmeta)">{{ world.title }}</a>
       </p>
       <ul class="menu-list">
         <li>
@@ -63,7 +63,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Element, Adventure, World, ElementMeta } from "@/types";
+import { Element, Adventure, World, ElementMeta, AdventureMeta } from "@/types";
 
 @Component({
   name: "nav-menu"
@@ -83,8 +83,16 @@ export default class NavMenu extends Vue {
     return this.$store.state.currentAdventure;
   }
 
+  get advmeta(): ElementMeta {
+    return Element.meta(this.adventure) as ElementMeta;
+  }
+
   get world(): World {
     return this.$store.state.currentWorld;
+  }
+
+  get worldmeta(): ElementMeta {
+    return Element.meta(this.world) as ElementMeta;
   }
 
   showAreas() {
