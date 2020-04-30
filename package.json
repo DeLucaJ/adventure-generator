@@ -10,7 +10,7 @@
     "@types/cytoscape": "^3.8.6",
     "buefy": "^0.8.8",
     "core-js": "^3.4.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "node-sass": "^4.13.0",
     "sass": "^1.23.7",
     "sass-loader": "^8.0.0",
